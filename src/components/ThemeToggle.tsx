@@ -10,7 +10,10 @@ export default function ThemeToggle() {
     <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      onClick={toggleTheme}
+      onClick={() => {
+        console.log('ThemeToggle: Clicked');
+        toggleTheme();
+      }}
       className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition-colors"
       aria-label="Toggle theme"
     >

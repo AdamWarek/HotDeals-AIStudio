@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { collection, query, orderBy, onSnapshot, addDoc, serverTimestamp, getDocs, limit } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
 import DealCard from '../components/DealCard';
 import ThemeToggle from '../components/ThemeToggle';
 import { Plus, Search, LogIn, LogOut, User as UserIcon, Flame, TrendingUp, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const Home: React.FC = () => {
+  const { theme } = useTheme();
   const { user, signInWithGoogle, logout, isAdmin } = useAuth();
   const [deals, setDeals] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -236,6 +238,11 @@ const Home: React.FC = () => {
           </div>
         )}
       </main>
+
+      {/* Theme Debug Indicator */}
+      <div className="fixed bottom-4 right-4 bg-black text-white px-3 py-1 rounded-full text-[10px] font-mono z-[9999] opacity-50 pointer-events-none">
+        THEME: {theme.toUpperCase()}
+      </div>
     </div>
   );
 };
