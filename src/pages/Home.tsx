@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import DealCard from '../components/DealCard';
 import ThemeToggle from '../components/ThemeToggle';
+import PromoBanner from '../components/PromoBanner';
 import { Plus, Search, LogIn, LogOut, User as UserIcon, Flame, TrendingUp, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -176,6 +177,9 @@ const Home: React.FC = () => {
 
       {/* Main Content */}
       <main className="pt-24 pb-12 max-w-7xl mx-auto px-4">
+        {/* Promo Banner */}
+        <PromoBanner />
+
         {/* Hero Section */}
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>

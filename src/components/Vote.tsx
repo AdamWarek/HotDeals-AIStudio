@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { doc, getDoc, setDoc, updateDoc, increment, onSnapshot } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc, increment, onSnapshot, writeBatch } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
 import { Flame, Plus, Minus } from 'lucide-react';
@@ -43,23 +43,31 @@ const Vote: React.FC<VoteProps> = ({ dealId, initialTemperature }) => {
 
     const dealRef = doc(db, 'deals', dealId);
     const voteRef = doc(db, 'deals', dealId, 'votes', user.uid);
+    const batch = writeBatch(db);
 
     try {
       if (userVote === value) {
         // Remove vote
-        await setDoc(voteRef, { value: 0, timestamp: new Date() });
-        await updateDoc(dealRef, { temperature: increment(-value * 10) });
+        batch.set(voteRef, { 
+          dealId,
+          userUid: user.uid,
+          value: 0, 
+          timestamp: new Date() 
+        });
+        batch.update(dealRef, { temperature: increment(-value * 10) });
+        await batch.commit();
         setUserVote(null);
       } else {
         // Add or change vote
         const diff = userVote === null ? value : value * 2;
-        await setDoc(voteRef, { 
+        batch.set(voteRef, { 
           dealId, 
           userUid: user.uid, 
           value, 
           timestamp: new Date() 
         });
-        await updateDoc(dealRef, { temperature: increment(diff * 10) });
+        batch.update(dealRef, { temperature: increment(diff * 10) });
+        await batch.commit();
         setUserVote(value);
       }
     } catch (error) {

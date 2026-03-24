@@ -78,27 +78,42 @@ service cloud.firestore {
     // ===============================================================
     function isValidUser(data) {
       return hasOnlyAllowedFields(['uid', 'email', 'displayName', 'photoURL', 'role']) &&
-             data.uid == request.auth.uid &&
+             data.uid is string && data.uid.size() > 0 && data.uid.size() < 128 &&
              isValidEmail(data.email) &&
+             (data.displayName == null || (data.displayName is string && data.displayName.size() < 100)) &&
+             (data.photoURL == null || (data.photoURL is string && data.photoURL.size() < 500)) &&
              (data.role == 'user' || isAdmin());
     }
 
     function isValidDeal(data) {
       return hasOnlyAllowedFields(['title', 'description', 'currentPrice', 'originalPrice', 'imageUrl', 'temperature', 'authorUid', 'authorName', 'createdAt', 'category']) &&
              data.title is string && data.title.size() > 0 && data.title.size() < 200 &&
+             (data.description == null || (data.description is string && data.description.size() < 2000)) &&
              data.currentPrice is number &&
+             (data.originalPrice == null || data.originalPrice is number) &&
              data.imageUrl is string && isValidUrl(data.imageUrl) &&
              data.temperature is int &&
              data.authorUid == request.auth.uid &&
-             data.createdAt is timestamp;
+             (data.authorName == null || (data.authorName is string && data.authorName.size() < 100)) &&
+             data.createdAt is timestamp &&
+             (data.category == null || (data.category is string && data.category.size() < 50));
     }
 
     function isValidVote(data) {
       return hasOnlyAllowedFields(['dealId', 'userUid', 'value', 'timestamp']) &&
              data.dealId is string &&
              data.userUid == request.auth.uid &&
-             (data.value == 1 || data.value == -1) &&
+             (data.value == 1 || data.value == -1 || data.value == 0) &&
              data.timestamp is timestamp;
+    }
+
+    function isValidTemperatureUpdate(dealId) {
+      let diff = request.resource.data.temperature - resource.data.temperature;
+      let absDiff = math.abs(diff);
+      // We allow increments of 10 or 20 (if changing vote from -1 to 1 or vice versa)
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['temperature']) &&
+             (absDiff == 10 || absDiff == 20) &&
+             getAfter(/databases/$(database)/documents/deals/$(dealId)/votes/$(request.auth.uid)) != null;
     }
 
     // ===============================================================
@@ -106,7 +121,7 @@ service cloud.firestore {
     // ===============================================================
 
     match /users/{userId} {
-      allow read: if isAuthenticated();
+      allow read: if isOwner(userId) || isAdmin();
       allow create: if isOwner(userId) && isValidUser(request.resource.data);
       allow update: if isOwner(userId) && isValidUser(request.resource.data) && request.resource.data.role == resource.data.role;
     }
@@ -116,7 +131,7 @@ service cloud.firestore {
       allow create: if isAuthenticated() && isValidDeal(request.resource.data);
       allow update: if isAuthenticated() && (
         (isDocOwner() && isValidDeal(request.resource.data)) ||
-        (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['temperature']))
+        isValidTemperatureUpdate(dealId)
       );
       allow delete: if isAdmin() || isDocOwner();
 
