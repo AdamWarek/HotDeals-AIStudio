@@ -18,146 +18,20 @@
     "source_name": "Pull&Bear"
   },
   {
-    "title": "DOPASOWANA KOSZULA Z ROZSZERZANYM RĘKAWEM",
+    "title": "Wyprzedaż Bershka - Zobacz ofertę",
     "brand": "Bershka",
     "category": "Odzież",
     "discount": null,
     "price": null,
     "currency": null,
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/0823/284d/3ed54f8baa78/9483c0cb2fcc/06278710711-a4o/06278710711-a4o.jpg?ts=1768406466126&w=563&f=auto",
-    "description": null,
+    "url": "https://www.bershka.com/pl/kobieta/wyprzedaz-c1010193132.html",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Bershka.",
     "valid_until": null,
     "tags": [
       "Odzież"
     ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "TOP HALTER W KROPKI",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": null,
-    "currency": null,
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/9480/1740/c4c34644a855/210844782cad/01488710712-a4o/01488710712-a4o.jpg?ts=1770729982791&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "ASYMETRYCZNA KOSZULKA Z DŁUGIM RĘKAWEM",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": null,
-    "currency": null,
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/12a0/86d9/98fe4409bf4d/31906ed220e2/07545360251-a4o/07545360251-a4o.jpg?ts=1753371119204&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "TOP BIELIŹNIANY Z CEKINAMI",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": null,
-    "currency": null,
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/7e73/61b4/01e84b8ba94a/369335e808f8/01587714982-a4o/01587714982-a4o.jpg?ts=1771928998304&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "KOSZULKA Z DŁUGIM RĘKAWEM I PASKIEM",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": null,
-    "currency": null,
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/0e0f/ebf9/103b4f96a1c1/46a7c9399879/07634187800-a4o/07634187800-a4o.jpg?ts=1758813274447&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "SPÓDNICOSPODENKI BALONOWY KRÓJ Z NADRUKIEM",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": null,
-    "currency": null,
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/0440/c6a5/4f084db6a116/ee534f38f4da/01159741711-a4o/01159741711-a4o.jpg?ts=1768919162282&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "KOSZULKA Z DŁUGIM RĘKAWEM",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": null,
-    "currency": null,
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/a155/0169/7f624733b733/897a94d6978e/07802152251-a4o/07802152251-a4o.jpg?ts=1750250736048&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "JEANSY O KROJU BAGGY ZE ŚREDNIM STANEM",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": null,
-    "currency": null,
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/7388/50f8/d3a24868b0d4/84e810cd4d85/00066089428-a4o/00066089428-a4o.jpg?ts=1765440535146&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
+    "confidence_score": 0.5,
     "source_type": "dynamic_scrape",
     "source_name": "Bershka"
   },
@@ -198,182 +72,20 @@
     "source_name": "Adidas"
   },
   {
-    "title": "Nike Court Vision Low Next Nature",
+    "title": "Wyprzedaż Nike - Zobacz ofertę",
     "brand": "Nike",
     "category": "Sport",
     "discount": null,
-    "price": "244.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-court-vision-low-next-nature-T87xRcPI/DH3158-606",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d260b088-037a-42d6-983e-77dc1d0fa431/W+NIKE+COURT+VISION+LO+NN.png",
-    "description": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.nike.com/pl/w/wyprzedaz-damskie-3yaepz5e1x6",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Nike.",
     "valid_until": null,
     "tags": [
       "Sport"
     ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike Gamma Force",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "304.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-gamma-force-kU2iToom/DX9176-103",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/bfaf9d84-28ef-4709-8f5c-6bbd1ffd70d4/WMNS+NIKE+GAMMA+FORCE.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike Sportswear",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "119.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/t-shirt-oversize-sportswear-UQA37wkE/IU9083-663",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c6fde043-956d-4509-824e-07e90334d1ae/W+NSW+VAL+BOXY+OS+TEE.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike One",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "154.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/legginsy-o-pelnej-dlugosci-z-wysokim-stanem-one-G1P8i1yI/FN3226-010",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/7d4ca129-fc74-43b7-9faa-e047be881321/W+NK+DF+ONE+HR+TIGHT.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike Air Max Phenomena",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "454.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-air-max-phenomena-RIT8dFRm/IM8814-600",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/b576c6ca-56b5-4d64-9c3c-2a3146edd1cc/W+NIKE+AIR+MAX+PHENOMENA.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike Field General",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "304.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-field-general-cVYFdSKt/FZ5593-004",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/855f040e-4ef0-4f40-a97d-e709a14a64d5/WMNS+NIKE+FIELD+GENERAL.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike Quest 6",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "244.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-do-biegania-po-asfalcie-quest-6-C4n91g/FD6034-100",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/076bae81-6e96-442e-8f34-413588b4f877/WMNS+NIKE+QUEST+6.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike Dunk Low",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "364.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-dunk-low-hKmr9TRQ/DD1503-103",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2f9b17b1-858b-40c2-9c46-646b8c4a0c8f/W+NIKE+DUNK+LOW.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike Calm Elevation Fur",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "209.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/klapki-calm-elevation-fur-avVGsC0u/HV8560-001",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6ab6cfba-9504-44ad-ae43-70a9fecce802/WMNS+NK+CALM+ELEVATION+FUR.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike Air Force 1 Low",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "364.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-air-force-1-low-cqr0kEQn/II7650-200",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/244b4538-7f42-48f8-b61b-f4a9cf33b05e/W+NIKE+AIR+FORCE+1+LO.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
+    "confidence_score": 0.5,
     "source_type": "dynamic_scrape",
     "source_name": "Nike"
   },
