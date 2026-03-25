@@ -136,7 +136,8 @@ async function scrapeDeals() {
     '--no-sandbox', 
     '--disable-setuid-sandbox',
     '--disable-blink-features=AutomationControlled',
-    '--disable-web-security'
+    '--disable-web-security',
+    '--ignore-certificate-errors'
   ];
 
   if (process.env.SCRAPER_API_KEY) {
@@ -146,6 +147,7 @@ async function scrapeDeals() {
 
   const browser = await puppeteer.launch({
     headless: "new",
+    ignoreHTTPSErrors: true,
     args: args
   });
 
@@ -171,7 +173,7 @@ async function scrapeDeals() {
 
     try {
       // Go to the URL and wait for network to be somewhat idle
-      const response = await page.goto(config.url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+      const response = await page.goto(config.url, { waitUntil: 'domcontentloaded', timeout: 60000 });
       
       // Check if we got blocked (403 Forbidden or CAPTCHA page)
       const status = response.status();
