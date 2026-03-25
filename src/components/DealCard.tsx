@@ -14,6 +14,7 @@ interface Deal {
   authorName: string;
   createdAt: any;
   category: string;
+  url?: string;
 }
 
 interface DealCardProps {
@@ -33,17 +34,19 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
       }`}
     >
       <div className="relative aspect-video overflow-hidden group">
-        <img
-          src={deal.imageUrl}
-          alt={deal.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute top-2 left-2">
+        <a href={deal.url} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+          <img
+            src={deal.imageUrl}
+            alt={deal.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            referrerPolicy="no-referrer"
+          />
+        </a>
+        <div className="absolute top-2 left-2 z-10">
           <Vote dealId={deal.id} initialTemperature={deal.temperature} />
         </div>
         {isBurning && (
-          <div className="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider animate-pulse">
+          <div className="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider animate-pulse pointer-events-none">
             Burning
           </div>
         )}
@@ -60,9 +63,11 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
           </span>
         </div>
 
-        <h3 className="font-bold text-gray-900 dark:text-gray-100 line-clamp-2 mb-2 hover:text-red-600 transition-colors cursor-pointer">
-          {deal.title}
-        </h3>
+        <a href={deal.url} target="_blank" rel="noopener noreferrer" className="block">
+          <h3 className="font-bold text-gray-900 dark:text-gray-100 line-clamp-2 mb-2 hover:text-red-600 transition-colors cursor-pointer">
+            {deal.title}
+          </h3>
+        </a>
 
         <div className="flex items-baseline space-x-2 mb-4">
           <span className="text-xl font-bold text-red-600">
@@ -87,9 +92,9 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
             <button className="text-gray-400 hover:text-blue-500 transition-colors">
               <MessageCircle size={18} />
             </button>
-            <button className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-colors">
+            <a href={deal.url} target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-colors inline-block">
               <ExternalLink size={18} />
-            </button>
+            </a>
           </div>
         </div>
       </div>

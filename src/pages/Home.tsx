@@ -1,146 +1,94 @@
 import React, { useEffect, useState } from 'react';
-import { collection, query, orderBy, onSnapshot, addDoc, serverTimestamp, getDocs, limit } from 'firebase/firestore';
-import { db } from '../firebase';
-import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import DealCard from '../components/DealCard';
 import ThemeToggle from '../components/ThemeToggle';
 import PromoBanner from '../components/PromoBanner';
-import { Plus, Search, LogIn, LogOut, User as UserIcon, Flame, TrendingUp, Clock } from 'lucide-react';
+import { Plus, Search, Flame, TrendingUp, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-
-declare const __COMMIT_HASH__: string;
 
 const Home: React.FC = () => {
   const { theme } = useTheme();
-  const { user, signInWithGoogle, logout, isAdmin } = useAuth();
   const [deals, setDeals] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('newest');
 
-  // Safely get commit hash
-  const commitVersion = typeof __COMMIT_HASH__ !== 'undefined' ? __COMMIT_HASH__ : 'dev';
-
   useEffect(() => {
-    const dealsRef = collection(db, 'deals');
-    const q = query(dealsRef, orderBy('createdAt', 'desc'));
+    fetch('/deals.json')
+      .then(res => res.json())
+      .then(data => {
+        // Map scraped deals to the format expected by DealCard
+        const mappedDeals = data.map((deal: any, index: number) => {
+          // Calculate original price if discount is present
+          let originalPrice = undefined;
+          if (deal.discount && deal.price) {
+            const pct = parseInt(deal.discount.replace('%', ''));
+            const currentPrice = parseFloat(deal.price);
+            if (!isNaN(pct) && pct > 0 && pct < 100) {
+              originalPrice = currentPrice / (1 - pct / 100);
+            }
+          }
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const dealsData = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setDeals(dealsData);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
+          return {
+            id: `scraped-${index}`,
+            title: deal.title || 'Brak nazwy',
+            description: deal.description || '',
+            currentPrice: parseFloat(deal.price || '0'),
+            originalPrice: originalPrice,
+            imageUrl: deal.image || 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=500&h=600&fit=crop',
+            temperature: Math.floor((deal.confidence_score || 0.5) * 1000), // Fake temperature
+            authorName: deal.brand || deal.source_name || 'System',
+            createdAt: { seconds: Date.now() / 1000 - index * 3600 }, // Fake timestamp
+            category: deal.category || 'Inne',
+            url: deal.url // Add URL to navigate to
+          };
+        });
+        setDeals(mappedDeals);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to fetch deals:', err);
+        setLoading(false);
+      });
   }, []);
-
-  const seedData = async () => {
-    if (!user) return;
-    
-    const dealsRef = collection(db, 'deals');
-    const existingDeals = await getDocs(query(dealsRef, limit(1)));
-    
-    if (!existingDeals.empty) {
-      alert('Seed data already exists!');
-      return;
-    }
-
-    const sampleDeals = [
-      {
-        title: 'MacBook Air M2 13" 8/256GB Space Gray',
-        description: 'Najnowszy MacBook Air z procesorem M2 w świetnej cenie!',
-        currentPrice: 4299,
-        originalPrice: 5499,
-        imageUrl: 'https://images.unsplash.com/photo-1611186871348-b1ec696e5237?q=80&w=1000&auto=format&fit=crop',
-        temperature: 120,
-        authorUid: user.uid,
-        authorName: user.displayName || 'User',
-        createdAt: serverTimestamp(),
-        category: 'Elektronika'
-      },
-      {
-        title: 'Sony WH-1000XM5 Noise Cancelling Headphones',
-        description: 'Najlepsze słuchawki z redukcją szumów na rynku.',
-        currentPrice: 1199,
-        originalPrice: 1599,
-        imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop',
-        temperature: 550,
-        authorUid: user.uid,
-        authorName: user.displayName || 'User',
-        createdAt: serverTimestamp(),
-        category: 'Audio'
-      },
-      {
-        title: 'Nike Air Max 270 React - Black/White',
-        description: 'Klasyczne buty sportowe Nike w promocyjnej cenie.',
-        currentPrice: 349,
-        originalPrice: 599,
-        imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop',
-        temperature: 85,
-        authorUid: user.uid,
-        authorName: user.displayName || 'User',
-        createdAt: serverTimestamp(),
-        category: 'Moda'
-      },
-      {
-        title: 'LEGO Star Wars Millennium Falcon 75192',
-        description: 'Największy zestaw LEGO Star Wars w historii!',
-        currentPrice: 2899,
-        originalPrice: 3499,
-        imageUrl: 'https://images.unsplash.com/photo-1585366119957-e556f403e44c?q=80&w=1000&auto=format&fit=crop',
-        temperature: -20,
-        authorUid: user.uid,
-        authorName: user.displayName || 'User',
-        createdAt: serverTimestamp(),
-        category: 'Zabawki'
-      },
-      {
-        title: 'PlayStation 5 Slim Console + 2 Controllers',
-        description: 'Zestaw PS5 Slim z dwoma padami DualSense.',
-        currentPrice: 2199,
-        originalPrice: 2499,
-        imageUrl: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=1000&auto=format&fit=crop',
-        temperature: 320,
-        authorUid: user.uid,
-        authorName: user.displayName || 'User',
-        createdAt: serverTimestamp(),
-        category: 'Gaming'
-      }
-    ];
-
-    for (const deal of sampleDeals) {
-      await addDoc(dealsRef, deal);
-    }
-    alert('Seed data added successfully!');
-  };
 
   const filteredDeals = deals.filter(deal => 
     deal.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    deal.category.toLowerCase().includes(searchQuery.toLowerCase())
+    deal.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    deal.authorName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Sort deals based on active tab
+  const sortedDeals = [...filteredDeals].sort((a, b) => {
+    if (activeTab === 'hot') {
+      return b.temperature - a.temperature;
+    } else if (activeTab === 'commented') {
+      // Fake sorting for commented
+      return b.title.length - a.title.length;
+    } else {
+      // Newest
+      return b.createdAt.seconds - a.createdAt.seconds;
+    }
+  });
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 z-50 h-16 transition-colors duration-300">
+      <nav className="fixed top-0 left-0 right-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-50 h-16 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <div className="flex items-center space-x-8">
-            <div className="flex items-baseline space-x-2">
-              <h1 className="text-2xl font-black text-red-600 tracking-tighter cursor-pointer">
-                HOTDEALS
-              </h1>
-              <span className="text-[10px] text-gray-400 font-mono">v.{commitVersion}</span>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                <Flame className="text-white" size={20} />
+              </div>
+              <span className="text-xl font-black tracking-tight text-gray-900 dark:text-white">HOTDEALS</span>
             </div>
             
             <div className="hidden md:flex relative group">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors" size={18} />
               <input
                 type="text"
-                placeholder="Search deals..."
+                placeholder="Szukaj okazji, sklepów, marek..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full border-none focus:ring-2 focus:ring-red-500 w-64 lg:w-96 transition-all outline-none text-sm dark:text-gray-100 dark:placeholder-gray-500"
@@ -150,111 +98,105 @@ const Home: React.FC = () => {
 
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            {user ? (
-              <>
-                <button 
-                  onClick={seedData}
-                  className="hidden lg:flex items-center text-xs font-bold text-gray-500 hover:text-red-600 transition-colors"
-                >
-                  Seed Data
-                </button>
-                <button className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm flex items-center hover:bg-red-700 transition-colors shadow-sm">
-                  <Plus size={18} className="mr-1" />
-                  Post Deal
-                </button>
-                <div className="flex items-center space-x-3 pl-4 border-l border-gray-100 dark:border-gray-800">
-                  <div className="flex flex-col items-end">
-                    <span className="text-xs font-bold text-gray-900 dark:text-gray-100">{user.displayName}</span>
-                    <button onClick={logout} className="text-[10px] text-gray-400 hover:text-red-500">Sign Out</button>
-                  </div>
-                  <img src={user.photoURL || ''} alt="" className="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-700" />
-                </div>
-              </>
-            ) : (
-              <button
-                onClick={signInWithGoogle}
-                className="flex items-center space-x-2 bg-gray-900 dark:bg-gray-100 dark:text-gray-900 text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm"
-              >
-                <LogIn size={18} />
-                <span>Sign In</span>
-              </button>
-            )}
+            
+            <button className="hidden md:flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full font-medium text-sm transition-colors">
+              <Plus size={18} />
+              <span>Dodaj Okazję</span>
+            </button>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <main className="pt-24 pb-12 max-w-7xl mx-auto px-4">
-        {/* Promo Banner */}
-        <PromoBanner />
+      <main className="pt-24 pb-12 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <div className="lg:col-span-3">
+          <PromoBanner />
 
-        {/* Hero Section */}
-        <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <h2 className="text-3xl font-black text-gray-900 dark:text-gray-100 mb-2">Najlepsze Promocje</h2>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">Odkryj najgorętsze okazje udostępnione przez naszą społeczność.</p>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex space-x-1 bg-white dark:bg-gray-900 p-1 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+              <button
+                onClick={() => setActiveTab('newest')}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  activeTab === 'newest' 
+                    ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm' 
+                    : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                }`}
+              >
+                <Clock size={16} />
+                <span>Nowe</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('hot')}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  activeTab === 'hot' 
+                    ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 shadow-sm' 
+                    : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                }`}
+              >
+                <Flame size={16} />
+                <span>Gorące</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('commented')}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  activeTab === 'commented' 
+                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 shadow-sm' 
+                    : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                }`}
+              >
+                <TrendingUp size={16} />
+                <span>Komentowane</span>
+              </button>
+            </div>
           </div>
-          
-          <div className="flex bg-white dark:bg-gray-900 p-1 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800">
-            <button 
-              onClick={() => setActiveTab('newest')}
-              className={`flex items-center px-4 py-1.5 rounded-md text-sm font-bold transition-all ${activeTab === 'newest' ? 'bg-red-600 text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
+
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[1, 2, 3, 4].map(i => (
+                <div key={i} className="bg-white dark:bg-gray-900 rounded-xl h-96 animate-pulse border border-gray-100 dark:border-gray-800"></div>
+              ))}
+            </div>
+          ) : sortedDeals.length > 0 ? (
+            <motion.div 
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
-              <Clock size={16} className="mr-2" />
-              Newest
-            </button>
-            <button 
-              onClick={() => setActiveTab('hot')}
-              className={`flex items-center px-4 py-1.5 rounded-md text-sm font-bold transition-all ${activeTab === 'hot' ? 'bg-red-600 text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
-            >
-              <Flame size={16} className="mr-2" />
-              Hot
-            </button>
-            <button 
-              onClick={() => setActiveTab('trending')}
-              className={`flex items-center px-4 py-1.5 rounded-md text-sm font-bold transition-all ${activeTab === 'trending' ? 'bg-red-600 text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
-            >
-              <TrendingUp size={16} className="mr-2" />
-              Trending
-            </button>
+              <AnimatePresence mode="popLayout">
+                {sortedDeals.map((deal) => (
+                  <div key={deal.id} className="block relative">
+                    <DealCard deal={deal} />
+                  </div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          ) : (
+            <div className="text-center py-20 bg-white dark:bg-gray-900 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
+              <div className="bg-gray-100 dark:bg-gray-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="text-gray-400" size={32} />
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Nie znaleziono okazji</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Spróbuj zmienić filtry lub wyszukiwaną frazę.</p>
+            </div>
+          )}
+        </div>
+
+        <div className="lg:col-span-1 space-y-6">
+          <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+            <h3 className="font-bold text-gray-900 dark:text-white mb-4">O nas</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+              HOTDEALS to społeczność łowców okazji. Codziennie znajdujemy i udostępniamy najlepsze promocje, kody rabatowe i wyprzedaże z polskiego internetu.
+            </p>
+            <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-500">Aktywne okazje</span>
+                <span className="font-bold text-gray-900 dark:text-white">{deals.length}</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Grid */}
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map(i => (
-              <div key={i} className="bg-white dark:bg-gray-900 rounded-xl h-96 animate-pulse border border-gray-100 dark:border-gray-800"></div>
-            ))}
-          </div>
-        ) : (
-          <motion.div 
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredDeals.map((deal) => (
-                <DealCard key={deal.id} deal={deal} />
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        )}
-
-        {!loading && filteredDeals.length === 0 && (
-          <div className="text-center py-20">
-            <div className="bg-gray-100 dark:bg-gray-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="text-gray-400" size={32} />
-            </div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">No deals found</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">Try adjusting your search or filters.</p>
-          </div>
-        )}
       </main>
-
-      {/* Theme Debug Indicator */}
-      <div className="fixed bottom-4 right-4 bg-black text-white px-3 py-1 rounded-full text-[10px] font-mono z-[9999] opacity-50 pointer-events-none">
-        THEME: {theme.toUpperCase()}
-      </div>
     </div>
   );
 };

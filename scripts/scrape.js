@@ -36,7 +36,7 @@ const BRANDS_CONFIG = [
   },
   {
     brand: "Urban Outfitters",
-    url: "https://www.urbanoutfitters.com/en-gb/womens-sale",
+    url: "https://www.urbanoutfitters.com/pl-pl/womens-sale",
     cat: "Odzież",
     selectors: { card: '.product-tile', name: '.product-tile__title', sale: '.product-tile__sale-price', orig: '.product-tile__regular-price', img: 'img', link: 'a' }
   },
@@ -109,25 +109,7 @@ async function autoScroll(page) {
   });
 }
 
-// Helper to generate placeholder deals if scraping fails
-function generatePlaceholderDeals(config) {
-  console.log(`Generating placeholder deals for ${config.brand}...`);
-  const items = [];
-  for (let i = 0; i < 4; i++) {
-    items.push({
-      brand: config.brand,
-      name: `Przykładowa oferta - ${config.brand}`,
-      saleStr: `${Math.floor(Math.random() * 50) + 20}.99`,
-      origStr: `${Math.floor(Math.random() * 50) + 80}.99`,
-      img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&h=600&fit=crop',
-      url: config.url,
-      cat: config.cat,
-      isNew: Math.random() > 0.7,
-      scrape_status: 'F'
-    });
-  }
-  return items;
-}
+// Removed placeholder generation function
 
 async function scrapeDeals() {
   console.log('Starting the scraping process for 11 brands...');
@@ -225,7 +207,7 @@ async function scrapeDeals() {
             name: nameEl ? nameEl.innerText.trim() : 'Brak nazwy',
             saleStr: saleEl ? saleEl.innerText.trim() : '0',
             origStr: origEl ? origEl.innerText.trim() : '0',
-            img: img || 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=500&h=600&fit=crop', // Fallback image
+            img: img || null,
             url: url || window.location.href,
             cat: cat,
             isNew: Math.random() > 0.7, // Randomly mark some as new
@@ -235,16 +217,35 @@ async function scrapeDeals() {
       }, config.selectors, config.brand, config.cat);
 
       if (items.length === 0) {
-        console.log(`Puppeteer succeeded but found 0 items for ${config.brand}. Using placeholders.`);
-        items = generatePlaceholderDeals(config);
+        const title = await page.title();
+        console.log(`Puppeteer succeeded but found 0 items for ${config.brand}. Page title was: "${title}"`);
+        items.push({
+          brand: config.brand,
+          name: `Wyprzedaż ${config.brand} - Zobacz ofertę`,
+          saleStr: '0',
+          origStr: '0',
+          img: null,
+          url: config.url,
+          cat: config.cat,
+          isNew: false,
+          scrape_status: 'F'
+        });
       }
 
     } catch (error) {
       console.error(`Puppeteer failed for ${config.brand}:`, error.message);
-      
-      // FALLBACK: If Puppeteer fails or gets blocked, generate placeholders
-      items = generatePlaceholderDeals(config);
-      
+      // Fallback item generated. The frontend will display a link to the brand's website.
+      items.push({
+        brand: config.brand,
+        name: `Wyprzedaż ${config.brand} - Zobacz ofertę`,
+        saleStr: '0',
+        origStr: '0',
+        img: null,
+        url: config.url,
+        cat: config.cat,
+        isNew: false,
+        scrape_status: 'F'
+      });
     } finally {
       await page.close();
     }
@@ -254,27 +255,27 @@ async function scrapeDeals() {
       const salePrice = parsePrice(item.saleStr);
       const origPrice = parsePrice(item.origStr) || salePrice; // Fallback if no original price found
       
-      // Only add if we successfully parsed a price
-      if (salePrice > 0) {
-        let pct = 0;
-        if (origPrice > salePrice) {
-          pct = Math.round(((origPrice - salePrice) / origPrice) * 100);
-        }
-
-        allDeals.push({
-          id: idCounter++,
-          brand: item.brand,
-          name: item.name,
-          orig: origPrice,
-          sale: salePrice,
-          pct: pct,
-          cat: item.cat,
-          img: item.img,
-          url: item.url,
-          isNew: item.isNew,
-          scrape_status: item.scrape_status || 'R'
-        });
+      let pct = 0;
+      if (origPrice > salePrice && salePrice > 0) {
+        pct = Math.round(((origPrice - salePrice) / origPrice) * 100);
       }
+
+      allDeals.push({
+        title: item.name,
+        brand: item.brand,
+        category: item.cat,
+        discount: pct > 0 ? `${pct}%` : null,
+        price: salePrice > 0 ? salePrice.toString() : null,
+        currency: salePrice > 0 ? 'PLN' : null,
+        url: item.url,
+        image: item.img,
+        description: item.scrape_status === 'F' ? `Zobacz pełną ofertę wyprzedażową na stronie ${item.brand}.` : null,
+        valid_until: null,
+        tags: [item.cat],
+        confidence_score: item.scrape_status === 'F' ? 0.5 : 1.0,
+        source_type: 'dynamic_scrape',
+        source_name: item.brand
+      });
     });
 
     console.log(`Successfully extracted ${items.length} items from ${config.brand}`);

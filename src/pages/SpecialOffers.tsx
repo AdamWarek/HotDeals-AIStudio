@@ -295,22 +295,45 @@ function BrandSection({ brand, items, favorites, onFav, cardSize }: any) {
       </div>
 
       {/* Cards grid */}
-      <div style={{
-        display:"grid",
-        gridTemplateColumns: `repeat(${cols}, 1fr)`,
-        gap: cardSize === "small" ? "8px" : cardSize === "large" ? "12px" : "10px",
-        padding:"0 16px",
-      }}>
-        {items.map((item: any) => (
-          <PromoCard
-            key={item.id}
-            item={item}
-            isFav={favorites.has(item.id)}
-            onFav={onFav}
-            size={cardSize}
-          />
-        ))}
-      </div>
+      {items.length === 0 ? (
+        <div style={{
+          margin: "0 16px", padding: "24px 16px",
+          background: "#fff", borderRadius: "14px",
+          textAlign: "center", border: "1px dashed #D8D0C8"
+        }}>
+          <p style={{ fontSize: "13px", color: "#888", marginBottom: "8px" }}>
+            Nie udało się pobrać ofert lub brak pasujących promocji.
+          </p>
+          <a
+            href={cfg.saleUrl} target="_blank" rel="noopener noreferrer"
+            style={{
+              fontSize: "13px", fontWeight: 700,
+              color: cfg.accent, textDecoration: "none",
+              display: "inline-block", padding: "6px 12px",
+              background: cfg.light, borderRadius: "8px"
+            }}
+          >
+            Przejdź do sklepu {brand} →
+          </a>
+        </div>
+      ) : (
+        <div style={{
+          display:"grid",
+          gridTemplateColumns: `repeat(${cols}, 1fr)`,
+          gap: cardSize === "small" ? "8px" : cardSize === "large" ? "12px" : "10px",
+          padding:"0 16px",
+        }}>
+          {items.map((item: any) => (
+            <PromoCard
+              key={item.id}
+              item={item}
+              isFav={favorites.has(item.id)}
+              onFav={onFav}
+              size={cardSize}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -366,11 +389,26 @@ export default function SpecialOffers() {
     });
 
     const map: Record<string, any[]> = {};
-    filtered.forEach(p => {
-      if (!map[p.brand]) map[p.brand] = [];
-      map[p.brand].push(p);
+    
+    // Ensure all selected brands (or all brands if none selected) are in the map, even if empty
+    ALL_BRANDS.forEach(b => {
+      if (selectedBrands.length === 0 || selectedBrands.includes(b)) {
+        map[b] = [];
+      }
     });
-    return Object.entries(map).sort(([a], [b]) => a.localeCompare(b));
+
+    filtered.forEach(p => {
+      if (map[p.brand]) map[p.brand].push(p);
+    });
+
+    // Only return brands that match the search query (if search is active)
+    return Object.entries(map)
+      .filter(([brand, items]) => {
+        if (!q) return true;
+        // If searching, only show brand if it has items OR if the brand name matches the search
+        return items.length > 0 || brand.toLowerCase().includes(q);
+      })
+      .sort(([a], [b]) => a.localeCompare(b));
   }, [search, selectedBrands, promos]);
 
   const favItems = promos.filter(p => favorites.has(p.id));
