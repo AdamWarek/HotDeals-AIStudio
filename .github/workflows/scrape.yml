@@ -30,6 +30,8 @@ jobs:
 
       - name: Run Scraper
         run: npm run scrape
+        env:
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
 
       - name: Commit and Push Changes
         run: |

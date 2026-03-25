@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import 'dotenv/config';
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import axios from 'axios';
@@ -108,67 +109,44 @@ async function autoScroll(page) {
   });
 }
 
-// Fallback scraper using Google Web Cache (bypasses most bot protection)
-async function scrapeWithGoogleCache(config) {
-  console.log(`Attempting fallback via Google Web Cache for ${config.brand}...`);
-  try {
-    const cacheUrl = `https://webcache.googleusercontent.com/search?q=cache:${config.url}`;
-    
-    // We use axios here because Google Cache is usually just static HTML
-    const response = await axios.get(cacheUrl, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
-      },
-      timeout: 10000
+// Helper to generate placeholder deals if scraping fails
+function generatePlaceholderDeals(config) {
+  console.log(`Generating placeholder deals for ${config.brand}...`);
+  const items = [];
+  for (let i = 0; i < 4; i++) {
+    items.push({
+      brand: config.brand,
+      name: `Przykładowa oferta - ${config.brand}`,
+      saleStr: `${Math.floor(Math.random() * 50) + 20}.99`,
+      origStr: `${Math.floor(Math.random() * 50) + 80}.99`,
+      img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&h=600&fit=crop',
+      url: config.url,
+      cat: config.cat,
+      isNew: Math.random() > 0.7,
+      scrape_status: 'F'
     });
-
-    const $ = cheerio.load(response.data);
-    const items = [];
-
-    $(config.selectors.card).slice(0, 10).each((i, el) => {
-      const name = $(el).find(config.selectors.name).text().trim();
-      const saleStr = $(el).find(config.selectors.sale).text().trim();
-      const origStr = $(el).find(config.selectors.orig).text().trim();
-      
-      let img = $(el).find(config.selectors.img).attr('data-src') || 
-                $(el).find(config.selectors.img).attr('src');
-                
-      let url = $(el).find(config.selectors.link).attr('href');
-      if (url && url.startsWith('/')) {
-        const origin = new URL(config.url).origin;
-        url = origin + url;
-      }
-
-      items.push({
-        brand: config.brand,
-        name: name || 'Brak nazwy',
-        saleStr: saleStr || '0',
-        origStr: origStr || '0',
-        img: img || 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=500&h=600&fit=crop',
-        url: url || config.url,
-        cat: config.cat,
-        isNew: Math.random() > 0.7
-      });
-    });
-
-    return items;
-  } catch (error) {
-    console.error(`Google Cache fallback failed for ${config.brand}: ${error.message}`);
-    return [];
   }
+  return items;
 }
 
 async function scrapeDeals() {
   console.log('Starting the scraping process for 11 brands...');
   
+  const args = [
+    '--no-sandbox', 
+    '--disable-setuid-sandbox',
+    '--disable-blink-features=AutomationControlled',
+    '--disable-web-security'
+  ];
+
+  if (process.env.SCRAPER_API_KEY) {
+    console.log('Using Scrape.do Proxy...');
+    args.push('--proxy-server=http://proxy.scrape.do:8080');
+  }
+
   const browser = await puppeteer.launch({
     headless: "new",
-    args: [
-      '--no-sandbox', 
-      '--disable-setuid-sandbox',
-      '--disable-blink-features=AutomationControlled',
-      '--disable-web-security'
-    ]
+    args: args
   });
 
   const allDeals = [];
@@ -178,6 +156,13 @@ async function scrapeDeals() {
     console.log(`\n--- Scraping ${config.brand} ---`);
     const page = await browser.newPage();
     
+    if (process.env.SCRAPER_API_KEY) {
+      await page.authenticate({
+        username: process.env.SCRAPER_API_KEY,
+        password: ''
+      });
+    }
+
     // Set realistic viewport and user agent
     await page.setViewport({ width: 1366, height: 768 });
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
@@ -191,7 +176,7 @@ async function scrapeDeals() {
       // Check if we got blocked (403 Forbidden or CAPTCHA page)
       const status = response.status();
       const content = await page.content();
-      const isBlocked = status === 403 || 
+      const isBlocked = status === 403 || status === 404 || 
                         content.includes('cloudflare') || 
                         content.includes('datadome') || 
                         content.includes('Access Denied');
@@ -241,16 +226,22 @@ async function scrapeDeals() {
             img: img || 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=500&h=600&fit=crop', // Fallback image
             url: url || window.location.href,
             cat: cat,
-            isNew: Math.random() > 0.7 // Randomly mark some as new
+            isNew: Math.random() > 0.7, // Randomly mark some as new
+            scrape_status: 'R'
           };
         });
       }, config.selectors, config.brand, config.cat);
 
+      if (items.length === 0) {
+        console.log(`Puppeteer succeeded but found 0 items for ${config.brand}. Using placeholders.`);
+        items = generatePlaceholderDeals(config);
+      }
+
     } catch (error) {
       console.error(`Puppeteer failed for ${config.brand}:`, error.message);
       
-      // FALLBACK: If Puppeteer fails or gets blocked, try Google Web Cache
-      items = await scrapeWithGoogleCache(config);
+      // FALLBACK: If Puppeteer fails or gets blocked, generate placeholders
+      items = generatePlaceholderDeals(config);
       
     } finally {
       await page.close();
@@ -278,7 +269,8 @@ async function scrapeDeals() {
           cat: item.cat,
           img: item.img,
           url: item.url,
-          isNew: item.isNew
+          isNew: item.isNew,
+          scrape_status: item.scrape_status || 'R'
         });
       }
     });

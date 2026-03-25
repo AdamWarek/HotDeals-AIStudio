@@ -161,6 +161,14 @@ function PromoCard({ item, isFav, onFav, size }: any) {
               fontFamily:"'DM Sans', sans-serif", letterSpacing:"0.03em",
             }}>NEW</span>
           )}
+          {item.scrape_status && (
+            <span style={{
+              background: item.scrape_status === 'R' ? "#34C759" : "#FF9500", color:"#fff",
+              fontSize: isSmall ? "8px" : "9px", fontWeight:700,
+              padding:"2px 6px", borderRadius:"20px",
+              fontFamily:"'DM Sans', sans-serif", letterSpacing:"0.03em",
+            }}>{item.scrape_status}</span>
+          )}
         </div>
         {/* Heart */}
         <button
@@ -569,6 +577,8 @@ export default function SpecialOffers() {
               ✦ Oferty skierowane do <strong>dziewczyn w wieku 14–18 lat, rozmiar M</strong>.<br />
               Kliknij <strong>Zobacz ofertę</strong>, aby zobaczyć aktualne ceny na stronie marki.<br />
               Lista ofert jest aktualizowana ręcznie — sprawdź dostępność bezpośrednio w sklepie.
+              <br />
+              <span style={{ opacity: 0.5, fontSize: "9px" }}>v1.0.1</span>
             </p>
           </div>
         </div>

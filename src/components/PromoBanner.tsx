@@ -4,7 +4,7 @@ import { Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const PromoBanner: React.FC = () => {
-  const [imageUrl, setImageUrl] = useState<string | null>(localStorage.getItem('promo_banner_img_v3'));
+  const [imageUrl, setImageUrl] = useState<string | null>(localStorage.getItem('promo_banner_img_v4'));
   const [loading, setLoading] = useState(!imageUrl);
   const [error, setError] = useState(false);
 
@@ -16,7 +16,7 @@ const PromoBanner: React.FC = () => {
         const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
         const response = await ai.models.generateContent({
           model: 'gemini-2.5-flash-image',
-          contents: 'A colorful cartoon illustration of a sweet white teenage girl with long hair, looking extremely happy and excited to see the best shopping offers and deals in her entire life, holding shopping bags, vibrant colors, cute style, wide shot, character positioned on the far right side of the image, empty space on the left for text, full character visible in frame, plenty of headroom',
+          contents: 'A 3D cartoon style illustration of a teenage girl, fully visible full body, looking extremely happy and excited, holding shopping bags. Vibrant colors, cute 3D Pixar style. Wide shot, character positioned on the far right side of the image, empty space on the left for text, plenty of headroom.',
           config: {
             imageConfig: {
               aspectRatio: "16:9",
@@ -30,7 +30,7 @@ const PromoBanner: React.FC = () => {
             const url = `data:image/png;base64,${base64EncodeString}`;
             setImageUrl(url);
             try {
-              localStorage.setItem('promo_banner_img_v3', url);
+              localStorage.setItem('promo_banner_img_v4', url);
             } catch (e) {
               console.warn('Could not save image to localStorage (quota exceeded)');
             }
@@ -38,11 +38,12 @@ const PromoBanner: React.FC = () => {
             return;
           }
         }
-        setError(true);
+        console.warn('No image data found, using fallback.');
+        setImageUrl('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop');
         setLoading(false);
       } catch (err) {
-        console.error("Failed to generate image:", err);
-        setError(true);
+        console.error("Failed to generate image (Quota exceeded or API error). Using fallback image.", err);
+        setImageUrl('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop');
         setLoading(false);
       }
     };
