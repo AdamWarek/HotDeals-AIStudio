@@ -9,6 +9,8 @@ import PromoBanner from '../components/PromoBanner';
 import { Plus, Search, LogIn, LogOut, User as UserIcon, Flame, TrendingUp, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
+declare const __COMMIT_HASH__: string;
+
 const Home: React.FC = () => {
   const { theme } = useTheme();
   const { user, signInWithGoogle, logout, isAdmin } = useAuth();
@@ -16,6 +18,9 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('newest');
+
+  // Safely get commit hash
+  const commitVersion = typeof __COMMIT_HASH__ !== 'undefined' ? __COMMIT_HASH__ : 'dev';
 
   useEffect(() => {
     const dealsRef = collection(db, 'deals');
@@ -124,9 +129,12 @@ const Home: React.FC = () => {
       <nav className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 z-50 h-16 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <div className="flex items-center space-x-8">
-            <h1 className="text-2xl font-black text-red-600 tracking-tighter cursor-pointer">
-              HOTDEALS
-            </h1>
+            <div className="flex items-baseline space-x-2">
+              <h1 className="text-2xl font-black text-red-600 tracking-tighter cursor-pointer">
+                HOTDEALS
+              </h1>
+              <span className="text-[10px] text-gray-400 font-mono">v.{commitVersion}</span>
+            </div>
             
             <div className="hidden md:flex relative group">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-red-500 transition-colors" size={18} />

@@ -3,6 +3,8 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
+declare const __COMMIT_HASH__: string;
+
 /* ─── INJECT FONTS & SCOPED STYLES ─────────────────────────────────────────── */
 const styleEl = document.createElement("style");
 styleEl.textContent = `
@@ -324,6 +326,9 @@ export default function SpecialOffers() {
   const [showFavPanel,   setShowFavPanel]   = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
+  // Safely get commit hash
+  const commitVersion = typeof __COMMIT_HASH__ !== 'undefined' ? __COMMIT_HASH__ : 'dev';
+
   useEffect(() => {
     fetch(import.meta.env.BASE_URL + 'deals.json')
       .then(res => res.json())
@@ -400,12 +405,15 @@ export default function SpecialOffers() {
 
             {/* Logo */}
             <div style={{ flexShrink:0 }}>
-              <div style={{
-                fontFamily:"'Cormorant Garamond', serif",
-                fontSize:"22px", fontWeight:700,
-                color:"#1A1A1A", lineHeight:1,
-                letterSpacing:"-0.02em",
-              }}>✦ deal<em>s</em></div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
+                <div style={{
+                  fontFamily:"'Cormorant Garamond', serif",
+                  fontSize:"22px", fontWeight:700,
+                  color:"#1A1A1A", lineHeight:1,
+                  letterSpacing:"-0.02em",
+                }}>✦ deal<em>s</em></div>
+                <span style={{ fontSize:"9px", color:"#ABABAB", fontFamily:"monospace" }}>v.{commitVersion}</span>
+              </div>
               <div style={{ fontSize:"8px", fontWeight:600, color:"#ABABAB", letterSpacing:"0.12em", textTransform:"uppercase", marginTop:"1px" }}>Dla dziewczyn · Rozmiar M</div>
             </div>
 
