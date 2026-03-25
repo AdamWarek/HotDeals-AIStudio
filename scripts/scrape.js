@@ -111,9 +111,7 @@ async function autoScroll(page) {
 
 // Removed placeholder generation function
 
-async function scrapeDeals() {
-  console.log('Starting the scraping process for 11 brands...');
-  
+async function launchBrowser(useProxy) {
   const args = [
     '--no-sandbox', 
     '--disable-setuid-sandbox',
@@ -122,25 +120,34 @@ async function scrapeDeals() {
     '--ignore-certificate-errors'
   ];
 
-  if (process.env.SCRAPER_API_KEY) {
+  if (useProxy && process.env.SCRAPER_API_KEY) {
     console.log('Using Scrape.do Proxy...');
     args.push('--proxy-server=http://proxy.scrape.do:8080');
+  } else {
+    console.log('Running without proxy...');
   }
 
-  const browser = await puppeteer.launch({
+  return await puppeteer.launch({
     headless: "new",
     ignoreHTTPSErrors: true,
     args: args
   });
+}
+
+async function scrapeDeals() {
+  console.log('Starting the scraping process for 11 brands...');
+  
+  let useProxy = !!process.env.SCRAPER_API_KEY;
+  let browser = await launchBrowser(useProxy);
 
   const allDeals = [];
-  let idCounter = 1;
 
-  for (const config of BRANDS_CONFIG) {
+  for (let i = 0; i < BRANDS_CONFIG.length; i++) {
+    const config = BRANDS_CONFIG[i];
     console.log(`\n--- Scraping ${config.brand} ---`);
     const page = await browser.newPage();
     
-    if (process.env.SCRAPER_API_KEY) {
+    if (useProxy && process.env.SCRAPER_API_KEY) {
       await page.authenticate({
         username: process.env.SCRAPER_API_KEY,
         password: ''
@@ -152,86 +159,94 @@ async function scrapeDeals() {
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
 
     let items = [];
+    let retryWithoutProxy = false;
 
     try {
       // Go to the URL and wait for network to be somewhat idle
       const response = await page.goto(config.url, { waitUntil: 'domcontentloaded', timeout: 60000 });
       
-      // Check if we got blocked (403 Forbidden or CAPTCHA page)
       const status = response.status();
       const content = await page.content();
-      const isBlocked = status === 403 || status === 404 || 
-                        content.includes('cloudflare') || 
-                        content.includes('datadome') || 
-                        content.includes('Access Denied');
 
-      if (isBlocked) {
-        console.log(`Puppeteer was blocked by ${config.brand} (Status: ${status}).`);
-        throw new Error('Blocked by anti-bot protection');
-      }
+      // Check if proxy quota is exceeded
+      if (useProxy && status === 401 && content.includes('scrape.do')) {
+        console.log('Scrape.do proxy quota exceeded! Disabling proxy for remaining brands.');
+        useProxy = false;
+        retryWithoutProxy = true;
+      } else {
+        // Check if we got blocked (403 Forbidden or CAPTCHA page)
+        const isBlocked = status === 403 || status === 404 || 
+                          content.includes('cloudflare') || 
+                          content.includes('datadome') || 
+                          content.includes('Access Denied');
 
-      // Scroll down to load lazy images
-      await autoScroll(page);
-      
-      // Wait a bit for JS to render products
-      await new Promise(r => setTimeout(r, 3000));
+        if (isBlocked) {
+          console.log(`Puppeteer was blocked by ${config.brand} (Status: ${status}).`);
+          throw new Error('Blocked by anti-bot protection');
+        }
 
-      // Extract data using the selectors
-      items = await page.evaluate((sel, brand, cat) => {
-        const cards = Array.from(document.querySelectorAll(sel.card)).slice(0, 10); // Get top 10 deals per brand
+        // Scroll down to load lazy images
+        await autoScroll(page);
         
-        return cards.map(card => {
-          const nameEl = card.querySelector(sel.name);
-          const saleEl = card.querySelector(sel.sale);
-          const origEl = card.querySelector(sel.orig);
-          const imgEl = card.querySelector(sel.img);
-          const linkEl = card.querySelector(sel.link);
+        // Wait a bit for JS to render products
+        await new Promise(r => setTimeout(r, 3000));
 
-          // Get image (handle lazy loading data-src attributes)
-          let img = '';
-          if (imgEl) {
-            img = imgEl.getAttribute('data-src') || imgEl.getAttribute('data-original') || imgEl.src;
-          }
+        // Extract data using the selectors
+        items = await page.evaluate((sel, brand, cat) => {
+          const cards = Array.from(document.querySelectorAll(sel.card)).slice(0, 10); // Get top 10 deals per brand
+          
+          return cards.map(card => {
+            const nameEl = card.querySelector(sel.name);
+            const saleEl = card.querySelector(sel.sale);
+            const origEl = card.querySelector(sel.orig);
+            const imgEl = card.querySelector(sel.img);
+            const linkEl = card.querySelector(sel.link);
 
-          // Get link (make absolute if relative)
-          let url = '';
-          if (linkEl) {
-            url = linkEl.href;
-            if (url && url.startsWith('/')) {
-              url = window.location.origin + url;
+            // Get image (handle lazy loading data-src attributes)
+            let img = '';
+            if (imgEl) {
+              img = imgEl.getAttribute('data-src') || imgEl.getAttribute('data-original') || imgEl.src;
             }
-          }
 
-          return {
-            brand: brand,
-            name: nameEl ? nameEl.innerText.trim() : 'Brak nazwy',
-            saleStr: saleEl ? saleEl.innerText.trim() : '0',
-            origStr: origEl ? origEl.innerText.trim() : '0',
-            img: img || null,
-            url: url || window.location.href,
-            cat: cat,
-            isNew: Math.random() > 0.7, // Randomly mark some as new
-            scrape_status: 'R'
-          };
-        });
-      }, config.selectors, config.brand, config.cat);
+            // Get link (make absolute if relative)
+            let url = '';
+            if (linkEl) {
+              url = linkEl.href;
+              if (url && url.startsWith('/')) {
+                url = window.location.origin + url;
+              }
+            }
 
-      if (items.length === 0) {
-        const title = await page.title();
-        console.log(`Puppeteer succeeded but found 0 items for ${config.brand}. Page title was: "${title}"`);
-        items.push({
-          brand: config.brand,
-          name: `Wyprzedaż ${config.brand} - Zobacz ofertę`,
-          saleStr: '0',
-          origStr: '0',
-          img: null,
-          url: config.url,
-          cat: config.cat,
-          isNew: false,
-          scrape_status: 'F'
-        });
+            return {
+              brand: brand,
+              name: nameEl ? nameEl.innerText.trim() : 'Brak nazwy',
+              saleStr: saleEl ? saleEl.innerText.trim() : '0',
+              origStr: origEl ? origEl.innerText.trim() : '0',
+              img: img || null,
+              url: url || window.location.href,
+              cat: cat,
+              isNew: Math.random() > 0.7, // Randomly mark some as new
+              scrape_status: 'R'
+            };
+          });
+        }, config.selectors, config.brand, config.cat);
+
+        if (items.length === 0) {
+          const title = await page.title();
+          console.log(`Puppeteer succeeded but found 0 items for ${config.brand}. Page title was: "${title}"`);
+          items.push({
+            brand: config.brand,
+            name: `Wyprzedaż ${config.brand} - Zobacz ofertę`,
+            saleStr: '0',
+            origStr: '0',
+            img: null,
+            url: config.url,
+            cat: config.cat,
+            isNew: false,
+            scrape_status: 'F'
+          });
+        }
       }
-
     } catch (error) {
       console.error(`Puppeteer failed for ${config.brand}:`, error.message);
       // Fallback item generated. The frontend will display a link to the brand's website.
@@ -248,6 +263,13 @@ async function scrapeDeals() {
       });
     } finally {
       await page.close();
+    }
+
+    if (retryWithoutProxy) {
+      await browser.close();
+      browser = await launchBrowser(false);
+      i--; // Retry this brand
+      continue;
     }
 
     // Process and format the extracted data
