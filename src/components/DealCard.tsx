@@ -69,16 +69,24 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
           </h3>
         </a>
 
-        <div className="flex items-baseline space-x-2 mb-4">
-          <span className="text-xl font-bold text-red-600">
-            {deal.currentPrice.toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}
-          </span>
-          {deal.originalPrice && (
-            <span className="text-sm text-gray-400 line-through">
-              {deal.originalPrice.toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}
+        {deal.description && (
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+            {deal.description}
+          </p>
+        )}
+
+        {deal.currentPrice > 0 && (
+          <div className="flex items-baseline space-x-2 mb-4">
+            <span className="text-xl font-bold text-red-600">
+              {deal.currentPrice.toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}
             </span>
-          )}
-        </div>
+            {deal.originalPrice && (
+              <span className="text-sm text-gray-400 line-through">
+                {deal.originalPrice.toLocaleString('pl-PL', { style: 'currency', currency: 'PLN' })}
+              </span>
+            )}
+          </div>
+        )}
 
         <div className="flex items-center justify-between pt-4 border-t border-gray-50 dark:border-gray-800">
           <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
