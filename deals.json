@@ -1,50 +1,200 @@
 [
   {
-    "title": "50% Off Premium Web Hosting",
-    "brand": "HostGator",
-    "category": "Web Hosting",
-    "discount": "50%",
-    "price": "$2.75",
-    "currency": "USD",
-    "url": "https://example.com/deal1",
+    "title": "Wyprzedaż Pull&Bear - Zobacz ofertę",
+    "brand": "Pull&Bear",
+    "category": "Odzież",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.pullandbear.com/pl/kobieta/wyprzedaz-n6417",
     "image": null,
-    "description": "Get 50% off on all premium web hosting plans. Includes free domain for the first year.",
-    "valid_until": "2026-12-31T23:59:59Z",
-    "tags": ["hosting", "web development", "discount"],
-    "confidence_score": 0.95,
-    "source_type": "dynamic_scrape",
-    "source_name": "example.com"
-  },
-  {
-    "title": "Lifetime Access to UI Kit",
-    "brand": "UI8",
-    "category": "Design Assets",
-    "discount": "80%",
-    "price": "$49",
-    "currency": "USD",
-    "url": "https://example.com/deal2",
-    "image": null,
-    "description": "Lifetime access to the ultimate UI kit for designers and developers. Over 10,000 components.",
-    "valid_until": "2026-04-15T00:00:00Z",
-    "tags": ["design", "ui", "lifetime deal"],
-    "confidence_score": 0.88,
-    "source_type": "static_cache",
-    "source_name": "example.com"
-  },
-  {
-    "title": "Free 1-Year Subscription to Developer Tools",
-    "brand": "JetBrains",
-    "category": "Software",
-    "discount": "100%",
-    "price": "$0",
-    "currency": "USD",
-    "url": "https://example.com/deal3",
-    "image": null,
-    "description": "Students get a free 1-year subscription to all JetBrains developer tools.",
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Pull&Bear.",
     "valid_until": null,
-    "tags": ["software", "development", "student"],
-    "confidence_score": 0.99,
-    "source_type": "manual",
-    "source_name": "jetbrains.com"
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Pull&Bear"
+  },
+  {
+    "title": "Wyprzedaż Bershka - Zobacz ofertę",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.bershka.com/pl/kobieta/wyprzedaz-c1010193132.html",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Bershka.",
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "Wyprzedaż Urban Outfitters - Zobacz ofertę",
+    "brand": "Urban Outfitters",
+    "category": "Odzież",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.urbanoutfitters.com/pl-pl/womens-sale",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Urban Outfitters.",
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Urban Outfitters"
+  },
+  {
+    "title": "Wyprzedaż Adidas - Zobacz ofertę",
+    "brand": "Adidas",
+    "category": "Sport",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.adidas.pl/kobiety-wyprzedaz",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Adidas.",
+    "valid_until": null,
+    "tags": [
+      "Sport"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Adidas"
+  },
+  {
+    "title": "Wyprzedaż Nike - Zobacz ofertę",
+    "brand": "Nike",
+    "category": "Sport",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.nike.com/pl/w/wyprzedaz-damskie-3yaepz5e1x6",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Nike.",
+    "valid_until": null,
+    "tags": [
+      "Sport"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Nike"
+  },
+  {
+    "title": "Wyprzedaż Stradivarius - Zobacz ofertę",
+    "brand": "Stradivarius",
+    "category": "Odzież",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.stradivarius.com/pl/kobieta/wyprzedaz-c1020280596.html",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Stradivarius.",
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Stradivarius"
+  },
+  {
+    "title": "Wyprzedaż H&M - Zobacz ofertę",
+    "brand": "H&M",
+    "category": "Odzież",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www2.hm.com/pl_pl/wyprzedaz/kobiety.html",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie H&M.",
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "H&M"
+  },
+  {
+    "title": "Wyprzedaż Rossmann - Zobacz ofertę",
+    "brand": "Rossmann",
+    "category": "Kosmetyki",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.rossmann.pl/promocje",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Rossmann.",
+    "valid_until": null,
+    "tags": [
+      "Kosmetyki"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Rossmann"
+  },
+  {
+    "title": "Wyprzedaż Hebe - Zobacz ofertę",
+    "brand": "Hebe",
+    "category": "Kosmetyki",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.hebe.pl/promocje/",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Hebe.",
+    "valid_until": null,
+    "tags": [
+      "Kosmetyki"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Hebe"
+  },
+  {
+    "title": "Wyprzedaż Sephora - Zobacz ofertę",
+    "brand": "Sephora",
+    "category": "Kosmetyki",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.sephora.pl/promocje/",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Sephora.",
+    "valid_until": null,
+    "tags": [
+      "Kosmetyki"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Sephora"
+  },
+  {
+    "title": "Wyprzedaż Douglas - Zobacz ofertę",
+    "brand": "Douglas",
+    "category": "Kosmetyki",
+    "discount": null,
+    "price": null,
+    "currency": null,
+    "url": "https://www.douglas.pl/pl/c/sale/09",
+    "image": null,
+    "description": "Zobacz pełną ofertę wyprzedażową na stronie Douglas.",
+    "valid_until": null,
+    "tags": [
+      "Kosmetyki"
+    ],
+    "confidence_score": 0.5,
+    "source_type": "dynamic_scrape",
+    "source_name": "Douglas"
   }
 ]
