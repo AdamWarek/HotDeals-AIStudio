@@ -18,86 +18,14 @@
     "source_name": "Pull&Bear"
   },
   {
-    "title": "SPODNIE Z PODWÓJNYMI ZAKŁADKAMI",
+    "title": "JEANSY O KROJU WIDE LEG STRAIGHT Z WYSOKIM STANEM",
     "brand": "Bershka",
     "category": "Odzież",
     "discount": null,
-    "price": "199",
+    "price": "64.5",
     "currency": "PLN",
     "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/ecb3/3e11/b51d4218bb7e/95dca9104210/00838777800-a4o/00838777800-a4o.jpg?ts=1762445688774&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "JEANSY O KROJU BAGGY ZE ŚREDNIM STANEM",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": "129",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/7388/50f8/d3a24868b0d4/84e810cd4d85/00066089428-a4o/00066089428-a4o.jpg?ts=1765440535146&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "BLUZA ROZPINANA SZYBKOSCHNĄCA I ODDYCHAJĄCA",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": "129",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/b3ec/c40d/46a041b88a30/7d638666fe5d/06976143313-a4o/06976143313-a4o.jpg?ts=1772703952193&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "BLUZA SOFT Z MODALEM I KAPTUREM",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": "99.9",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/a410/932c/a6584c21aa24/b3dc21559ec5/01820727812-a4o/01820727812-a4o.jpg?ts=1738060899843&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "TOP OD BIKINI O TRÓJKĄTNYM KROJU, KONTRASTOWY",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": "79.9",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/5ab5/2fb4/8d8e4ae19bb8/c20540d2a701/00111631700-a4o/00111631700-a4o.jpg?ts=1762953076583&w=563&f=auto",
+    "image": "https://static.bershka.net/assets/public/74e4/abf8/5f4d44f795e6/73f9c21e1b4f/05007352800-a4o/05007352800-a4o.jpg?ts=1751527299289&w=563&f=auto",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -126,6 +54,24 @@
     "source_name": "Bershka"
   },
   {
+    "title": "SPODNIE Z DZIANINY DRESOWEJ",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "89.9",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/488c/f7cc/6fa345d5ba6a/53b36328447a/05290478812-a4o/05290478812-a4o.jpg?ts=1750145088463&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
     "title": "JEANSY BOOTCUT Z NISKIM STANEM I KLAPAMI",
     "brand": "Bershka",
     "category": "Odzież",
@@ -144,14 +90,14 @@
     "source_name": "Bershka"
   },
   {
-    "title": "SPODNIE SZEROKIE Z DWUWARSTWOWEJ TKANINY",
+    "title": "KOSZULKA Z DŁUGIM RĘKAWEM I NADRUKIEM",
     "brand": "Bershka",
     "category": "Odzież",
     "discount": null,
-    "price": "149",
+    "price": "79.9",
     "currency": "PLN",
     "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/c02f/8f4f/2c70487591d4/3f56f9849af3/05155741800-a4o/05155741800-a4o.jpg?ts=1758264207593&w=563&f=auto",
+    "image": "https://static.bershka.net/assets/public/9305/3d9c/eede456c9e44/902cec21cb6b/07547443605-a4o/07547443605-a4o.jpg?ts=1761125634893&w=563&f=auto",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -162,14 +108,86 @@
     "source_name": "Bershka"
   },
   {
-    "title": "TRENCZ ZE STÓJKĄ",
+    "title": "JEANSY O KROJU BAGGY BARREL Z NISKIM STANEM",
     "brand": "Bershka",
     "category": "Odzież",
     "discount": null,
-    "price": "199",
+    "price": "74.5",
     "currency": "PLN",
     "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/d8f5/3454/b4094a4a9e0e/2fc6bc4ba91d/00030085533-a4o/00030085533-a4o.jpg?ts=1765789147669&w=563&f=auto",
+    "image": "https://static.bershka.net/assets/public/ce7e/fe32/9e034476b38e/255bf7fad7e4/00068074401-a4o/00068074401-a4o.jpg?ts=1765903062400&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "KOSZULKA Z DŁUGIM RĘKAWEM I KORONKĄ",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "65.9",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/f8c8/1d87/368745758cce/3d5343897c3a/07803443800-a4o/07803443800-a4o.jpg?ts=1755503638401&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "KURTKA ZE SZTUCZNEJ SKÓRY Z GOLFEM",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "229",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/cff4/c8a5/30884a5c98cf/9cd371844f7b/00981718800-a4o/00981718800-a4o.jpg?ts=1765873408831&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "JEANSY BAGGY FLARE Z NISKIM STANEM",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "74.5",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/a483/0d16/97f3412fba16/c16d348cde7f/05035666401-a4o/05035666401-a4o.jpg?ts=1763637281034&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "SWETER W PASKI Z OKRĄGŁYM DEKOLTEM",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "89.9",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/3a47/368b/167d42038ceb/11e639b0b59e/00944190300-a4o/00944190300-a4o.jpg?ts=1768919173792&w=563&f=auto",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -490,10 +508,10 @@
     "brand": "Douglas",
     "category": "Kosmetyki",
     "discount": null,
-    "price": "250",
+    "price": "2050",
     "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5011977049?variant=1272055",
-    "image": "https://media.douglas.pl/medias/5TmDQn1272055-0-dgl-PL.jpg?context=bWFzdGVyfGltYWdlc3w5NjUwOHxpbWFnZS9qcGVnfGFHWTJMMmd4WXk4M01ERXhOVFUzTkRrd05qa3hNQzgxVkcxRVVXNHhNamN5TURVMVh6QmZaR2RzTFZCTUxtcHdad3xhMDA5MzllNDAzMTIxYTlmNjczMDg3YTlkZmFiOTQ3ODYwYzYyNGY3M2Y3ZDQzYmJjMTA1YmEwNGY2YmM1ZTMw&grid=true&imPolicy=grayScaled",
+    "url": "https://www.douglas.pl/pl/p/5012008136",
+    "image": "https://media.douglas.pl/medias/3kIAyS1281886-0-dgl-PL.png?context=bWFzdGVyfGltYWdlc3w5NDk1MDl8aW1hZ2UvcG5nfGFEazRMMmd3TkM4M01ESTJPVGN4TnpReE16a3hPQzh6YTBsQmVWTXhNamd4T0RnMlh6QmZaR2RzTFZCTUxuQnVad3xhMjIxOGU4MjM1OTNkNzA1YmRlNTE0MjczYjkwOGI3MDQ5MTZlNTM2MzY1NGVmZGY4YzlkYTkzYTA3ODg3MGRh&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -508,10 +526,10 @@
     "brand": "Douglas",
     "category": "Kosmetyki",
     "discount": null,
-    "price": "50",
+    "price": "40",
     "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5011406025?variant=1176639",
-    "image": "https://media.douglas.pl/medias/GKgoSs1176639-0-global.jpg?context=bWFzdGVyfGltYWdlc3w3MTMwOXxpbWFnZS9qcGVnfGFHTmlMMmhpTWk4Mk16Y3pORFl6TURVME56UTROaTlIUzJkdlUzTXhNVGMyTmpNNVh6QmZaMnh2WW1Gc0xtcHdad3wzODM5YjBkZjRmZjZhY2JkMWM0MzY5OWFlNzFjMzFhYjcxNTRhMGRlNDU0ZDVkNGRiMjIyMWU2Y2I1MDJkODhi&grid=true&imPolicy=grayScaled",
+    "url": "https://www.douglas.pl/pl/p/5012008204?variant=1283158",
+    "image": "https://media.douglas.pl/medias/eOB0Ut1283158-0-dgl-PL.png?context=bWFzdGVyfGltYWdlc3wzMTc1NDN8aW1hZ2UvcG5nfGFEVTVMMmd5Tnk4M01ETXdPRE16TnpJeU1UWTJNaTlsVDBJd1ZYUXhNamd6TVRVNFh6QmZaR2RzTFZCTUxuQnVad3xkZjU3NTEzZDVjNmNiMDA0OWY2YjQ3Nzg1YTQyOWNjYTVhMDAyYjRkYmY3Njk5NDM4NzZlMDI0MTUyMmY5MDFk&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -546,8 +564,8 @@
     "discount": null,
     "price": "24",
     "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5012008023?variant=1271589",
-    "image": "https://media.douglas.pl/medias/56UkeL1271589-0-global.jpg?context=bWFzdGVyfGltYWdlc3wxMTQyNjd8aW1hZ2UvanBlZ3xhRE5qTDJneU9TODNNRE16TkRBMU5qazFOVGt6TkM4MU5sVnJaVXd4TWpjeE5UZzVYekJmWjJ4dlltRnNMbXB3Wnd8NTc5NTA1ZGI5ZDY5YjgxNjA3NDdiOWUwOGY0NWQ3NjY5Njg4YjJhYWY2NmFlNjg1Yjk1MGUyY2ZlMDgzN2MwNw&grid=true&imPolicy=grayScaled",
+    "url": "https://www.douglas.pl/pl/p/5012022115?variant=1271928",
+    "image": "https://media.douglas.pl/medias/gNjWiS1271928-0-global.jpg?context=bWFzdGVyfGltYWdlc3wxODk5NDd8aW1hZ2UvanBlZ3xhR0ZtTDJnMU5pODNNREkzTkRNNU9UVXpOVEV6TkM5blRtcFhhVk14TWpjeE9USTRYekJmWjJ4dlltRnNMbXB3Wnd8N2E3YTNhMzAxMmZlMzNlZTViOTczMGIwZjZhNzk3YzU1ODdiYWU1YmQ1MTdmZmQ1MDY1MTY1NTVmYzljYTJkMw&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -562,10 +580,10 @@
     "brand": "Douglas",
     "category": "Kosmetyki",
     "discount": null,
-    "price": "46",
+    "price": "24",
     "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5011996009?variant=1271548",
-    "image": "https://media.douglas.pl/medias/Ss55Vb1271548-0-global.jpg?context=bWFzdGVyfGltYWdlc3w1NTE0OHxpbWFnZS9qcGVnfGFHSmhMMmd4WlM4Mk9UWTFOREEzTkRjeU1ESTROaTlUY3pVMVZtSXhNamN4TlRRNFh6QmZaMnh2WW1Gc0xtcHdad3w5ZTM0ZTQzYWY2MzkwNTc0YzBkY2Y3MWZhYzdmZjk5ZmM2MmEzMjVhYzQyNTZiMDcxZTI2OTYzZWM2ZDk5Y2Nh&grid=true&imPolicy=grayScaled",
+    "url": "https://www.douglas.pl/pl/p/5012008023?variant=1271565",
+    "image": "https://media.douglas.pl/medias/sMvZXn1271565-0-global.jpg?context=bWFzdGVyfGltYWdlc3wxMTE2NzJ8aW1hZ2UvanBlZ3xhRGswTDJnNU15ODNNRE16TkRBMU5Ua3dOek0xT0M5elRYWmFXRzR4TWpjeE5UWTFYekJmWjJ4dlltRnNMbXB3Wnd8NTVkOWE0MDlhZTM2Y2Q4MGI4MjQzN2UyMDFhNGYyYmRiZWVjYWZiOTkzZmNmMTI0NTg3ZWZjZTA4ODFiZjJlMQ&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -616,24 +634,6 @@
     "brand": "Douglas",
     "category": "Kosmetyki",
     "discount": null,
-    "price": "1",
-    "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5011981036?variant=1270979",
-    "image": "https://media.douglas.pl/medias/9kpUuz1270979-0-global.jpg?context=bWFzdGVyfGltYWdlc3w5OTU4OHxpbWFnZS9qcGVnfGFHTTBMMmczTVM4Mk9EYzJNRFF6TURVM05UWTBOaTg1YTNCVmRYb3hNamN3T1RjNVh6QmZaMnh2WW1Gc0xtcHdad3xkZjQyNjNiNzM5MzdiYTdmYzMyYjEzMTcyMGE2MWIxZGI2NTNlYTE1ZDk5YjA2NzU4NTk0OGMyNjM4MTkwMjhm&grid=true&imPolicy=grayScaled",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Kosmetyki"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Douglas"
-  },
-  {
-    "title": "Brak nazwy",
-    "brand": "Douglas",
-    "category": "Kosmetyki",
-    "discount": null,
     "price": "100",
     "currency": "PLN",
     "url": "https://www.douglas.pl/pl/p/5012004050",
@@ -656,6 +656,24 @@
     "currency": "PLN",
     "url": "https://www.douglas.pl/pl/p/5011257002",
     "image": "https://media.douglas.pl/medias/bDsbG31280601-0-dgl-PL.jpg?context=bWFzdGVyfGltYWdlc3wzNjc0OXxpbWFnZS9qcGVnfGFETXpMMmcyTkM4M09USXpNamcyT0RjeE1qUTNPQzlpUkhOaVJ6TXhNamd3TmpBeFh6QmZaR2RzTFZCTUxtcHdad3xkYTIxZTIwNDNlZWMxZDllNTdhMTI2NzE3YWIyYWNkZTMxNjg2NGQwZGU1Y2U1ZDY5Yjk3NWM4NGRiMzg0OGFl&grid=true&imPolicy=grayScaled",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Kosmetyki"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Douglas"
+  },
+  {
+    "title": "Brak nazwy",
+    "brand": "Douglas",
+    "category": "Kosmetyki",
+    "discount": null,
+    "price": "3010",
+    "currency": "PLN",
+    "url": "https://www.douglas.pl/pl/p/5002486796?variant=1287154",
+    "image": "https://media.douglas.pl/medias/KW6oYs1287154-0-dgl-PL.png?context=bWFzdGVyfGltYWdlc3wyNTgxMTN8aW1hZ2UvcG5nfGFHWmhMMmhqWmk4M09USTBOalkxTXpVNE56UTROaTlMVnpadldYTXhNamczTVRVMFh6QmZaR2RzTFZCTUxuQnVad3wxMDlmMzIyYWZmNzIwNjQzYjBlMTg5OGQ2NDU0ZTFlODQ5ZTc5YTNhM2EwY2JhMzFjY2Q0YTY0NDZkYTM0MGQz&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
