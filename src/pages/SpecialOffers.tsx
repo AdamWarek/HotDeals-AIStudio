@@ -56,7 +56,10 @@ const B: Record<string, any> = {
 /* ─── PROMOTIONS DATA ───────────────────────────────────────────────────────── */
 // Data is now fetched dynamically from deals.json
 
-const fmt = (n: number) => n.toFixed(2).replace(".", ",") + " zł";
+const fmt = (n: number | undefined | null) => {
+  if (n === undefined || n === null || isNaN(n)) return "0,00 zł";
+  return n.toFixed(2).replace(".", ",") + " zł";
+};
 const ALL_BRANDS = Object.keys(B).sort();
 
 /* ─── FAV PANEL ─────────────────────────────────────────────────────────────── */
@@ -93,7 +96,9 @@ function FavPanel({ items, favorites, onFav, onClose }: any) {
               }}>♥</button>
               <div style={{ padding:"5px 6px" }}>
                 <p style={{ fontSize:"9px", fontWeight:600, color:"#1A1A1A", lineHeight:1.3, display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical", overflow:"hidden" }}>{item.name}</p>
-                <p style={{ fontSize:"10px", fontWeight:700, color:brand.accent, marginTop:"2px" }}>{fmt(item.sale)}</p>
+                {item.sale > 0 && (
+                  <p style={{ fontSize:"10px", fontWeight:700, color:brand.accent, marginTop:"2px" }}>{fmt(item.sale)}</p>
+                )}
                 <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ fontSize:"9px", color:brand.accent, textDecoration:"none", fontWeight:600 }}>Zobacz →</a>
               </div>
             </div>
@@ -149,12 +154,14 @@ function PromoCard({ item, isFav, onFav, size }: any) {
         />
         {/* Badges */}
         <div style={{ position:"absolute", top:8, left:8, display:"flex", flexDirection:"column", gap:"4px" }}>
-          <span style={{
-            background:"#FF3B30", color:"#fff",
-            fontSize: isSmall ? "9px" : "10px", fontWeight:700,
-            padding:"2px 7px", borderRadius:"20px",
-            fontFamily:"'DM Sans', sans-serif", letterSpacing:"0.02em",
-          }}>−{item.pct}%</span>
+          {item.pct > 0 && (
+            <span style={{
+              background:"#FF3B30", color:"#fff",
+              fontSize: isSmall ? "9px" : "10px", fontWeight:700,
+              padding:"2px 7px", borderRadius:"20px",
+              fontFamily:"'DM Sans', sans-serif", letterSpacing:"0.02em",
+            }}>−{item.pct}%</span>
+          )}
           {item.isNew && (
             <span style={{
               background: brand.accent, color:"#fff",
@@ -220,17 +227,21 @@ function PromoCard({ item, isFav, onFav, size }: any) {
         }}>{item.name}</p>
 
         {/* Prices */}
-        <div style={{ display:"flex", alignItems:"baseline", gap:"6px", flexWrap:"wrap", marginTop:"auto" }}>
-          <span style={{
-            fontFamily:"'Cormorant Garamond', serif",
-            fontSize: isSmall ? "15px" : isLarge ? "22px" : "18px",
-            fontWeight:700, color:"#1A1A1A",
-          }}>{fmt(item.sale)}</span>
-          <span style={{
-            fontSize: isSmall ? "10px" : "11px",
-            color:"#ABABAB", textDecoration:"line-through",
-          }}>{fmt(item.orig)}</span>
-        </div>
+        {item.sale > 0 && (
+          <div style={{ display:"flex", alignItems:"baseline", gap:"6px", flexWrap:"wrap", marginTop:"auto" }}>
+            <span style={{
+              fontFamily:"'Cormorant Garamond', serif",
+              fontSize: isSmall ? "15px" : isLarge ? "22px" : "18px",
+              fontWeight:700, color:"#1A1A1A",
+            }}>{fmt(item.sale)}</span>
+            {item.orig > item.sale && (
+              <span style={{
+                fontSize: isSmall ? "10px" : "11px",
+                color:"#ABABAB", textDecoration:"line-through",
+              }}>{fmt(item.orig)}</span>
+            )}
+          </div>
+        )}
 
         {/* CTA */}
         {!isSmall ? (
@@ -356,7 +367,57 @@ export default function SpecialOffers() {
     fetch(import.meta.env.BASE_URL + 'deals.json')
       .then(res => res.json())
       .then(data => {
-        setPromos(data);
+        const mappedPromos = data.map((deal: any, index: number) => {
+          let originalPrice = undefined;
+          let pct = 0;
+          let currentPrice = 0;
+          
+          // Handle new schema
+          if (deal.sale_price) {
+            currentPrice = parseFloat(deal.sale_price.replace(' PLN', ''));
+            originalPrice = parseFloat((deal.original_price || '').replace(' PLN', ''));
+            pct = deal.discount_pct || 0;
+          } 
+          // Handle old schema
+          else if (deal.price) {
+            currentPrice = parseFloat(deal.price);
+            if (deal.discount) {
+              pct = parseInt(deal.discount.replace('%', ''));
+              if (!isNaN(pct) && pct > 0 && pct < 100) {
+                originalPrice = currentPrice / (1 - pct / 100);
+              } else {
+                pct = 0;
+              }
+            }
+          }
+
+          // Map brand name from site ID if needed
+          let brandName = deal.brand || deal.source_name || deal.site || 'System';
+          if (brandName.toLowerCase() === 'hm') brandName = 'H&M';
+          if (brandName.toLowerCase() === 'pullandbear') brandName = 'Pull&Bear';
+          if (brandName.toLowerCase() === 'urbanoutfitters') brandName = 'Urban Outfitters';
+          if (brandName.toLowerCase() === 'rossmann') brandName = 'Rossmann';
+          if (brandName.toLowerCase() === 'hebe') brandName = 'Hebe';
+          if (brandName.toLowerCase() === 'douglas') brandName = 'Douglas';
+          if (brandName.toLowerCase() === 'sephora') brandName = 'Sephora';
+          if (brandName.toLowerCase() === 'bershka') brandName = 'Bershka';
+          if (brandName.toLowerCase() === 'stradivarius') brandName = 'Stradivarius';
+
+          return {
+            id: index,
+            name: deal.name || deal.title || 'Brak nazwy',
+            brand: brandName,
+            cat: deal.category || 'Inne',
+            sale: currentPrice,
+            orig: originalPrice || currentPrice,
+            pct: pct,
+            img: deal.image_url || deal.image || 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=500&h=600&fit=crop',
+            url: deal.product_url || deal.url,
+            isNew: Math.random() > 0.7,
+            scrape_status: deal.source_type === 'dynamic_scrape' ? 'R' : ''
+          };
+        });
+        setPromos(mappedPromos);
         setLoading(false);
       })
       .catch(err => {

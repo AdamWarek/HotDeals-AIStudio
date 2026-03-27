@@ -19,28 +19,53 @@ const Home: React.FC = () => {
       .then(data => {
         // Map scraped deals to the format expected by DealCard
         const mappedDeals = data.map((deal: any, index: number) => {
-          // Calculate original price if discount is present
           let originalPrice = undefined;
-          if (deal.discount && deal.price) {
-            const pct = parseInt(deal.discount.replace('%', ''));
-            const currentPrice = parseFloat(deal.price);
-            if (!isNaN(pct) && pct > 0 && pct < 100) {
-              originalPrice = currentPrice / (1 - pct / 100);
+          let pct = 0;
+          let currentPrice = 0;
+          
+          // Handle new schema
+          if (deal.sale_price) {
+            currentPrice = parseFloat(deal.sale_price.replace(' PLN', ''));
+            originalPrice = parseFloat((deal.original_price || '').replace(' PLN', ''));
+            pct = deal.discount_pct || 0;
+          } 
+          // Handle old schema
+          else if (deal.price) {
+            currentPrice = parseFloat(deal.price);
+            if (deal.discount) {
+              pct = parseInt(deal.discount.replace('%', ''));
+              if (!isNaN(pct) && pct > 0 && pct < 100) {
+                originalPrice = currentPrice / (1 - pct / 100);
+              } else {
+                pct = 0;
+              }
             }
           }
 
+          // Map brand name from site ID if needed
+          let brandName = deal.brand || deal.source_name || deal.site || 'System';
+          if (brandName.toLowerCase() === 'hm') brandName = 'H&M';
+          if (brandName.toLowerCase() === 'pullandbear') brandName = 'Pull&Bear';
+          if (brandName.toLowerCase() === 'urbanoutfitters') brandName = 'Urban Outfitters';
+          if (brandName.toLowerCase() === 'rossmann') brandName = 'Rossmann';
+          if (brandName.toLowerCase() === 'hebe') brandName = 'Hebe';
+          if (brandName.toLowerCase() === 'douglas') brandName = 'Douglas';
+          if (brandName.toLowerCase() === 'sephora') brandName = 'Sephora';
+          if (brandName.toLowerCase() === 'bershka') brandName = 'Bershka';
+          if (brandName.toLowerCase() === 'stradivarius') brandName = 'Stradivarius';
+
           return {
             id: `scraped-${index}`,
-            title: deal.title || 'Brak nazwy',
+            title: deal.name || deal.title || 'Brak nazwy',
             description: deal.description || '',
-            currentPrice: parseFloat(deal.price || '0'),
-            originalPrice: originalPrice,
-            imageUrl: deal.image || 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=500&h=600&fit=crop',
+            currentPrice: currentPrice,
+            originalPrice: originalPrice || currentPrice,
+            imageUrl: deal.image_url || deal.image || 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=500&h=600&fit=crop',
             temperature: Math.floor((deal.confidence_score || 0.5) * 1000), // Fake temperature
-            authorName: deal.brand || deal.source_name || 'System',
+            authorName: brandName,
             createdAt: { seconds: Date.now() / 1000 - index * 3600 }, // Fake timestamp
             category: deal.category || 'Inne',
-            url: deal.url // Add URL to navigate to
+            url: deal.product_url || deal.url // Add URL to navigate to
           };
         });
         setDeals(mappedDeals);
