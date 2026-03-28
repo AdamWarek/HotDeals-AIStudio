@@ -14,7 +14,7 @@ const Home: React.FC = () => {
   const [activeTab, setActiveTab] = useState('newest');
 
   useEffect(() => {
-    fetch('/data/all_promos.json')
+    fetch(import.meta.env.BASE_URL + 'data/all_promos.json')
       .then(res => res.json())
       .then(data => {
         // Map scraped deals to the format expected by DealCard
