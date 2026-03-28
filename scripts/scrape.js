@@ -3,6 +3,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import 'dotenv/config';
 
+// Optional env:
+//   SCRAPER_STRICT=1 — process.exit(1) if any SCRAPER_REQUIRED scraper returns 0 deals or throws.
+//   SCRAPER_REQUIRED=bershka,hebe,hm — comma-separated scraper ids (see scrapers[] below).
+
 // Import specialized scrapers
 import { scrapePullAndBear } from './scrapers/pullandbear.js';
 import { scrapeStradivarius } from './scrapers/stradivarius.js';
@@ -17,119 +21,225 @@ import { scrapeSephora } from './scrapers/sephora.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/** Parse "129,99 PLN", "129.99", or number → float */
+function parsePlnAmount(value) {
+  if (value === undefined || value === null || value === '') return null;
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  const t = String(value).replace(/[^\d,.]/g, '').replace(',', '.');
+  const n = parseFloat(t);
+  return Number.isFinite(n) ? n : null;
+}
+
+/**
+ * Normalize one raw deal to merged schema with correct original/sale/discount when possible.
+ */
+function normalizeDeal(deal, scraper, scrapedAt) {
+  const discountStr = deal.discount || '';
+  let discountPct = parseInt(discountStr.replace(/[^\d]/g, ''), 10) || 0;
+
+  let saleVal =
+    parsePlnAmount(deal.sale_price) ??
+    parsePlnAmount(deal.price) ??
+    parsePlnAmount(deal.salePrice) ??
+    0;
+
+  let originalVal =
+    parsePlnAmount(deal.original_price) ??
+    parsePlnAmount(deal.originalPrice) ??
+    parsePlnAmount(deal.regular_price) ??
+    null;
+
+  if (originalVal != null && saleVal > 0 && originalVal < saleVal) {
+    const tmp = originalVal;
+    originalVal = saleVal;
+    saleVal = tmp;
+  }
+
+  if (originalVal == null && discountPct > 0 && discountPct < 100 && saleVal > 0) {
+    originalVal = saleVal / (1 - discountPct / 100);
+  }
+
+  if (
+    originalVal != null &&
+    saleVal > 0 &&
+    originalVal > saleVal &&
+    (discountPct === 0 || !discountStr)
+  ) {
+    discountPct = Math.round(((originalVal - saleVal) / originalVal) * 100);
+  }
+
+  if (originalVal == null && saleVal > 0) {
+    originalVal = saleVal;
+  }
+
+  if (!(saleVal > 0)) {
+    return null;
+  }
+  if (originalVal == null || !Number.isFinite(originalVal)) {
+    originalVal = saleVal;
+  }
+
+  let confidence = deal.confidence_score;
+  if (confidence == null) confidence = 1.0;
+  if (deal.scrape_fallback === true) confidence = Math.min(confidence, 0.75);
+
+  const productUrl = deal.url || deal.product_url || '';
+  const name = deal.title || deal.name || 'Bez nazwy';
+
+  return {
+    site: scraper.id,
+    scraped_at: scrapedAt,
+    name,
+    original_price: `${originalVal.toFixed(2)} PLN`,
+    sale_price: `${saleVal.toFixed(2)} PLN`,
+    discount_pct: discountPct,
+    image_url: deal.image || deal.image_url || '',
+    product_url: productUrl,
+    category: deal.category || 'Inne',
+    in_stock: deal.in_stock !== false,
+
+    title: name,
+    brand: scraper.name,
+    discount: deal.discount || (discountPct > 0 ? `-${discountPct}%` : null),
+    price: String(saleVal),
+    currency: deal.currency || 'PLN',
+    url: productUrl,
+    image: deal.image || deal.image_url,
+    description: deal.description || `Okazja z ${scraper.name}`,
+    valid_until: deal.valid_until || null,
+    tags: deal.tags || [deal.category || 'sale'],
+    confidence_score: confidence,
+    source_type: deal.source_type || 'dynamic_scrape',
+    source_name: deal.source_name || scraper.name,
+  };
+}
+
+function logScrapeSummary(scraperId, count, ms, errorMessage) {
+  const err = errorMessage ? JSON.stringify(errorMessage) : '';
+  console.log(
+    `[scrape-summary] site=${scraperId} count=${count} durationMs=${ms}${err ? ` error=${err}` : ''}`
+  );
+}
+
+function dedupeDeals(deals) {
+  const seen = new Map();
+  const out = [];
+  for (const d of deals) {
+    const url = (d.product_url || d.url || '').split('?')[0];
+    const key = `${d.site}|${url || d.name}`;
+    if (!url && !d.name) continue;
+    if (seen.has(key)) continue;
+    seen.set(key, true);
+    out.push(d);
+  }
+  return out;
+}
+
 async function scrapeDeals() {
   console.log(`Starting the unified scraping process based on the Implementation Plan...`);
-  
+
   const allDeals = [];
   const dataDir = path.join(__dirname, '../public/data');
-  
-  // Ensure data directory exists
+
   if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
   }
 
   const scrapedAt = new Date().toISOString();
+  const summaryRows = [];
+  let strictFailed = false;
 
-  // Sequential execution with delays to be a "good citizen"
+  const requiredIds = (process.env.SCRAPER_REQUIRED || '')
+    .split(',')
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean);
+
   const scrapers = [
-    { name: "Bershka", id: "bershka", fn: scrapeBershka },
-    { name: "Pull&Bear", id: "pullandbear", fn: scrapePullAndBear },
-    { name: "Stradivarius", id: "stradivarius", fn: scrapeStradivarius },
-    { name: "H&M", id: "hm", fn: scrapeHM },
-    { name: "Urban Outfitters", id: "urbanoutfitters", fn: scrapeUrbanOutfitters },
-    { name: "Rossmann", id: "rossmann", fn: scrapeRossmann },
-    { name: "Hebe", id: "hebe", fn: scrapeHebe },
-    { name: "Douglas", id: "douglas", fn: scrapeDouglas },
-    { name: "Sephora", id: "sephora", fn: scrapeSephora }
+    { name: 'Bershka', id: 'bershka', fn: scrapeBershka },
+    { name: 'Pull&Bear', id: 'pullandbear', fn: scrapePullAndBear },
+    { name: 'Stradivarius', id: 'stradivarius', fn: scrapeStradivarius },
+    { name: 'H&M', id: 'hm', fn: scrapeHM },
+    { name: 'Urban Outfitters', id: 'urbanoutfitters', fn: scrapeUrbanOutfitters },
+    { name: 'Rossmann', id: 'rossmann', fn: scrapeRossmann },
+    { name: 'Hebe', id: 'hebe', fn: scrapeHebe },
+    { name: 'Douglas', id: 'douglas', fn: scrapeDouglas },
+    { name: 'Sephora', id: 'sephora', fn: scrapeSephora },
   ];
 
   for (const scraper of scrapers) {
+    const t0 = Date.now();
+    let errMsg = '';
+    let resultCount = 0;
     try {
       console.log(`\n--- Running Scraper: ${scraper.name} ---`);
       const rawDeals = await scraper.fn();
-      
+
       if (rawDeals && rawDeals.length > 0) {
-        // Normalize deals to include all fields from both schemas
-        const normalizedDeals = rawDeals.map(deal => {
-          const price = parseFloat(deal.price || '0');
-          const discountStr = deal.discount || '';
-          const discountPct = parseInt(discountStr.replace(/[^\d]/g, '')) || 0;
-          
-          // Calculate original price if missing
-          let originalPriceVal = 0;
-          if (discountPct > 0 && discountPct < 100) {
-            originalPriceVal = price / (1 - discountPct / 100);
-          } else {
-            originalPriceVal = price;
-          }
+        const normalizedDeals = rawDeals
+          .map((deal) => normalizeDeal(deal, scraper, scrapedAt))
+          .filter(Boolean);
 
-          return {
-            // Plan Section 5 Schema
-            site: scraper.id,
-            scraped_at: scrapedAt,
-            name: deal.title || deal.name,
-            original_price: `${originalPriceVal.toFixed(2)} PLN`,
-            sale_price: `${price.toFixed(2)} PLN`,
-            discount_pct: discountPct,
-            image_url: deal.image || deal.image_url,
-            product_url: deal.url || deal.product_url,
-            category: deal.category || 'Inne',
-            in_stock: true,
+        resultCount = normalizedDeals.length;
 
-            // Additional User Instructions Schema (Compatibility)
-            title: deal.title || deal.name,
-            brand: scraper.name,
-            discount: deal.discount,
-            price: deal.price,
-            currency: deal.currency || 'PLN',
-            url: deal.url || deal.product_url,
-            image: deal.image || deal.image_url,
-            description: deal.description || `Okazja z ${scraper.name}`,
-            valid_until: deal.valid_until || null,
-            tags: deal.tags || [deal.category || 'sale'],
-            confidence_score: deal.confidence_score || 1.0,
-            source_type: deal.source_type || 'dynamic_scrape',
-            source_name: scraper.name
-          };
-        });
-
-        // Write per-site file
         const sitePath = path.join(dataDir, `${scraper.id}_promos.json`);
         fs.writeFileSync(sitePath, JSON.stringify(normalizedDeals, null, 2));
         console.log(`Saved ${normalizedDeals.length} deals to ${scraper.id}_promos.json`);
 
         allDeals.push(...normalizedDeals);
+      } else {
+        console.log(`No deals returned for ${scraper.name}.`);
+        if (requiredIds.includes(scraper.id)) {
+          console.error(`[scrape-strict] REQUIRED scraper "${scraper.id}" returned 0 deals.`);
+          strictFailed = true;
+        }
       }
-      
-      // Delay between sites as per plan (3-5 seconds)
-      console.log(`Waiting 4 seconds before next scraper...`);
-      await new Promise(r => setTimeout(r, 4000));
+
+      if (resultCount === 0) {
+        console.warn(`[scrape-warning] Zero normalized results for ${scraper.id}`);
+      }
     } catch (error) {
-      console.error(`Failed to scrape ${scraper.name}:`, error.message);
+      errMsg = error?.message || String(error);
+      console.error(`Failed to scrape ${scraper.name}:`, errMsg);
+      if (requiredIds.includes(scraper.id)) strictFailed = true;
+    } finally {
+      const ms = Date.now() - t0;
+      logScrapeSummary(scraper.id, resultCount, ms, errMsg);
+      summaryRows.push({ id: scraper.id, count: resultCount, ms, error: errMsg });
     }
+
+    console.log(`Waiting 4 seconds before next scraper...`);
+    await new Promise((r) => setTimeout(r, 4000));
   }
 
-  // Handle Adidas and Nike (Architecture only / Skip as per plan)
-  console.log("\n--- Adidas & Nike (Skip/Architecture Only) ---");
-  console.log("Skipping Adidas.pl (T4 Akamai Bot Manager confirmed).");
-  console.log("Skipping Nike.com/pl (Prohibited by ToS).");
+  console.log('\n--- Adidas & Nike (Skip/Architecture Only) ---');
+  console.log('Skipping Adidas.pl (T4 Akamai Bot Manager confirmed).');
+  console.log('Skipping Nike.com/pl (Prohibited by ToS).');
 
-  // Save merged files
-  if (allDeals.length > 0) {
-    // Plan: data/all_promos.json
+  const merged = dedupeDeals(allDeals);
+  if (merged.length < allDeals.length) {
+    console.log(`[scrape-merge] Deduplicated ${allDeals.length - merged.length} duplicate row(s) by URL/site.`);
+  }
+
+  if (merged.length > 0) {
     const allPromosPath = path.join(dataDir, 'all_promos.json');
-    fs.writeFileSync(allPromosPath, JSON.stringify(allDeals, null, 2));
-    
-    // Compatibility: public/deals.json
+    fs.writeFileSync(allPromosPath, JSON.stringify(merged, null, 2));
+
     const dealsPath = path.join(__dirname, '../public/deals.json');
-    fs.writeFileSync(dealsPath, JSON.stringify(allDeals, null, 2));
-    
+    fs.writeFileSync(dealsPath, JSON.stringify(merged, null, 2));
+
     console.log(`\nScraping complete!`);
     console.log(`- Saved merged deals to public/data/all_promos.json`);
     console.log(`- Saved merged deals to public/deals.json`);
-    console.log(`- Total deals: ${allDeals.length}`);
+    console.log(`- Total deals: ${merged.length}`);
   } else {
     console.log('\nScraping complete, but no deals were found.');
+  }
+
+  console.log('\n[scrape-summary] run_totals:', JSON.stringify(summaryRows));
+
+  if (process.env.SCRAPER_STRICT === '1' && strictFailed) {
+    console.error('[scrape-strict] Exiting with code 1 (required scraper failed or returned 0).');
+    process.exit(1);
   }
 }
 
