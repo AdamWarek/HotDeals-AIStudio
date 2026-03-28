@@ -364,8 +364,14 @@ export default function SpecialOffers() {
   const commitVersion = typeof __COMMIT_HASH__ !== 'undefined' ? __COMMIT_HASH__ : 'dev';
 
   useEffect(() => {
+    console.log('Fetching from:', import.meta.env.BASE_URL + 'deals.json');
     fetch(import.meta.env.BASE_URL + 'deals.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then(data => {
         const mappedPromos = data.map((deal: any, index: number) => {
           let originalPrice = undefined;
