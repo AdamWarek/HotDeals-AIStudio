@@ -14,52 +14,111 @@ export async function scrapeUrbanOutfitters() {
   await page.setViewport({ width: 1366, height: 768 });
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
 
-  const deals = [];
+  // Sniff responses
+  page.on('response', response => {
+    const url = response.url();
+    if (url.includes('api') && (url.includes('product') || url.includes('search'))) {
+        console.log('UO API RESPONSE:', url);
+    }
+  });
 
-  try {
-    // 1. Navigate to the main site first
-    const mainUrl = 'https://www.urbanoutfitters.com/pl-pl/';
-    console.log("Navigating to Urban Outfitters...");
-    await page.goto(mainUrl, { waitUntil: 'networkidle2', timeout: 60000 });
+  // Pipe browser console to terminal
+  page.on('console', msg => {
+    if (msg.type() === 'log') console.log('BROWSER LOG:', msg.text());
+  });
 
-    // 2. Fetch the JSON data using browser fetch
-    const apiUrl = 'https://api.urbanoutfitters.com/api/products?category=sale&start=0&rows=48&country=PL&currency=PLN';
+    await page.setExtraHTTPHeaders({
+        'Accept-Language': 'pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7',
+    });
+
+    const deals = [];
+
+    try {
+        // 1. Navigate to the main page first
+        const mainUrl = 'https://www.urbanoutfitters.com/pl-pl/';
+        console.log("Navigating to Urban Outfitters main page...");
+        await page.goto(mainUrl, { waitUntil: 'networkidle2', timeout: 60000 });
+        await new Promise(r => setTimeout(r, 5000));
+
+        // 2. Navigate to the sale page
+        const saleUrl = 'https://www.urbanoutfitters.com/pl-pl/shop/sale';
+        console.log("Navigating to Urban Outfitters sale page...");
+        await page.goto(saleUrl, { waitUntil: 'networkidle2', timeout: 60000 });
+        await new Promise(r => setTimeout(r, 5000));
+
+    // Wait a bit for requests to fire
+    await new Promise(r => setTimeout(r, 5000));
     
-    console.log("Fetching Urban Outfitters sale data from API via browser fetch...");
-    const jsonContent = await page.evaluate(async (url) => {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        return await response.json();
-    }, apiUrl);
-
-    if (jsonContent && jsonContent.products) {
-        for (const product of jsonContent.products.slice(0, 10)) {
-            const salePrice = product.sale_price || product.price;
-            const origPrice = product.original_price || product.price;
-            let discount = null;
-            
-            if (origPrice > salePrice) {
-                const pct = Math.round(((origPrice - salePrice) / origPrice) * 100);
-                discount = `-${pct}%`;
+    // 2. Try to extract JSON from the page source or HTML fallback
+    const extractedDeals = await page.evaluate(() => {
+        const results = [];
+        
+        // Try to find JSON in script tags
+        const scripts = Array.from(document.querySelectorAll('script'));
+        for (const script of scripts) {
+            const text = script.innerText;
+            if (text.includes('window.__INITIAL_STATE__') || text.includes('window.__PRELOADED_STATE__') || text.includes('INITIAL_STATE')) {
+                try {
+                    const match = text.match(/\{.*\}/s);
+                    if (match) {
+                        const state = JSON.parse(match[0]);
+                        const products = state?.productListing?.products || state?.catalog?.products || [];
+                        if (products.length > 0) {
+                            console.log(`Found ${products.length} products in UO state.`);
+                            return products.map(p => ({
+                                title: p.name || p.productName,
+                                brand: "Urban Outfitters",
+                                category: "Odzież",
+                                price: (p.salePrice || p.price || "").toString(),
+                                currency: "PLN",
+                                url: `https://www.urbanoutfitters.com${p.url}`,
+                                image: p.primaryImage || p.image,
+                                description: "Wyprzedaż Urban Outfitters",
+                                tags: ["Odzież", "sale"],
+                                confidence_score: 0.9,
+                                source_type: "dynamic_scrape",
+                                source_name: "Urban Outfitters API"
+                            }));
+                        }
+                    }
+                } catch (e) {}
             }
+        }
 
-            deals.push({
-                title: product.product_name,
+        // HTML Fallback
+        console.log("UO JSON failed, trying HTML fallback...");
+        const priceEls = Array.from(document.querySelectorAll('*')).filter(el => {
+            const text = el.innerText || '';
+            return (text.includes('zł') || text.includes('PLN')) && text.length < 20 && el.children.length === 0;
+        });
+        
+        return priceEls.map(priceEl => {
+            const card = priceEl.closest('article, li, [class*="item"], [class*="product"]');
+            if (!card) return null;
+            
+            const nameEl = card.querySelector('h3, a[title], [class*="title"], [class*="heading"]');
+            const imgEl = card.querySelector('img');
+            const linkEl = card.querySelector('a');
+            
+            return {
+                title: nameEl ? nameEl.innerText.trim() : "Produkt Urban Outfitters",
                 brand: "Urban Outfitters",
                 category: "Odzież",
-                discount: discount,
-                price: salePrice.toString(),
+                price: priceEl.innerText.trim().replace(/[^\d.,]/g, '').replace(',', '.'),
                 currency: "PLN",
-                url: "https://www.urbanoutfitters.com/pl-pl/shop/" + product.slug,
-                image: product.primary_image_url,
-                description: "Wyprzedaż Urban Outfitters",
-                valid_until: null,
+                url: linkEl ? linkEl.href : null,
+                image: imgEl ? (imgEl.getAttribute('data-src') || imgEl.src) : null,
+                description: "Wyprzedaż Urban Outfitters (HTML)",
                 tags: ["Odzież", "sale"],
-                confidence_score: 1.0,
+                confidence_score: 0.8,
                 source_type: "dynamic_scrape",
-                source_name: "UO API"
-            });
-        }
+                source_name: "Urban Outfitters HTML"
+            };
+        }).filter(item => item && item.url && item.price && item.title !== "Produkt Urban Outfitters");
+    });
+
+    if (extractedDeals && extractedDeals.length > 0) {
+        deals.push(...extractedDeals.slice(0, 30));
     }
   } catch (e) {
       console.error("Error scraping Urban Outfitters:", e.message);

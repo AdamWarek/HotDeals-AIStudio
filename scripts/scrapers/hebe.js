@@ -13,7 +13,7 @@ export async function scrapeHebe() {
   const page = await browser.newPage();
   await page.setViewport({ width: 1366, height: 768 });
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
-
+  
   const deals = [];
 
   try {
@@ -21,29 +21,75 @@ export async function scrapeHebe() {
     
     // Wait for products
     try {
-        await page.waitForSelector('.product-tile, [class*="product"], [class*="tile"]', { timeout: 15000 });
+        await page.waitForSelector('.product-tile.js-product-tile', { timeout: 15000 });
     } catch (e) {
-        console.log("Timeout waiting for specific Hebe selectors, trying generic approach...");
+        // Continue anyway
     }
     
-    // Scroll a bit to trigger lazy loading
-    await page.evaluate(() => window.scrollBy(0, 500));
-    await new Promise(r => setTimeout(r, 2000));
-
+    // Scroll loop to trigger lazy loading
+    console.log("Scrolling to load more Hebe products...");
+    for (let i = 0; i < 10; i++) {
+        await page.evaluate(() => {
+            window.scrollBy(0, 800);
+        });
+        await new Promise(r => setTimeout(r, 1000));
+    }
+    
+    // Specifically scroll to each product tile to ensure images load
+    console.log("Triggering lazy loading for each product tile...");
+    await page.evaluate(async () => {
+        const cards = Array.from(document.querySelectorAll('.product-tile.js-product-tile')).slice(0, 60);
+        for (const card of cards) {
+            card.scrollIntoView();
+            await new Promise(r => setTimeout(r, 200));
+        }
+    });
+    await new Promise(r => setTimeout(r, 3000));
+    
     const items = await page.evaluate(() => {
-        const cards = Array.from(document.querySelectorAll('.product-tile, [class*="product-tile"], [class*="ProductTile"], .product-item')).slice(0, 15);
+        const cards = Array.from(document.querySelectorAll('.product-tile.js-product-tile')).slice(0, 60);
+        
         return cards.map(card => {
-            const nameEl = card.querySelector('.product-name, [class*="name"], h3, h4');
-            const saleEl = card.querySelector('.sales, [class*="price--promo"], [class*="promo-price"], .price-promo, .price-sales');
-            const origEl = card.querySelector('.strike-through, [class*="price--base"], [class*="old-price"], .price-old, .price-standard');
-            const imgEl = card.querySelector('img');
+            // Extract from GTM data attribute
+            let gtmData = {};
+            try {
+                const gtmAttr = card.getAttribute('data-product-gtm');
+                if (gtmAttr) gtmData = JSON.parse(gtmAttr);
+            } catch (e) {}
+
+            const brand = gtmData.item_brand || card.querySelector('.product-tile__name')?.innerText.trim();
+            const desc = gtmData.item_description || card.querySelector('.product-tile__description')?.innerText.trim();
+            const salePrice = gtmData.price || gtmData.current_price;
+            const origPrice = gtmData.regular_price;
+            
+            let name = "";
+            if (brand) name += brand + " ";
+            if (desc) name += desc;
+            
+            const allImgs = Array.from(card.querySelectorAll('img'));
             const linkEl = card.querySelector('a');
 
+            let img = null;
+            for (const imgEl of allImgs) {
+                const candidate = imgEl.getAttribute('data-src') || 
+                                  imgEl.getAttribute('data-lazy-src') || 
+                                  imgEl.getAttribute('srcset')?.split(' ')[0] || 
+                                  imgEl.src;
+                
+                if (candidate && candidate.length > 10 && !candidate.includes('placeholder')) {
+                    img = candidate;
+                    break;
+                }
+            }
+            
+            if (img && img.startsWith('//')) img = 'https:' + img;
+            if (img && img.startsWith('/')) img = 'https://www.hebe.pl' + img;
+
             return {
-                name: nameEl ? nameEl.innerText.trim() : null,
-                salePrice: saleEl ? saleEl.innerText.trim() : null,
-                origPrice: origEl ? origEl.innerText.trim() : null,
-                img: imgEl ? (imgEl.getAttribute('data-src') || imgEl.src) : null,
+                name: name.trim() || null,
+                salePrice: salePrice ? salePrice.toString() : null,
+                origPrice: origPrice ? origPrice.toString() : null,
+                img: img,
                 url: linkEl ? linkEl.href : null
             };
         });
@@ -52,8 +98,9 @@ export async function scrapeHebe() {
     for (const item of items) {
         if (!item.name || !item.salePrice) continue;
 
-        const cleanSale = item.salePrice.replace(/[^\d,]/g, '').replace(',', '.');
-        const cleanOrig = item.origPrice ? item.origPrice.replace(/[^\d,]/g, '').replace(',', '.') : null;
+        // Allow digits, commas, and dots. Then normalize to dot.
+        const cleanSale = item.salePrice.replace(/[^\d,.]/g, '').replace(',', '.');
+        const cleanOrig = item.origPrice ? item.origPrice.replace(/[^\d,.]/g, '').replace(',', '.') : null;
         
         let discount = null;
         if (cleanOrig && parseFloat(cleanOrig) > parseFloat(cleanSale)) {

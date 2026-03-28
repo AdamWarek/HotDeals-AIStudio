@@ -74,8 +74,8 @@ export async function scrapePullAndBear() {
         const productIds = productsData.productIds || [];
         console.log("Found " + productIds.length + " product IDs.");
         
-        // Take top 10 products
-        const topProductIds = productIds.slice(0, 10);
+        // Take top 20 products
+        const topProductIds = productIds.slice(0, 20);
         
         if (topProductIds.length > 0) {
             console.log("4. Fetching details for top " + topProductIds.length + " products...");

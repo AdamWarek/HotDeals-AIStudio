@@ -135,7 +135,7 @@ const Home: React.FC = () => {
       {/* Main Content */}
       <main className="pt-24 pb-12 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-8">
         
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-4">
           <PromoBanner />
 
           <div className="flex items-center justify-between mb-6">
@@ -206,20 +206,6 @@ const Home: React.FC = () => {
           )}
         </div>
 
-        <div className="lg:col-span-1 space-y-6">
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
-            <h3 className="font-bold text-gray-900 dark:text-white mb-4">O nas</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              HOTDEALS to społeczność łowców okazji. Codziennie znajdujemy i udostępniamy najlepsze promocje, kody rabatowe i wyprzedaże z polskiego internetu.
-            </p>
-            <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-500">Aktywne okazje</span>
-                <span className="font-bold text-gray-900 dark:text-white">{deals.length}</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
       </main>
     </div>

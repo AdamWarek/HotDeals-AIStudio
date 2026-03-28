@@ -5,7 +5,7 @@ const PromoBanner: React.FC = () => {
   // Use the previously generated image from localStorage, or a static fallback if it's cleared
   const [imageUrl] = useState<string>(
     localStorage.getItem('promo_banner_img_v4') || 
-    'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop'
+    '/excited-teenage-friends.png'
   );
 
   return (
@@ -13,7 +13,7 @@ const PromoBanner: React.FC = () => {
       <img 
         src={imageUrl} 
         alt="Specjalne Oferty" 
-        className="absolute inset-0 w-full h-full object-cover object-right-top md:object-right group-hover:scale-105 transition-transform duration-500 z-0"
+        className="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500 z-0 [mask-image:radial-gradient(circle_at_center,black_60%,transparent)]"
       />
       
       <div className="absolute inset-0 bg-gradient-to-r from-red-600/95 via-red-600/60 to-transparent w-full md:w-3/4 flex items-center p-6 md:p-10 z-10">

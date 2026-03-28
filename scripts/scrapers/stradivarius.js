@@ -244,7 +244,7 @@ export async function scrapeStradivarius() {
           source_name: 'Stradivarius API'
         });
         
-        if (deals.length >= 10) {
+        if (deals.length >= 20) {
           break;
         }
       } catch (e) {
