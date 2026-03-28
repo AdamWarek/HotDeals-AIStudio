@@ -17,30 +17,34 @@ A personal-use system designed to scrape, normalize, enrich, and analyze promoti
 The scrapers are located in `scripts/scrape.js` and `scripts/scrapers/`. They run on a scheduled basis to fetch the latest deals.
 
 ### ✅ Working
-These scrapers are currently successfully bypassing bot protection and extracting deals:
 *   **Nike** (HTML/Puppeteer)
 *   **Douglas** (HTML/Puppeteer)
-*   **Bershka** (API/Puppeteer)
-*   **Pull&Bear** (API/Puppeteer - Inditex API)
-*   **Stradivarius** (API/Puppeteer - Inditex API)
+*   **Sephora** (HTML/Puppeteer)
+*   **H&M** (API + HTML/Puppeteer)
+*   **Bershka** (API/Puppeteer — Inditex)
+*   **Pull&Bear** (API/Puppeteer — Inditex)
+*   **Stradivarius** (API/Puppeteer — Inditex)
+*   **Hebe** (SFCC API-direct → Puppeteer fallback)
 
-### ⚠️ Failing (Selector Issues)
-These sites load successfully (Status 200) but return 0 items, indicating a change in CSS selectors or dynamic API loading:
-*   **H&M**
+### ⚠️ Blocked on datacenter IPs (need proxy)
+These sites block GitHub Actions (datacenter IP) but work from a residential IP or via proxy:
+*   **Hebe** — Cloudflare challenge; SFCC API-direct often bypasses it, Puppeteer works locally
+*   **Urban Outfitters** — hard geo-block (403); requires `SCRAPER_PROXY_URL` with residential IP
 
-### ❌ Failing (Bot Protection / Blocks)
-These sites are actively blocking the Puppeteer instance (403 Forbidden, 404 Bot-Traps, or JS Challenges):
-*   **Urban Outfitters** (Status 403)
-*   **Adidas** (Status 403)
-*   **Sephora** (Status 404)
-*   **Rossmann** (JS Challenge / Soft Block)
-*   **Hebe** (JS Challenge / Soft Block)
+### 🔧 Proxy setup for blocked sites
+
+Set `SCRAPER_PROXY_URL` in `.env` (local) or as a GitHub Actions secret (CI):
+
+```
+SCRAPER_PROXY_URL=http://user:pass@proxy-host:port
+```
+
+Supported formats: `http://`, `https://`, `socks5://`. The proxy is only used by Puppeteer for Hebe and Urban Outfitters scrapers.
 
 ## 🚀 Next Steps
 
-1.  **Fix H&M:** Investigate the page structure to update CSS selectors or intercept their internal API.
-2.  **Fix Stradivarius:** Adapt the existing `pullAndBearScraper` logic, as Stradivarius uses the same underlying Inditex e-commerce platform.
-3.  **Advanced Evasion:** Implement residential proxies or mobile API reverse-engineering for heavily protected sites like Adidas and Sephora.
+1.  **Residential proxy:** Add a `SCRAPER_PROXY_URL` secret to CI for Hebe/UO.
+2.  **Advanced evasion:** Mobile API reverse-engineering for Adidas.
 
 ---
 
