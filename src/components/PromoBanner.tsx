@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const PromoBanner: React.FC = () => {
   // Use the previously generated image from localStorage, or a static fallback if it's cleared
   const [imageUrl] = useState<string>(
-    localStorage.getItem('promo_banner_img_v4') || 
-    '/excited-teenage-friends.png'
+    localStorage.getItem('promo_banner_img_v4') ||
+      `${import.meta.env.BASE_URL}excited-teenage-friends.png`
   );
 
   return (

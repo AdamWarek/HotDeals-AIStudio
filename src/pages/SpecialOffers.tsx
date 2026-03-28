@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
 declare const __COMMIT_HASH__: string;
+declare const __APP_VERSION__: string;
 
 /* ─── INJECT FONTS & SCOPED STYLES ─────────────────────────────────────────── */
 const styleEl = document.createElement("style");
@@ -360,8 +361,9 @@ export default function SpecialOffers() {
   const [showFavPanel,   setShowFavPanel]   = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
-  // Safely get commit hash
+  // Safely get commit hash and release version (injected at build in vite.config)
   const commitVersion = typeof __COMMIT_HASH__ !== 'undefined' ? __COMMIT_HASH__ : 'dev';
+  const appVersion = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.0.0';
 
   useEffect(() => {
     console.log('Fetching from:', import.meta.env.BASE_URL + 'deals.json');
@@ -698,7 +700,7 @@ export default function SpecialOffers() {
               Kliknij <strong>Zobacz ofertę</strong>, aby zobaczyć aktualne ceny na stronie marki.<br />
               Lista ofert jest aktualizowana ręcznie — sprawdź dostępność bezpośrednio w sklepie.
               <br />
-              <span style={{ opacity: 0.5, fontSize: "9px" }}>v1.0.1</span>
+              <span style={{ opacity: 0.5, fontSize: "9px" }}>v{appVersion} · {commitVersion}</span>
             </p>
           </div>
         </div>
