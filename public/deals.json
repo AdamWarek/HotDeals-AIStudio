@@ -18,60 +18,6 @@
     "source_name": "Pull&Bear"
   },
   {
-    "title": "JEANSY Z SZEROKIMI NOGAWKAMI I WYSOKIM STANEM BEZSZWOWE KIESZENIE",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": "74.5",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/2963/dd72/18eb4751beba/0c93625da049/05043335433-a4o/05043335433-a4o.jpg?ts=1761836024571&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "SPODNIE STRAIGHT W NADRUK W PASKI",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": "99.9",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/bec2/d3c1/98b845ca94fc/94a5f55de89f/00969662401-a4o/00969662401-a4o.jpg?ts=1770213673010&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "TOP NA RAMIĄCZKACH Z DEKOLTEM BAKER",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": "49.9",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/0ef0/34ba/f5074618b5dc/ffeed9f9f2ea/01768443800-a4o/01768443800-a4o.jpg?ts=1772635498873&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
     "title": "JEANSY BOOTCUT Z NISKIM STANEM I KLAPAMI",
     "brand": "Bershka",
     "category": "Odzież",
@@ -90,14 +36,14 @@
     "source_name": "Bershka"
   },
   {
-    "title": "MARSZCZONY TOP BANDEAU",
+    "title": "JEANSY Z SZEROKIMI NOGAWKAMI I WYSOKIM STANEM BEZSZWOWE KIESZENIE",
     "brand": "Bershka",
     "category": "Odzież",
     "discount": null,
-    "price": "49.9",
+    "price": "74.5",
     "currency": "PLN",
     "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/ea5e/d5a5/bc5f479291d7/d860368191a2/01395360800-a4o/01395360800-a4o.jpg?ts=1768217496945&w=563&f=auto",
+    "image": "https://static.bershka.net/assets/public/a535/f29f/e3d54070abc4/e8fd9f266a15/05043159800-a4o/05043159800-a4o.jpg?ts=1752748609054&w=563&f=auto",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -108,14 +54,14 @@
     "source_name": "Bershka"
   },
   {
-    "title": "JEANSY O KROJU WIDE LEG STRAIGHT Z WYSOKIM STANEM",
+    "title": "KOSZULKA Z DŁUGIM RĘKAWEM",
     "brand": "Bershka",
     "category": "Odzież",
     "discount": null,
-    "price": "64.5",
+    "price": "45.9",
     "currency": "PLN",
     "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/74e4/abf8/5f4d44f795e6/73f9c21e1b4f/05007352800-a4o/05007352800-a4o.jpg?ts=1751527299289&w=563&f=auto",
+    "image": "https://static.bershka.net/assets/public/a155/0169/7f624733b733/897a94d6978e/07802152251-a4o/07802152251-a4o.jpg?ts=1750250736048&w=563&f=auto",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -126,14 +72,32 @@
     "source_name": "Bershka"
   },
   {
-    "title": "JEANSY O KROJU WIDE LEG Z NISKIM STANEM",
+    "title": "JEANSY O KROJU BAGGY BARREL Z NISKIM STANEM",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "74.5",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/ce7e/fe32/9e034476b38e/255bf7fad7e4/00068074401-a4o/00068074401-a4o.jpg?ts=1765903062400&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "JEANSY WIDE LEG",
     "brand": "Bershka",
     "category": "Odzież",
     "discount": null,
     "price": "129",
     "currency": "PLN",
     "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/a90d/fdf5/abec4e4e9904/f5a2b911a26b/00067156433-a4o/00067156433-a4o.jpg?ts=1769529335677&w=563&f=auto",
+    "image": "https://static.bershka.net/assets/public/bfe5/b0d8/8d6848ac9dbe/a2facc48f20a/05004335433-a4o/05004335433-a4o.jpg?ts=1749020894899&w=563&f=auto",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -144,32 +108,86 @@
     "source_name": "Bershka"
   },
   {
-    "title": "SPODNIE Z PODWÓJNYMI ZAKŁADKAMI",
-    "brand": "Bershka",
-    "category": "Odzież",
-    "discount": null,
-    "price": "199",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/ecb3/3e11/b51d4218bb7e/95dca9104210/00838777800-a4o/00838777800-a4o.jpg?ts=1762445688774&w=563&f=auto",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Odzież"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka"
-  },
-  {
-    "title": "SPODNIE SZEROKIE Z DWUWARSTWOWEJ TKANINY",
+    "title": "JEANSY WIDE LEG Z NISKIM STANEM",
     "brand": "Bershka",
     "category": "Odzież",
     "discount": null,
     "price": "149",
     "currency": "PLN",
     "url": "https://www.bershka.com/pl/h-woman.html",
-    "image": "https://static.bershka.net/assets/public/c02f/8f4f/2c70487591d4/3f56f9849af3/05155741800-a4o/05155741800-a4o.jpg?ts=1758264207593&w=563&f=auto",
+    "image": "https://static.bershka.net/assets/public/0a65/099b/0ca441188cc1/f37ae5b01dce/00019180428-a4o/00019180428-a4o.jpg?ts=1739287667915&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "KOSZULKA BASIC Z KRÓTKIM RĘKAWEM RIB",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "35.9",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/3972/b27c/fde44bae8115/ba6a4ab5872a/01040134251-a4o/01040134251-a4o.jpg?ts=1768381937381&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "JEANSY O KROJU BAGGY ZE ŚREDNIM STANEM",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "129",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/7388/50f8/d3a24868b0d4/84e810cd4d85/00066089428-a4o/00066089428-a4o.jpg?ts=1765440535146&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "SPODNIE O KROJU FLARE Z BENGALINY",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "99.9",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/86e2/e687/437540e782b5/322c4245f9c9/05112741800-a4o/05112741800-a4o.jpg?ts=1752748461321&w=563&f=auto",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Odzież"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka"
+  },
+  {
+    "title": "KOSZULKA ASYMETRYCZNA Z KRÓTKIM RĘKAWEM",
+    "brand": "Bershka",
+    "category": "Odzież",
+    "discount": null,
+    "price": "65.9",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/h-woman.html",
+    "image": "https://static.bershka.net/assets/public/30aa/5d9d/ac3248828e59/29e1f55bb220/01341360800-a4o/01341360800-a4o.jpg?ts=1765871781091&w=563&f=auto",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -216,14 +234,14 @@
     "source_name": "Adidas"
   },
   {
-    "title": "Nike Gamma Force",
+    "title": "Nike Quest 6",
     "brand": "Nike",
     "category": "Sport",
     "discount": null,
-    "price": "304.99",
+    "price": "244.99",
     "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-gamma-force-kU2iToom/DX9176-103",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/bfaf9d84-28ef-4709-8f5c-6bbd1ffd70d4/WMNS+NIKE+GAMMA+FORCE.png",
+    "url": "https://www.nike.com/pl/t/buty-do-biegania-po-asfalcie-quest-6-C4n91g/FD6034-100",
+    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/076bae81-6e96-442e-8f34-413588b4f877/WMNS+NIKE+QUEST+6.png",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -252,14 +270,14 @@
     "source_name": "Nike"
   },
   {
-    "title": "Nike Quest 6",
+    "title": "Nike Dunk Low",
     "brand": "Nike",
     "category": "Sport",
     "discount": null,
-    "price": "244.99",
+    "price": "364.99",
     "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-do-biegania-po-asfalcie-quest-6-C4n91g/FD6034-100",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/076bae81-6e96-442e-8f34-413588b4f877/WMNS+NIKE+QUEST+6.png",
+    "url": "https://www.nike.com/pl/t/buty-dunk-low-hKmr9TRQ/DD1503-103",
+    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2f9b17b1-858b-40c2-9c46-646b8c4a0c8f/W+NIKE+DUNK+LOW.png",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -288,32 +306,14 @@
     "source_name": "Nike"
   },
   {
-    "title": "Nike Dunk Low",
+    "title": "Nike Pegasus Premium",
     "brand": "Nike",
     "category": "Sport",
     "discount": null,
-    "price": "364.99",
+    "price": "644.99",
     "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-dunk-low-hKmr9TRQ/DD1503-103",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2f9b17b1-858b-40c2-9c46-646b8c4a0c8f/W+NIKE+DUNK+LOW.png",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Sport"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Nike"
-  },
-  {
-    "title": "Nike Calm Elevation Fur",
-    "brand": "Nike",
-    "category": "Sport",
-    "discount": null,
-    "price": "209.99",
-    "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/klapki-calm-elevation-fur-avVGsC0u/HV8560-001",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6ab6cfba-9504-44ad-ae43-70a9fecce802/WMNS+NK+CALM+ELEVATION+FUR.png",
+    "url": "https://www.nike.com/pl/t/buty-do-biegania-po-asfalcie-pegasus-ZIEXAQjZ/HQ2593-604",
+    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/230f42c5-1e77-4eab-b99b-7f75b7c1fd79/W+NIKE+PEGASUS+PREMIUM.png",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -360,14 +360,14 @@
     "source_name": "Nike"
   },
   {
-    "title": "Nike Tempo",
+    "title": "Nike Calm Elevation Fur",
     "brand": "Nike",
     "category": "Sport",
     "discount": null,
-    "price": "139.99",
+    "price": "209.99",
     "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/koszulka-do-biegania-z-zamkiem-1-4-dri-fit-tempo-jGFQFX/HV2852-410",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/f2a2649f-808c-48a5-9586-38dcdf5e1d5c/W+NK+TEMPO+DF+HZ+TP.png",
+    "url": "https://www.nike.com/pl/t/klapki-calm-elevation-fur-avVGsC0u/HV8560-001",
+    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6ab6cfba-9504-44ad-ae43-70a9fecce802/WMNS+NK+CALM+ELEVATION+FUR.png",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -378,14 +378,32 @@
     "source_name": "Nike"
   },
   {
-    "title": "Nike Court Vision Low Next Nature",
+    "title": "Nike Heritage 2.0 After Dark Tour",
     "brand": "Nike",
     "category": "Sport",
     "discount": null,
-    "price": "244.99",
+    "price": "94.99",
     "currency": "PLN",
-    "url": "https://www.nike.com/pl/t/buty-court-vision-low-next-nature-T87xRcPI/DH3158-606",
-    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d260b088-037a-42d6-983e-77dc1d0fa431/W+NIKE+COURT+VISION+LO+NN.png",
+    "url": "https://www.nike.com/pl/t/torba-heritage-2-after-dark-tour-xMqa8t6T/IF8252-010",
+    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/7aeb4ea9-82e4-4db6-8d2c-f7fbc180e597/NK+HRTG+TOTE+2.0-WRS+GFX.png",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Sport"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Nike"
+  },
+  {
+    "title": "Nike Air Max 95",
+    "brand": "Nike",
+    "category": "Sport",
+    "discount": null,
+    "price": "594.99",
+    "currency": "PLN",
+    "url": "https://www.nike.com/pl/t/buty-air-max-95-DWdDq5Z6/IH1413-001",
+    "image": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f9bb168b-80d9-46c3-b226-6c864f582d76/W+NIKE+AIR+MAX+95+BIG+BUBBLE.png",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -490,10 +508,10 @@
     "brand": "Douglas",
     "category": "Kosmetyki",
     "discount": null,
-    "price": "50",
+    "price": "4",
     "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5011406025?variant=1176639",
-    "image": "https://media.douglas.pl/medias/GKgoSs1176639-0-global.jpg?context=bWFzdGVyfGltYWdlc3w3MTMwOXxpbWFnZS9qcGVnfGFHTmlMMmhpTWk4Mk16Y3pORFl6TURVME56UTROaTlIUzJkdlUzTXhNVGMyTmpNNVh6QmZaMnh2WW1Gc0xtcHdad3wzODM5YjBkZjRmZjZhY2JkMWM0MzY5OWFlNzFjMzFhYjcxNTRhMGRlNDU0ZDVkNGRiMjIyMWU2Y2I1MDJkODhi&grid=true&imPolicy=grayScaled",
+    "url": "https://www.douglas.pl/pl/p/5011284613?variant=1161692",
+    "image": "https://media.douglas.pl/medias/RUaV7Q1161692-0-dgl-PL.jpg?context=bWFzdGVyfGltYWdlc3wxODcxOTZ8aW1hZ2UvanBlZ3xhREF3TDJobE9DODBPRE0yTkRVME5Ea3hOelV6TkM5U1ZXRldOMUV4TVRZeE5qa3lYekJmWkdkc0xWQk1MbXB3Wnd8OTBjOWM4NjIwNTE3OWU3ZmYyYzhmYTk3MzQ3MDJjZjUwMGY4NjAzNDVhMTU5ZjlhNDE1ZWQ5ZjIyNTQwZDYzMw&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -508,10 +526,10 @@
     "brand": "Douglas",
     "category": "Kosmetyki",
     "discount": null,
-    "price": "100",
+    "price": "20",
     "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5011977028?variant=1266325",
-    "image": "https://media.douglas.pl/medias/JNYsvl1266325-0-global.jpg?context=bWFzdGVyfGltYWdlc3wxNDk5ODJ8aW1hZ2UvanBlZ3xhR0k1TDJobE5pODJPRFV6TWpNNE5qSXdNVFl6TUM5S1RsbHpkbXd4TWpZMk16STFYekJmWjJ4dlltRnNMbXB3Wnd8YzQxYzdhNWNjOGEzNzU5NTM4NGY1NmM2NWM3MjNiMTZiMmJiNmZhZGE1ZTZhYzM4NTk4NDk4YzkxMmJhNmNiMA&grid=true&imPolicy=grayScaled",
+    "url": "https://www.douglas.pl/pl/p/5012008204?variant=1283156",
+    "image": "https://media.douglas.pl/medias/v47PSq1283156-0-dgl-PL.png?context=bWFzdGVyfGltYWdlc3wzMTY2ODR8aW1hZ2UvcG5nfGFEZ3dMMmd6WWk4M01ETXdPRE16TmpRek5USXpNQzkyTkRkUVUzRXhNamd6TVRVMlh6QmZaR2RzTFZCTUxuQnVad3w3OGIwMGIzYTVkY2MyNzI0ZjVlMWRkNWVmNWE5NWI0MWZjYzIyOGUwYWMzM2I1ZDQ1YzUyZWJlNGUwNDdiOTEx&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -564,26 +582,8 @@
     "discount": null,
     "price": "24",
     "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5012008023?variant=1271565",
-    "image": "https://media.douglas.pl/medias/sMvZXn1271565-0-global.jpg?context=bWFzdGVyfGltYWdlc3wxMTE2NzJ8aW1hZ2UvanBlZ3xhRGswTDJnNU15ODNNRE16TkRBMU5Ua3dOek0xT0M5elRYWmFXRzR4TWpjeE5UWTFYekJmWjJ4dlltRnNMbXB3Wnd8NTVkOWE0MDlhZTM2Y2Q4MGI4MjQzN2UyMDFhNGYyYmRiZWVjYWZiOTkzZmNmMTI0NTg3ZWZjZTA4ODFiZjJlMQ&grid=true&imPolicy=grayScaled",
-    "description": null,
-    "valid_until": null,
-    "tags": [
-      "Kosmetyki"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Douglas"
-  },
-  {
-    "title": "Brak nazwy",
-    "brand": "Douglas",
-    "category": "Kosmetyki",
-    "discount": null,
-    "price": "100",
-    "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5012004051",
-    "image": "https://media.douglas.pl/medias/ELKr0H1275293-0-dgl-PL.jpg?context=bWFzdGVyfGltYWdlc3w0ODA3MXxpbWFnZS9qcGVnfGFHSTVMMmd6WXk4M09URTROelF5TlRVMU9EVTFPQzlGVEV0eU1FZ3hNamMxTWprelh6QmZaR2RzTFZCTUxtcHdad3wyNTljYzViMTA1MDEzOGJjZmU4ZDAxOGQ0ZjhiZDc5M2Y0ZWJlMDgyYWYyYWZkYWU5NGFmNTMyOWM3NzkwNGIz&grid=true&imPolicy=grayScaled",
+    "url": "https://www.douglas.pl/pl/p/5012008023?variant=1271606",
+    "image": "https://media.douglas.pl/medias/fFLGlX1271606-0-global.jpg?context=bWFzdGVyfGltYWdlc3wxMTA0MDR8aW1hZ2UvanBlZ3xhRFUwTDJnNU5pODNNRE16TkRBMU9ETTVOemN5Tmk5bVJreEhiRmd4TWpjeE5qQTJYekJmWjJ4dlltRnNMbXB3Wnd8YWVkOWE0MDExNDdjOTQxYjlkNzNiYTQ1NGEyOTQ5NGRlMjhhNTQzNDM2MWNmZDMxNjY1ZWMwODg3ZGQzOTM5OA&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -618,6 +618,24 @@
     "discount": null,
     "price": "100",
     "currency": "PLN",
+    "url": "https://www.douglas.pl/pl/p/5012004051",
+    "image": "https://media.douglas.pl/medias/ELKr0H1275293-0-dgl-PL.jpg?context=bWFzdGVyfGltYWdlc3w0ODA3MXxpbWFnZS9qcGVnfGFHSTVMMmd6WXk4M09URTROelF5TlRVMU9EVTFPQzlGVEV0eU1FZ3hNamMxTWprelh6QmZaR2RzTFZCTUxtcHdad3wyNTljYzViMTA1MDEzOGJjZmU4ZDAxOGQ0ZjhiZDc5M2Y0ZWJlMDgyYWYyYWZkYWU5NGFmNTMyOWM3NzkwNGIz&grid=true&imPolicy=grayScaled",
+    "description": null,
+    "valid_until": null,
+    "tags": [
+      "Kosmetyki"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Douglas"
+  },
+  {
+    "title": "Brak nazwy",
+    "brand": "Douglas",
+    "category": "Kosmetyki",
+    "discount": null,
+    "price": "100",
+    "currency": "PLN",
     "url": "https://www.douglas.pl/pl/p/5012004050",
     "image": "https://media.douglas.pl/medias/qSEowN1275295-0-dgl-PL.jpg?context=bWFzdGVyfGltYWdlc3w1NzE3OXxpbWFnZS9qcGVnfGFEWXdMMmd5TWk4M09URTROelF5TmpJeE16a3hPQzl4VTBWdmQwNHhNamMxTWprMVh6QmZaR2RzTFZCTUxtcHdad3xhMWIzYzZjOTk5NjUzYzBkOGU4Y2E1ZDAwYTNhOGU5OWIyMmI5NTA0YTg5MWM4OTAxZDNiZTJlYWJmMDI5NjRk&grid=true&imPolicy=grayScaled",
     "description": null,
@@ -636,8 +654,8 @@
     "discount": null,
     "price": "85",
     "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5011257002?variant=1280603",
-    "image": "https://media.douglas.pl/medias/Sqf7z31280603-0-dgl-PL.jpg?context=bWFzdGVyfGltYWdlc3wzNjc0NHxpbWFnZS9qcGVnfGFHWTBMMmczWkM4M09URTVNRFl5T1RNeE9EWTROaTlUY1dZM2VqTXhNamd3TmpBelh6QmZaR2RzTFZCTUxtcHdad3w5NmZmNGM3ZjdlNDdlM2Q4NTdmZjc1ZjAxYTZkMWMzZjVhNDQ1NWQxMzQ0MWE0NWJkMDZmNWM0YTY1YTBlYzU2&grid=true&imPolicy=grayScaled",
+    "url": "https://www.douglas.pl/pl/p/5011257002",
+    "image": "https://media.douglas.pl/medias/bDsbG31280601-0-dgl-PL.jpg?context=bWFzdGVyfGltYWdlc3wzNjc0OXxpbWFnZS9qcGVnfGFETXpMMmcyTkM4M09USXpNamcyT0RjeE1qUTNPQzlpUkhOaVJ6TXhNamd3TmpBeFh6QmZaR2RzTFZCTUxtcHdad3xkYTIxZTIwNDNlZWMxZDllNTdhMTI2NzE3YWIyYWNkZTMxNjg2NGQwZGU1Y2U1ZDY5Yjk3NWM4NGRiMzg0OGFl&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
@@ -652,10 +670,10 @@
     "brand": "Douglas",
     "category": "Kosmetyki",
     "discount": null,
-    "price": "3010",
+    "price": "7",
     "currency": "PLN",
-    "url": "https://www.douglas.pl/pl/p/5002486796?variant=1287154",
-    "image": "https://media.douglas.pl/medias/KW6oYs1287154-0-dgl-PL.png?context=bWFzdGVyfGltYWdlc3wyNTgxMTN8aW1hZ2UvcG5nfGFHWmhMMmhqWmk4M09USTBOalkxTXpVNE56UTROaTlMVnpadldYTXhNamczTVRVMFh6QmZaR2RzTFZCTUxuQnVad3wxMDlmMzIyYWZmNzIwNjQzYjBlMTg5OGQ2NDU0ZTFlODQ5ZTc5YTNhM2EwY2JhMzFjY2Q0YTY0NDZkYTM0MGQz&grid=true&imPolicy=grayScaled",
+    "url": "https://www.douglas.pl/pl/p/5011996009?variant=1271543",
+    "image": "https://media.douglas.pl/medias/uoEmG01271543-0-global.jpg?context=bWFzdGVyfGltYWdlc3w1MjE4NnxpbWFnZS9qcGVnfGFHUTRMMmd4TkM4Mk9UWTFOREEzTkRRMU9ERTBNaTkxYjBWdFJ6QXhNamN4TlRRelh6QmZaMnh2WW1Gc0xtcHdad3wzZDk4ZmRiYzFmNTg2YTM5OTk2Nzg1ZjA2MTk0YzhmMTBkY2RhYTQ3MmE1MGY0M2Q0Zjg4YzQxMTA1MTE3OTNm&grid=true&imPolicy=grayScaled",
     "description": null,
     "valid_until": null,
     "tags": [
