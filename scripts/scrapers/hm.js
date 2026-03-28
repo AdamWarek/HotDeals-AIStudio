@@ -182,9 +182,9 @@ export async function scrapeHM() {
     await new Promise((r) => setTimeout(r, 1500));
 
     console.log('Navigating to H&M sale page…');
-    await page.goto(SALE_PAGE_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.goto(SALE_PAGE_URL, { waitUntil: 'networkidle0', timeout: 90000 });
     await acceptHmCookies(page);
-    await new Promise((r) => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 3000));
 
     try {
       await page.waitForSelector('article[data-articlecode], .product-item, li.product-item', {
@@ -197,13 +197,23 @@ export async function scrapeHM() {
       await new Promise((r) => setTimeout(r, 2000));
     }
 
-    // Trigger lazy XHR for more listing pages
+    const articleCountBefore = await page.evaluate(
+      () => document.querySelectorAll('article[data-articlecode]').length
+    );
+    console.log(`H&M: articles before scroll: ${articleCountBefore}`);
+
+    // Extended scroll loop to trigger lazy-loaded articles and XHR
     console.log('H&M: scrolling to capture listing JSON from network…');
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 12; i++) {
       await page.evaluate(() => window.scrollBy(0, 900));
-      await new Promise((r) => setTimeout(r, 1200));
+      await new Promise((r) => setTimeout(r, 1500));
     }
-    await new Promise((r) => setTimeout(r, 2500));
+    await new Promise((r) => setTimeout(r, 3000));
+
+    const articleCountAfter = await page.evaluate(
+      () => document.querySelectorAll('article[data-articlecode]').length
+    );
+    console.log(`H&M: articles after scroll: ${articleCountAfter}`);
 
     const currentPath = new URL(page.url()).pathname;
     const listingStem = listingJsonUrlFromPathname(currentPath, 0, PAGE_SIZE).split('?')[0];

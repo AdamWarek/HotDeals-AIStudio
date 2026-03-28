@@ -408,6 +408,8 @@ export default function SpecialOffers() {
           if (brandName.toLowerCase() === 'sephora') brandName = 'Sephora';
           if (brandName.toLowerCase() === 'bershka') brandName = 'Bershka';
           if (brandName.toLowerCase() === 'stradivarius') brandName = 'Stradivarius';
+          if (brandName.toLowerCase() === 'nike') brandName = 'Nike';
+          if (brandName.toLowerCase() === 'adidas') brandName = 'Adidas';
 
           return {
             id: index,
@@ -420,7 +422,12 @@ export default function SpecialOffers() {
             img: deal.image_url || deal.image || 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=500&h=600&fit=crop',
             url: deal.product_url || deal.url,
             isNew: Math.random() > 0.7,
-            scrape_status: deal.source_type === 'dynamic_scrape' ? 'R' : ''
+            scrape_status:
+              deal.source_type === 'newsletter'
+                ? 'N'
+                : deal.source_type === 'dynamic_scrape'
+                  ? 'R'
+                  : ''
           };
         });
         setPromos(mappedPromos);

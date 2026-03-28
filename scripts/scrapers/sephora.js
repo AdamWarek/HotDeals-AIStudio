@@ -33,7 +33,19 @@ export async function scrapeSephora() {
 
   try {
     console.log('1. Navigating to Sephora wyprzedaz…');
-    await page.goto(SEPHORA_SALE, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.goto(SEPHORA_SALE, { waitUntil: 'networkidle2', timeout: 60000 });
+
+    // Diagnostic: log page title + snippet to detect challenge pages
+    const pageInfo = await page.evaluate(() => ({
+      title: document.title,
+      snippet: document.body?.innerText?.substring(0, 200) || '',
+    }));
+    console.log('Sephora: page title:', pageInfo.title);
+    if (/checking your browser|attention required|access denied/i.test(pageInfo.snippet)) {
+      console.log('Sephora: Cloudflare/bot challenge detected. Skipping.');
+      await browser.close();
+      return deals;
+    }
 
     try {
       console.log('Checking for cookie consent…');
@@ -50,38 +62,13 @@ export async function scrapeSephora() {
       console.log('No cookie consent button found or timeout.');
     }
 
-    console.log('2. Waiting for product grid / prices…');
-    try {
-      await page.waitForSelector(
-        '#main [class*="product"], .product-listing, [class*="ProductList"], .product-tile, [data-tcproduct]',
-        { timeout: 20000 }
-      );
-    } catch {
-      console.log('Sephora: broad grid selector timeout, continuing…');
-    }
-
-    try {
-      await page.waitForFunction(
-        () => {
-          const grid =
-            document.querySelector('.product-listing, [class*="product-list"], [class*="ProductGrid"], #main');
-          const scope = grid || document.body;
-          return !!scope.querySelector(
-            '[data-tcproduct], .price-sales, [class*="price-sales"], [data-testid="product-price-promo"]'
-          );
-        },
-        { timeout: 25000 }
-      );
-    } catch {
-      console.log('Sephora: price/hydration wait timeout, continuing with best-effort scrape…');
-    }
-
-    await new Promise((r) => setTimeout(r, 4000));
+    console.log('2. Waiting for JS hydration…');
+    await new Promise((r) => setTimeout(r, 8000));
 
     console.log('3. Scrolling to load products…');
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 15; i++) {
       await page.evaluate(() => window.scrollBy(0, 1000));
-      await new Promise((r) => setTimeout(r, 1400));
+      await new Promise((r) => setTimeout(r, 1500));
       try {
         const loadMore = await page.$(
           'button[class*="load-more"], .show-more, [class*="more-products"], button[class*="show-more"]'
@@ -89,7 +76,7 @@ export async function scrapeSephora() {
         if (loadMore) {
           await loadMore.click();
           console.log('Clicked Load More button');
-          await new Promise((r) => setTimeout(r, 2500));
+          await new Promise((r) => setTimeout(r, 3000));
         }
       } catch {
         /* ignore */
@@ -97,67 +84,20 @@ export async function scrapeSephora() {
     }
 
     const items = await page.evaluate(() => {
-      const grid =
-        document.querySelector(
-          '.product-listing, [class*="product-list"], [class*="ProductGrid"], [class*="plp"], #main [role="main"], main'
-        ) || document.body;
-
-      const cardSelectors = [
-        '.product-tile',
-        '[class*="ProductTile"]',
-        '[class*="product-tile"]',
-        '[data-tcproduct]',
-        '[data-testid="product-tile"]',
-        'li.product-item',
-      ];
-      const seen = new Set();
-      let cards = [];
-      for (const sel of cardSelectors) {
-        grid.querySelectorAll(sel).forEach((el) => {
-          if (seen.has(el)) return;
-          seen.add(el);
-          cards.push(el);
-        });
-      }
-      if (cards.length > 80) cards = cards.slice(0, 80);
-
-      console.log('Evaluating page content…');
-      console.log('Scoped cards: ' + cards.length);
-
+      // --- helpers (defined inside evaluate) ---
       function parseTcProduct(card) {
         const raw = card.getAttribute('data-tcproduct');
         if (!raw) return null;
-        try {
-          return JSON.parse(raw);
-        } catch {
-          return null;
-        }
+        try { return JSON.parse(raw); } catch { return null; }
       }
 
       function extractPricesFromTc(tc) {
         if (!tc) return { sale: null, orig: null };
-        const saleKeys = [
-          'product_price_ati',
-          'price_ati',
-          'sales_price_ati',
-          'product_price',
-          'price',
-        ];
+        const saleKeys = ['product_price_ati', 'price_ati', 'sales_price_ati', 'product_price', 'price'];
         const origKeys = ['product_old_price_ati', 'old_price_ati', 'list_price_ati', 'base_price_ati'];
-        let sale = null;
-        let orig = null;
-        for (const k of saleKeys) {
-          if (tc[k] != null && tc[k] !== '') {
-            sale = String(tc[k]).trim() + ' zł';
-            break;
-          }
-        }
-        for (const k of origKeys) {
-          if (tc[k] != null && tc[k] !== '') {
-            orig = String(tc[k]).trim() + ' zł';
-            break;
-          }
-        }
+        let sale = null, orig = null;
+        for (const k of saleKeys) { if (tc[k] != null && tc[k] !== '') { sale = String(tc[k]).trim() + ' zł'; break; } }
+        for (const k of origKeys) { if (tc[k] != null && tc[k] !== '') { orig = String(tc[k]).trim() + ' zł'; break; } }
         return { sale, orig };
       }
 
@@ -174,9 +114,7 @@ export async function scrapeSephora() {
           matches.push(m[0]);
         }
         if (matches.length >= 2) {
-          const nums = matches.map((x) =>
-            parseFloat(x.replace(/[^\d,]/g, '').replace(',', '.'))
-          );
+          const nums = matches.map((x) => parseFloat(x.replace(/[^\d,]/g, '').replace(',', '.')));
           const minI = nums.indexOf(Math.min(...nums));
           const maxI = nums.indexOf(Math.max(...nums));
           return { sale: matches[minI], orig: matches[maxI] };
@@ -185,72 +123,104 @@ export async function scrapeSephora() {
         return { sale: null, orig: null };
       }
 
-      return cards
-        .map((card) => {
-          const tc = parseTcProduct(card);
-          const fromTc = extractPricesFromTc(tc);
+      function extractCard(card) {
+        const tc = parseTcProduct(card);
+        const fromTc = extractPricesFromTc(tc);
 
-          const brandEl = card.querySelector(
-            '.product-brand, .brand, [class*="brand"], [data-testid="product-brand"]'
-          );
-          const nameEl = card.querySelector(
-            '.product-title, .link, [class*="name"], h3, h4, .product-name, [data-testid="product-name"], [class*="title"]'
-          );
-          let saleEl = card.querySelector(
-            '.price-sales, [class*="price--promo"], [class*="promo-price"], .price-promo, [data-testid="product-price-promo"], [class*="price-sales"]'
-          );
-          let origEl = card.querySelector(
-            '.price-standard, [class*="price--base"], [class*="old-price"], .price-old, [data-testid="product-price-base"], [class*="price-standard"]'
-          );
+        const brandEl = card.querySelector('.product-brand, .brand, [class*="brand"], [data-testid="product-brand"]');
+        const nameEl = card.querySelector('.product-title, .link, [class*="name"], h3, h4, .product-name, [data-testid="product-name"], [class*="title"]');
+        let saleEl = card.querySelector('.price-sales, [class*="price--promo"], [class*="promo-price"], .price-promo, [data-testid="product-price-promo"], [class*="price-sales"]');
+        let origEl = card.querySelector('.price-standard, [class*="price--base"], [class*="old-price"], .price-old, [data-testid="product-price-base"], [class*="price-standard"]');
 
-          let salePrice = fromTc.sale || (saleEl ? saleEl.innerText.trim() : null);
-          let origPrice = fromTc.orig || (origEl ? origEl.innerText.trim() : null);
+        let salePrice = fromTc.sale || (saleEl ? saleEl.innerText.trim() : null);
+        let origPrice = fromTc.orig || (origEl ? origEl.innerText.trim() : null);
+        if (!salePrice) { const ft = priceFromCardText(card); salePrice = ft.sale; if (!origPrice) origPrice = ft.orig; }
+        if (!salePrice && card.innerHTML) { const hm = card.innerHTML.match(/>([^<]*\d[\d\s,\u00a0]*\s*zł)/i); if (hm) salePrice = hm[1].replace(/^[\s>]+/, '').trim(); }
 
-          if (!salePrice) {
-            const fromText = priceFromCardText(card);
-            salePrice = fromText.sale;
-            if (!origPrice) origPrice = fromText.orig;
+        const allImgs = Array.from(card.querySelectorAll('img'));
+        const imgEl = allImgs.find((img) => { const src = img.src || ''; return !src.includes('svg') && !src.includes('icon') && !src.includes('wishlist'); }) || allImgs[0];
+        const linkEl = card.querySelector('a[href*="/p/"], a[href*="/product/"], a[href*="sephora.pl"]');
+
+        let brand = brandEl ? brandEl.innerText.trim() : tc?.product_trademark || '';
+        let name = nameEl ? nameEl.innerText.trim() : tc?.product_pid_name || tc?.product_name || '';
+        let fullTitle = (brand + ' ' + name).replace(/\s+/g, ' ').trim();
+        if (fullTitle.length > 150) fullTitle = fullTitle.substring(0, 147) + '...';
+
+        return {
+          name: fullTitle || null,
+          salePrice,
+          origPrice,
+          img: imgEl ? imgEl.getAttribute('data-src') || imgEl.src : null,
+          url: linkEl ? linkEl.href : null,
+        };
+      }
+
+      // --- Strategy 1: scoped card selectors ---
+      const cardSelectors = [
+        '.product-tile',
+        '[class*="ProductTile"]',
+        '[class*="product-tile"]',
+        '[data-tcproduct]',
+        '[data-testid="product-tile"]',
+        'li.product-item',
+        '.product-card',
+        '[class*="product-card"]',
+      ];
+      const seen = new Set();
+      let cards = [];
+      for (const sel of cardSelectors) {
+        document.querySelectorAll(sel).forEach((el) => {
+          if (seen.has(el)) return;
+          seen.add(el);
+          cards.push(el);
+        });
+      }
+
+      // Diagnostic
+      const diagProductCount = document.querySelectorAll('[class*="product"]').length;
+      const diagLinkCount = document.querySelectorAll('a[href*="/p/"]').length;
+      console.log('Sephora diag: [class*="product"] count=' + diagProductCount + ', a[href*="/p/"] count=' + diagLinkCount);
+      console.log('Card selectors matched: ' + cards.length);
+
+      if (cards.length > 80) cards = cards.slice(0, 80);
+
+      if (cards.length > 0) {
+        return cards.map(extractCard).filter((row) => row.name && row.salePrice);
+      }
+
+      // --- Strategy 2: link-based fallback (a[href*="/p/"]) ---
+      console.log('Sephora: no cards from selectors, trying link-based fallback…');
+      const links = Array.from(document.querySelectorAll('a[href*="/p/"], a[href*="/product/"]'));
+      const extractedFromLinks = [];
+      const seenUrls = new Set();
+
+      for (const link of links) {
+        const url = link.href;
+        if (!url || seenUrls.has(url)) continue;
+        seenUrls.add(url);
+
+        let card = link;
+        let foundCard = false;
+        for (let i = 0; i < 8; i++) {
+          if (!card.parentElement) break;
+          card = card.parentElement;
+          const hasPrice = (card.innerText || '').includes('zł');
+          const hasImg = card.querySelector('img');
+          if (hasPrice && hasImg) { foundCard = true; break; }
+        }
+
+        if (foundCard) {
+          const result = extractCard(card);
+          if (!result.url) result.url = url;
+          if (result.name && result.salePrice) {
+            extractedFromLinks.push(result);
           }
+        }
+        if (extractedFromLinks.length >= 80) break;
+      }
 
-          if (!salePrice && card.innerHTML) {
-            const hm = card.innerHTML.match(/>([^<]*\d[\d\s,\u00a0]*\s*zł)/i);
-            if (hm) salePrice = hm[1].replace(/^[\s>]+/, '').trim();
-          }
-
-          const allImgs = Array.from(card.querySelectorAll('img'));
-          const imgEl =
-            allImgs.find((img) => {
-              const src = img.src || '';
-              return !src.includes('svg') && !src.includes('icon') && !src.includes('wishlist');
-            }) || allImgs[0];
-
-          const linkEl = card.querySelector('a[href*="/p/"], a[href*="/product/"], a[href*="sephora.pl"]');
-
-          let brand = brandEl ? brandEl.innerText.trim() : tc?.product_trademark || '';
-          let name = nameEl ? nameEl.innerText.trim() : tc?.product_pid_name || tc?.product_name || '';
-          let fullTitle = (brand + ' ' + name).replace(/\s+/g, ' ').trim();
-          if (fullTitle.length > 150) fullTitle = fullTitle.substring(0, 147) + '...';
-
-          if (!fullTitle || !salePrice) {
-            console.log(
-              'Skipping card: name=' +
-                !!fullTitle +
-                ', price=' +
-                !!salePrice +
-                ', text=' +
-                card.innerText.substring(0, 50)
-            );
-          }
-
-          return {
-            name: fullTitle || null,
-            salePrice,
-            origPrice,
-            img: imgEl ? imgEl.getAttribute('data-src') || imgEl.src : null,
-            url: linkEl ? linkEl.href : null,
-          };
-        })
-        .filter((row) => row.name && row.salePrice);
+      console.log('Sephora: link-based fallback found ' + extractedFromLinks.length + ' items');
+      return extractedFromLinks;
     });
 
     for (const item of items) {

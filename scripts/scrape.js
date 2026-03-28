@@ -211,9 +211,22 @@ async function scrapeDeals() {
     await new Promise((r) => setTimeout(r, 4000));
   }
 
-  console.log('\n--- Adidas & Nike (Skip/Architecture Only) ---');
-  console.log('Skipping Adidas.pl (T4 Akamai Bot Manager confirmed).');
-  console.log('Skipping Nike.com/pl (Prohibited by ToS).');
+  console.log('\n--- Adidas & Nike (newsletter files, no site scrape) ---');
+  console.log('Skipping Adidas.pl (T4 Akamai) and Nike.com/pl (ToS). Merging public/data/nike_promos.json & adidas_promos.json if present (from npm run ingest-newsletters).');
+
+  for (const id of ['nike', 'adidas']) {
+    const promoPath = path.join(dataDir, `${id}_promos.json`);
+    if (!fs.existsSync(promoPath)) continue;
+    try {
+      const parsed = JSON.parse(fs.readFileSync(promoPath, 'utf8'));
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        allDeals.push(...parsed);
+        console.log(`Loaded ${parsed.length} deal(s) from ${id}_promos.json`);
+      }
+    } catch (e) {
+      console.warn(`Could not read ${id}_promos.json:`, e?.message || e);
+    }
+  }
 
   const merged = dedupeDeals(allDeals);
   if (merged.length < allDeals.length) {

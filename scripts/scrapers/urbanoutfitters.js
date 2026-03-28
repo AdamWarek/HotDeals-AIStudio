@@ -5,6 +5,11 @@ puppeteer.use(StealthPlugin());
 
 const UO_ORIGIN = 'https://www.urbanoutfitters.com';
 
+const SALE_URLS = [
+  `${UO_ORIGIN}/pl-pl/shop/sale`,
+  `${UO_ORIGIN}/en-gb/shop/sale`,
+];
+
 /**
  * Normalize assorted UO API product shapes into scraper deal objects.
  */
@@ -65,7 +70,7 @@ export async function scrapeUrbanOutfitters() {
   console.log('--- Scraping Urban Outfitters (API Approach) ---');
   const browser = await puppeteer.launch({
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-blink-features=AutomationControlled'],
   });
 
   const page = await browser.newPage();
@@ -111,28 +116,58 @@ export async function scrapeUrbanOutfitters() {
   const deals = [];
 
   try {
-    console.log('Navigating to Urban Outfitters main page…');
-    await page.goto(`${UO_ORIGIN}/pl-pl/`, {
-      waitUntil: 'domcontentloaded',
-      timeout: 60000,
-    });
-    await new Promise((r) => setTimeout(r, 3000));
+    // Try each sale locale URL; stop when one succeeds
+    for (const saleUrl of SALE_URLS) {
+      console.log(`Navigating to ${saleUrl}…`);
+      await page.goto(saleUrl, { waitUntil: 'networkidle2', timeout: 60000 });
 
-    console.log('Navigating to Urban Outfitters sale page…');
-    await page.goto(`${UO_ORIGIN}/pl-pl/shop/sale`, {
-      waitUntil: 'domcontentloaded',
-      timeout: 60000,
-    });
-    await new Promise((r) => setTimeout(r, 4000));
+      // Diagnostic: log final URL + title to detect redirects
+      const finalUrl = page.url();
+      const pageInfo = await page.evaluate(() => ({
+        title: document.title,
+        snippet: document.body?.innerText?.substring(0, 200) || '',
+      }));
+      console.log('UO: final URL:', finalUrl);
+      console.log('UO: page title:', pageInfo.title);
 
-    for (let i = 0; i < 8; i++) {
-      await page.evaluate(() => window.scrollBy(0, 900));
-      await new Promise((r) => setTimeout(r, 1200));
+      const isBlocked =
+        /checking your browser|attention required|access denied|just a moment/i.test(pageInfo.snippet) ||
+        /access.*denied|blocked|captcha|challenge/i.test(pageInfo.title);
+      if (isBlocked) {
+        console.log('UO: bot/geo challenge detected. Trying next locale…');
+        continue;
+      }
+
+      // Wait for content to hydrate
+      await new Promise((r) => setTimeout(r, 5000));
+
+      for (let i = 0; i < 10; i++) {
+        await page.evaluate(() => window.scrollBy(0, 900));
+        await new Promise((r) => setTimeout(r, 1200));
+      }
+      await new Promise((r) => setTimeout(r, 3000));
+
+      // If we got API products or the page loaded successfully, break
+      if (apiProducts.length > 0) {
+        console.log(`UO: API captured ${apiProducts.length} total product(s).`);
+        break;
+      }
+
+      // Check if we got real content (not a geo-gate)
+      const hasProducts = await page.evaluate(() => {
+        return document.querySelectorAll('a[href*="/product"], [data-product], [class*="ProductCard"], [class*="product-tile"]').length;
+      });
+      if (hasProducts > 0) {
+        console.log(`UO: found ${hasProducts} product element(s) in DOM at ${saleUrl}`);
+        break;
+      }
+
+      console.log(`UO: no products at ${saleUrl}, trying next locale…`);
     }
-    await new Promise((r) => setTimeout(r, 3000));
 
     page.off('response', onResponse);
 
+    // Deduplicate API results
     if (apiProducts.length > 0) {
       const seen = new Set();
       for (const p of apiProducts) {
@@ -146,7 +181,7 @@ export async function scrapeUrbanOutfitters() {
       }
     }
 
-    // Safe __NEXT_DATA__ read (single script tag, no greedy JSON.parse on whole page)
+    // Safe __NEXT_DATA__ read
     if (deals.length === 0) {
       const nextDataResult = await page.evaluate(() => {
         try {
@@ -178,40 +213,52 @@ export async function scrapeUrbanOutfitters() {
       }
     }
 
-    // HTML fallback — small evaluate, no nested JSON.parse on arbitrary scripts
+    // HTML fallback — broader selectors including /product/ links and data attributes
     if (deals.length === 0) {
       const htmlResult = await page.evaluate(() => {
         try {
           const results = [];
-          const priceEls = Array.from(document.querySelectorAll('*')).filter((el) => {
-            const text = el.innerText || '';
-            return (
-              (text.includes('zł') || text.includes('PLN')) &&
-              text.length < 24 &&
-              el.children.length === 0
-            );
-          });
-          for (const priceEl of priceEls) {
-            const card = priceEl.closest(
-              'article, li, [data-product], [class*="ProductCard"], [class*="product-tile"], [class*="product"], [class*="item"]'
-            );
-            if (!card) continue;
-            const nameEl = card.querySelector(
-              'h2, h3, a[title], [class*="title"], [class*="heading"], [data-testid*="title"]'
-            );
-            const imgEl = card.querySelector('img');
-            const linkEl = card.querySelector('a[href*="/pl-pl/"], a[href*="/product"], a[href*="/shop/"]');
-            const title = (nameEl?.innerText || nameEl?.getAttribute('title') || '').trim();
-            const price = priceEl.innerText.trim().replace(/[^\d.,]/g, '').replace(',', '.');
-            const url = linkEl?.href || null;
-            if (title && url && price && parseFloat(price) > 0) {
-              results.push({
-                title,
-                price,
-                url,
-                img: imgEl?.getAttribute('data-src') || imgEl?.src || null,
-              });
+          const seenUrls = new Set();
+
+          const links = Array.from(document.querySelectorAll(
+            'a[href*="/product/"], a[href*="/pl-pl/"], a[href*="/en-gb/"], [data-sku], [data-productid]'
+          ));
+
+          for (const el of links) {
+            let card = el;
+            let foundCard = false;
+            for (let i = 0; i < 8; i++) {
+              if (!card.parentElement) break;
+              card = card.parentElement;
+              const text = card.innerText || '';
+              const hasPrice = /\d/.test(text) && (text.includes('zł') || text.includes('PLN') || text.includes('£') || text.includes('€'));
+              const hasImg = card.querySelector('img');
+              if (hasPrice && hasImg) { foundCard = true; break; }
             }
+
+            if (!foundCard) continue;
+
+            const nameEl = card.querySelector('h2, h3, a[title], [class*="title"], [class*="heading"], [data-testid*="title"]');
+            const imgEl = card.querySelector('img');
+            const linkEl = card.querySelector('a[href*="/product"], a[href*="/pl-pl/"], a[href*="/en-gb/"]');
+            const title = (nameEl?.innerText || nameEl?.getAttribute('title') || '').trim();
+            const url = linkEl?.href || el.href || null;
+
+            if (!title || !url || seenUrls.has(url)) continue;
+            seenUrls.add(url);
+
+            const priceText = card.innerText || '';
+            const priceMatch = priceText.match(/(\d{1,3}(?:[.,]\d{2})?)\s*(?:zł|PLN|£|€)/);
+            const price = priceMatch ? priceMatch[1].replace(',', '.') : '';
+            if (!price || parseFloat(price) <= 0) continue;
+
+            results.push({
+              title,
+              price,
+              url,
+              img: imgEl?.getAttribute('data-src') || imgEl?.src || null,
+            });
+            if (results.length >= 48) break;
           }
           return { ok: true, items: results };
         } catch (e) {

@@ -1,7 +1,7 @@
 {
   "name": "hotdeals-aistudio",
   "private": true,
-  "version": "1.0.7",
+  "version": "1.0.8",
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
@@ -11,7 +11,9 @@
     "deploy": "gh-pages -d dist",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
+    "ingest-newsletters": "node scripts/ingest-newsletters.js",
     "scrape": "node scripts/scrape.js",
+    "test:newsletter": "node --test scripts/tests/newsletter-parse.test.js",
     "start": "node dist/server.cjs"
   },
   "dependencies": {
@@ -27,6 +29,7 @@
     "dotenv": "^17.3.1",
     "express": "^4.22.1",
     "firebase": "^12.11.0",
+    "googleapis": "^148.0.0",
     "lucide-react": "^0.546.0",
     "motion": "^12.38.0",
     "react": "^19.0.0",

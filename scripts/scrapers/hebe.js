@@ -34,7 +34,7 @@ export async function scrapeHebe() {
   console.log('--- Scraping Hebe (HTML Approach) ---');
   const browser = await puppeteer.launch({
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-blink-features=AutomationControlled'],
   });
 
   const page = await browser.newPage();
@@ -42,12 +42,40 @@ export async function scrapeHebe() {
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
   );
+  await page.setExtraHTTPHeaders({
+    'Accept-Language': 'pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7',
+  });
 
   const deals = [];
 
   try {
-    await page.goto(PROMO_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.goto(PROMO_URL, { waitUntil: 'networkidle2', timeout: 60000 });
+
+    // Diagnostic: detect Cloudflare/bot challenge pages
+    const pageInfo = await page.evaluate(() => ({
+      title: document.title,
+      snippet: document.body?.innerText?.substring(0, 300) || '',
+    }));
+    console.log('Hebe: page title:', pageInfo.title);
+    console.log('Hebe: body snippet:', pageInfo.snippet.substring(0, 120));
+
+    if (/checking your browser|attention required|access denied|just a moment/i.test(pageInfo.snippet)) {
+      console.log('Hebe: Cloudflare/bot challenge detected on datacenter IP. Skipping.');
+      await browser.close();
+      return deals;
+    }
+
+    // Give the page extra time (CI runners are slower)
+    await new Promise((r) => setTimeout(r, 5000));
+
     await acceptCookiesIfPresent(page);
+
+    // After cookie click, wait for possible navigation/reload
+    try {
+      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 });
+    } catch {
+      // no navigation happened, that's fine
+    }
 
     // Wait for React-hydrated product tiles (GTM payload attached)
     console.log('Hebe: waiting for product tiles…');
@@ -59,25 +87,25 @@ export async function scrapeHebe() {
     } catch {
       console.log('Hebe: timeout waiting for [data-product-gtm]; trying class-based tiles…');
       try {
-        await page.waitForSelector('.product-tile.js-product-tile', { timeout: 10000 });
+        await page.waitForSelector('.product-tile.js-product-tile, .product-tile', { timeout: 10000 });
       } catch {
         console.log('Hebe: no product tiles detected after waits.');
       }
     }
 
-    await new Promise((r) => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 3000));
 
-    // Scroll in main process (avoid long async page.evaluate chains)
+    // Scroll in main process
     console.log('Scrolling to load more Hebe products…');
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 15; i++) {
       await page.evaluate(() => window.scrollBy(0, 900));
-      await new Promise((r) => setTimeout(r, 800));
+      await new Promise((r) => setTimeout(r, 1000));
     }
 
     // Nudge lazy images per tile
     const tileCount = await page.evaluate(() => {
       const tiles = Array.from(
-        document.querySelectorAll('.product-tile[data-product-gtm], .product-tile.js-product-tile')
+        document.querySelectorAll('.product-tile[data-product-gtm], .product-tile.js-product-tile, .product-tile')
       );
       const seen = new Set();
       const unique = tiles.filter((el) => {
@@ -97,6 +125,7 @@ export async function scrapeHebe() {
         '.product-tile[data-product-gtm]',
         '.product-tile.js-product-tile',
         '.product-tile.js-gtm-product-tile',
+        '.product-tile',
       ];
       let cards = [];
       const seenEl = new Set();
@@ -126,11 +155,7 @@ export async function scrapeHebe() {
           gtmData.item_description ||
           card.querySelector('.product-tile__description')?.innerText?.trim();
 
-        // SFCC GTM: price / current_price / regular_price (numbers)
-        const saleRaw =
-          gtmData.current_price ??
-          gtmData.price ??
-          gtmData.item_price;
+        const saleRaw = gtmData.current_price ?? gtmData.price ?? gtmData.item_price;
         const origRaw = gtmData.regular_price ?? gtmData.item_list_price;
 
         let name = '';
@@ -170,7 +195,6 @@ export async function scrapeHebe() {
         if (img && img.startsWith('//')) img = 'https:' + img;
         if (img && img.startsWith('/')) img = 'https://www.hebe.pl' + img;
 
-        // DOM fallback if GTM missing (rare after hydration)
         let salePrice = saleRaw != null ? String(saleRaw) : null;
         let origPrice = origRaw != null ? String(origRaw) : null;
         if (!salePrice) {

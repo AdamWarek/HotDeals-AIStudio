@@ -44,19 +44,17 @@ export async function scrapeDouglas() {
         console.log("Evaluating page content...");
         const cards = Array.from(document.querySelectorAll('.product-tile, [class*="product-tile"], [class*="ProductTile"], [data-testid="product-tile"]')).slice(0, 200);
         console.log("Found " + cards.length + " potential product cards.");
-        
-        return cards.map(card => {
-            // Douglas structure:
-            // .product-tile__main-link contains the name
-            // .product-tile__brand contains the brand
+
+        const seenUrls = new Set();
+        const results = [];
+
+        for (const card of cards) {
             const brandEl = card.querySelector('.product-tile__brand, [class*="brand"]');
             const nameEl = card.querySelector('.product-tile__main-link, [class*="name"], h3, [data-testid="main-link"]');
-            
-            // Try specific classes first
+
             let saleEl = card.querySelector('.price__sale, [class*="price-sale"], .price-sales, [class*="price-promo"], [class*="price-current"]');
             let origEl = card.querySelector('.price__regular, [class*="price-regular"], .price-standard, [class*="price-old"], [class*="price-base"]');
-            
-            // Fallback: search for elements containing currency symbol
+
             if (!saleEl) {
                 const allSpans = Array.from(card.querySelectorAll('span, div, p'));
                 const priceElements = allSpans.filter(el => {
@@ -64,38 +62,42 @@ export async function scrapeDouglas() {
                     return text.includes('zł') && text.length < 20 && /\d/.test(text);
                 });
                 if (priceElements.length > 0) {
-                    // Usually the first price is the sale price if it's highlighted
                     saleEl = priceElements[0];
-                    if (priceElements.length > 1) {
-                        origEl = priceElements[1];
-                    }
+                    if (priceElements.length > 1) origEl = priceElements[1];
                 }
             }
 
             let brand = brandEl ? brandEl.innerText.trim() : "";
             let name = nameEl ? nameEl.innerText.trim() : "";
-            
+
             if (!name && card.innerText.length > 10) {
                 const lines = card.innerText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
                 if (!brand) brand = lines[0];
                 name = lines.slice(1, 3).join(' ');
             }
 
-            // Clean up name
             let fullTitle = (brand + " " + name).replace(/\s+/g, ' ').trim();
             if (fullTitle.length > 150) fullTitle = fullTitle.substring(0, 147) + "...";
 
             const imgEl = card.querySelector('img');
             const linkEl = card.querySelector('a');
+            const url = linkEl ? linkEl.href : null;
 
-            return {
+            // Source-level dedup by URL
+            if (url && seenUrls.has(url)) continue;
+            if (url) seenUrls.add(url);
+
+            results.push({
                 name: fullTitle || null,
                 salePrice: saleEl ? saleEl.innerText.trim() : null,
                 origPrice: origEl ? origEl.innerText.trim() : null,
                 img: imgEl ? (imgEl.getAttribute('data-src') || imgEl.src) : null,
-                url: linkEl ? linkEl.href : null
-            };
-        });
+                url,
+            });
+        }
+
+        console.log("Douglas: " + results.length + " unique / " + cards.length + " total cards.");
+        return results;
     });
 
     for (const item of items) {

@@ -60,6 +60,8 @@ const Home: React.FC = () => {
           if (brandName.toLowerCase() === 'sephora') brandName = 'Sephora';
           if (brandName.toLowerCase() === 'bershka') brandName = 'Bershka';
           if (brandName.toLowerCase() === 'stradivarius') brandName = 'Stradivarius';
+          if (brandName.toLowerCase() === 'nike') brandName = 'Nike';
+          if (brandName.toLowerCase() === 'adidas') brandName = 'Adidas';
 
           return {
             id: `scraped-${index}`,
