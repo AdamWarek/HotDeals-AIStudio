@@ -6,6 +6,7 @@ import 'dotenv/config';
 // Optional env:
 //   SCRAPER_STRICT=1 — process.exit(1) if any SCRAPER_REQUIRED scraper returns 0 deals or throws.
 //   SCRAPER_REQUIRED=bershka,hebe,hm — comma-separated scraper ids (see scrapers[] below).
+//   MERGE_NEWSLETTER_DEALS=1 — append public/data/nike_promos.json & adidas_promos.json after scrapers (off by default; run npm run ingest-newsletters separately to generate those files).
 
 // Import specialized scrapers
 import { scrapePullAndBear } from './scrapers/pullandbear.js';
@@ -211,21 +212,30 @@ async function scrapeDeals() {
     await new Promise((r) => setTimeout(r, 4000));
   }
 
-  console.log('\n--- Adidas & Nike (newsletter files, no site scrape) ---');
-  console.log('Skipping Adidas.pl (T4 Akamai) and Nike.com/pl (ToS). Merging public/data/nike_promos.json & adidas_promos.json if present (from npm run ingest-newsletters).');
+  console.log('\n--- Adidas & Nike ---');
+  console.log('Skipping Adidas.pl (T4 Akamai) and Nike.com/pl (ToS). No site scrapers for these brands.');
 
-  for (const id of ['nike', 'adidas']) {
-    const promoPath = path.join(dataDir, `${id}_promos.json`);
-    if (!fs.existsSync(promoPath)) continue;
-    try {
-      const parsed = JSON.parse(fs.readFileSync(promoPath, 'utf8'));
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        allDeals.push(...parsed);
-        console.log(`Loaded ${parsed.length} deal(s) from ${id}_promos.json`);
+  if (process.env.MERGE_NEWSLETTER_DEALS === '1') {
+    console.log(
+      'MERGE_NEWSLETTER_DEALS=1: merging public/data/nike_promos.json & adidas_promos.json if present (from npm run ingest-newsletters).'
+    );
+    for (const id of ['nike', 'adidas']) {
+      const promoPath = path.join(dataDir, `${id}_promos.json`);
+      if (!fs.existsSync(promoPath)) continue;
+      try {
+        const parsed = JSON.parse(fs.readFileSync(promoPath, 'utf8'));
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          allDeals.push(...parsed);
+          console.log(`Loaded ${parsed.length} deal(s) from ${id}_promos.json`);
+        }
+      } catch (e) {
+        console.warn(`Could not read ${id}_promos.json:`, e?.message || e);
       }
-    } catch (e) {
-      console.warn(`Could not read ${id}_promos.json:`, e?.message || e);
     }
+  } else {
+    console.log(
+      'Newsletter merge disabled (default). Set MERGE_NEWSLETTER_DEALS=1 to include Nike/Adidas rows from ingest. Prepared: npm run ingest-newsletters → nike_promos.json / adidas_promos.json.'
+    );
   }
 
   const merged = dedupeDeals(allDeals);
