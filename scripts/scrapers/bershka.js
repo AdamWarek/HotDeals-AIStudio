@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import { inditexDetailMainImageUrl } from '../lib/inditexImage.js';
 
 puppeteer.use(StealthPlugin());
 
@@ -229,8 +230,11 @@ export async function scrapeBershka() {
                     
                     if (summary.detail.colors.length > 0) {
                         const color = summary.detail.colors[0];
-                        // Bershka image URL pattern
-                        const imageUrl = color.image && color.image.url ? "https://static.bershka.net/4/photos2" + color.image.url + "_2_1_4.jpg" : null;
+                        const imageUrl = inditexDetailMainImageUrl(summary.detail, {
+                            legacyHost: 'static.bershka.net',
+                            legacyPathPrefix: '/4/photos2',
+                            legacySuffix: '_2_1_4.jpg',
+                        });
                         
                         let currentPrice = null;
                         let oldPrice = null;

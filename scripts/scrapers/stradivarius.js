@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import { inditexDetailMainImageUrl } from '../lib/inditexImage.js';
 
 puppeteer.use(StealthPlugin());
 
@@ -211,14 +212,11 @@ export async function scrapeStradivarius() {
               oldPrice = color.sizes[0].oldPrice ? color.sizes[0].oldPrice / 100 : null;
             }
             
-            if (color.image && color.image.url) {
-              imageUrl = `https://static.stradivarius.net/5/photos3${color.image.url}_1_1_1.jpg`;
-            } else if (summary.xmedia && summary.xmedia.length > 0) {
-              const media = summary.xmedia.find(m => m.path);
-              if (media) {
-                imageUrl = `https://static.stradivarius.net/5/photos3${media.path}_1_1_1.jpg`;
-              }
-            }
+            imageUrl = inditexDetailMainImageUrl(summary, {
+              legacyHost: 'static.stradivarius.net',
+              legacyPathPrefix: '/5/photos3',
+              legacySuffix: '_1_1_1.jpg',
+            });
           }
         }
         

@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import { inditexDetailMainImageUrl } from '../lib/inditexImage.js';
 
 puppeteer.use(StealthPlugin());
 
@@ -100,7 +101,11 @@ export async function scrapePullAndBear() {
                     // Just take the first color variant for the deal list to avoid duplicates
                     if (summary.detail.colors.length > 0) {
                         const color = summary.detail.colors[0];
-                        const imageUrl = color.image && color.image.url ? "https://static.pullandbear.net/2/photos" + color.image.url + "_2_1_8.jpg" : null;
+                        const imageUrl = inditexDetailMainImageUrl(summary.detail, {
+                            legacyHost: 'static.pullandbear.net',
+                            legacyPathPrefix: '/2/photos',
+                            legacySuffix: '_2_1_8.jpg',
+                        });
                         
                         let currentPrice = null;
                         let oldPrice = null;
