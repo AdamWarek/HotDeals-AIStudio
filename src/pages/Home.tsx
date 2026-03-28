@@ -14,8 +14,9 @@ const Home: React.FC = () => {
   const [activeTab, setActiveTab] = useState('newest');
 
   useEffect(() => {
-    console.log('Fetching from:', import.meta.env.BASE_URL + 'data/all_promos.json');
-    fetch(import.meta.env.BASE_URL + 'data/all_promos.json')
+    // Same source as SpecialOffers — deployed site serves deals.json at repo root; data/all_promos.json may be absent on GH Pages
+    console.log('Fetching from:', import.meta.env.BASE_URL + 'deals.json');
+    fetch(import.meta.env.BASE_URL + 'deals.json')
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
