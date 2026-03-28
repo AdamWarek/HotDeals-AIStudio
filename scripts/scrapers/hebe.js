@@ -3,134 +3,235 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 
 puppeteer.use(StealthPlugin());
 
+const PROMO_URL = 'https://www.hebe.pl/promocje/';
+
+/**
+ * Hebe SFCC: PLP tiles hydrate in React. Prefer tiles with data-product-gtm (populated after hydration).
+ */
+async function acceptCookiesIfPresent(page) {
+  const selectors = [
+    '#onetrust-accept-btn-handler',
+    'button#onetrust-accept-btn-handler',
+    '[id*="onetrust-accept"]',
+    '.ot-sdk-container button[aria-label*="Accept"]',
+  ];
+  for (const sel of selectors) {
+    try {
+      const btn = await page.waitForSelector(sel, { timeout: 4000 });
+      if (btn) {
+        await btn.click();
+        await new Promise((r) => setTimeout(r, 1500));
+        console.log('Hebe: cookie consent dismissed.');
+        return;
+      }
+    } catch {
+      // try next
+    }
+  }
+}
+
 export async function scrapeHebe() {
   console.log('--- Scraping Hebe (HTML Approach) ---');
-  const browser = await puppeteer.launch({ 
-    headless: "new", 
-    args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
-  
+
   const page = await browser.newPage();
   await page.setViewport({ width: 1366, height: 768 });
-  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
-  
+  await page.setUserAgent(
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+  );
+
   const deals = [];
 
   try {
-    await page.goto('https://www.hebe.pl/promocje/', { waitUntil: 'networkidle2', timeout: 45000 });
-    
-    // Wait for products
+    await page.goto(PROMO_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await acceptCookiesIfPresent(page);
+
+    // Wait for React-hydrated product tiles (GTM payload attached)
+    console.log('Hebe: waiting for product tiles…');
     try {
-        await page.waitForSelector('.product-tile.js-product-tile', { timeout: 15000 });
-    } catch (e) {
-        // Continue anyway
+      await page.waitForFunction(
+        () => document.querySelectorAll('.product-tile[data-product-gtm]').length > 0,
+        { timeout: 30000 }
+      );
+    } catch {
+      console.log('Hebe: timeout waiting for [data-product-gtm]; trying class-based tiles…');
+      try {
+        await page.waitForSelector('.product-tile.js-product-tile', { timeout: 10000 });
+      } catch {
+        console.log('Hebe: no product tiles detected after waits.');
+      }
     }
-    
-    // Scroll loop to trigger lazy loading
-    console.log("Scrolling to load more Hebe products...");
-    for (let i = 0; i < 10; i++) {
-        await page.evaluate(() => {
-            window.scrollBy(0, 800);
-        });
-        await new Promise(r => setTimeout(r, 1000));
+
+    await new Promise((r) => setTimeout(r, 2000));
+
+    // Scroll in main process (avoid long async page.evaluate chains)
+    console.log('Scrolling to load more Hebe products…');
+    for (let i = 0; i < 12; i++) {
+      await page.evaluate(() => window.scrollBy(0, 900));
+      await new Promise((r) => setTimeout(r, 800));
     }
-    
-    // Specifically scroll to each product tile to ensure images load
-    console.log("Triggering lazy loading for each product tile...");
-    await page.evaluate(async () => {
-        const cards = Array.from(document.querySelectorAll('.product-tile.js-product-tile')).slice(0, 60);
-        for (const card of cards) {
-            card.scrollIntoView();
-            await new Promise(r => setTimeout(r, 200));
-        }
+
+    // Nudge lazy images per tile
+    const tileCount = await page.evaluate(() => {
+      const tiles = Array.from(
+        document.querySelectorAll('.product-tile[data-product-gtm], .product-tile.js-product-tile')
+      );
+      const seen = new Set();
+      const unique = tiles.filter((el) => {
+        if (seen.has(el)) return false;
+        seen.add(el);
+        return true;
+      });
+      unique.slice(0, 80).forEach((card) => card.scrollIntoView({ block: 'nearest' }));
+      return unique.length;
     });
-    await new Promise(r => setTimeout(r, 3000));
-    
+    console.log(`Hebe: ${tileCount} product tile(s) in DOM before extract.`);
+
+    await new Promise((r) => setTimeout(r, 2000));
+
     const items = await page.evaluate(() => {
-        const cards = Array.from(document.querySelectorAll('.product-tile.js-product-tile')).slice(0, 60);
-        
-        return cards.map(card => {
-            // Extract from GTM data attribute
-            let gtmData = {};
-            try {
-                const gtmAttr = card.getAttribute('data-product-gtm');
-                if (gtmAttr) gtmData = JSON.parse(gtmAttr);
-            } catch (e) {}
-
-            const brand = gtmData.item_brand || card.querySelector('.product-tile__name')?.innerText.trim();
-            const desc = gtmData.item_description || card.querySelector('.product-tile__description')?.innerText.trim();
-            const salePrice = gtmData.price || gtmData.current_price;
-            const origPrice = gtmData.regular_price;
-            
-            let name = "";
-            if (brand) name += brand + " ";
-            if (desc) name += desc;
-            
-            const allImgs = Array.from(card.querySelectorAll('img'));
-            const linkEl = card.querySelector('a');
-
-            let img = null;
-            for (const imgEl of allImgs) {
-                const candidate = imgEl.getAttribute('data-src') || 
-                                  imgEl.getAttribute('data-lazy-src') || 
-                                  imgEl.getAttribute('srcset')?.split(' ')[0] || 
-                                  imgEl.src;
-                
-                if (candidate && candidate.length > 10 && !candidate.includes('placeholder')) {
-                    img = candidate;
-                    break;
-                }
-            }
-            
-            if (img && img.startsWith('//')) img = 'https:' + img;
-            if (img && img.startsWith('/')) img = 'https://www.hebe.pl' + img;
-
-            return {
-                name: name.trim() || null,
-                salePrice: salePrice ? salePrice.toString() : null,
-                origPrice: origPrice ? origPrice.toString() : null,
-                img: img,
-                url: linkEl ? linkEl.href : null
-            };
+      const selectors = [
+        '.product-tile[data-product-gtm]',
+        '.product-tile.js-product-tile',
+        '.product-tile.js-gtm-product-tile',
+      ];
+      let cards = [];
+      const seenEl = new Set();
+      for (const sel of selectors) {
+        document.querySelectorAll(sel).forEach((el) => {
+          if (!seenEl.has(el)) {
+            seenEl.add(el);
+            cards.push(el);
+          }
         });
+      }
+      cards = cards.slice(0, 80);
+
+      return cards.map((card) => {
+        let gtmData = {};
+        try {
+          const gtmAttr = card.getAttribute('data-product-gtm');
+          if (gtmAttr) gtmData = JSON.parse(gtmAttr);
+        } catch {
+          /* ignore */
+        }
+
+        const brand =
+          gtmData.item_brand ||
+          card.querySelector('.product-tile__name')?.innerText?.trim();
+        const desc =
+          gtmData.item_description ||
+          card.querySelector('.product-tile__description')?.innerText?.trim();
+
+        // SFCC GTM: price / current_price / regular_price (numbers)
+        const saleRaw =
+          gtmData.current_price ??
+          gtmData.price ??
+          gtmData.item_price;
+        const origRaw = gtmData.regular_price ?? gtmData.item_list_price;
+
+        let name = '';
+        if (brand) name += brand + ' ';
+        if (desc) name += desc;
+        if (!name.trim() && gtmData.item_name) name = String(gtmData.item_name);
+
+        const allImgs = Array.from(card.querySelectorAll('img'));
+        const linkEl =
+          card.querySelector('a[href*=".html"]') ||
+          card.querySelector('.js-product-link[data-href]');
+
+        let url = null;
+        if (linkEl) {
+          const dh = linkEl.getAttribute('data-href');
+          const href = linkEl.getAttribute('href');
+          const path = dh || href;
+          if (path) {
+            url = path.startsWith('http') ? path : `https://www.hebe.pl${path}`;
+          }
+        }
+
+        let img = null;
+        for (const imgEl of allImgs) {
+          const candidate =
+            imgEl.getAttribute('data-src') ||
+            imgEl.getAttribute('data-lazy-src') ||
+            imgEl.getAttribute('srcset')?.split(' ')[0] ||
+            imgEl.src;
+
+          if (candidate && candidate.length > 10 && !candidate.includes('placeholder')) {
+            img = candidate;
+            break;
+          }
+        }
+
+        if (img && img.startsWith('//')) img = 'https:' + img;
+        if (img && img.startsWith('/')) img = 'https://www.hebe.pl' + img;
+
+        // DOM fallback if GTM missing (rare after hydration)
+        let salePrice = saleRaw != null ? String(saleRaw) : null;
+        let origPrice = origRaw != null ? String(origRaw) : null;
+        if (!salePrice) {
+          const priceEl = card.querySelector(
+            '.product-tile__pricing .price, .price-sales, [class*="sales"], .price'
+          );
+          const t = priceEl?.innerText?.trim();
+          if (t && /\d/.test(t)) salePrice = t;
+        }
+
+        return {
+          name: name.trim() || null,
+          salePrice,
+          origPrice,
+          img,
+          url,
+        };
+      });
     });
 
     for (const item of items) {
-        if (!item.name || !item.salePrice) continue;
+      if (!item.name || !item.salePrice) continue;
 
-        // Allow digits, commas, and dots. Then normalize to dot.
-        const cleanSale = item.salePrice.replace(/[^\d,.]/g, '').replace(',', '.');
-        const cleanOrig = item.origPrice ? item.origPrice.replace(/[^\d,.]/g, '').replace(',', '.') : null;
-        
-        let discount = null;
-        if (cleanOrig && parseFloat(cleanOrig) > parseFloat(cleanSale)) {
-            const pct = Math.round(((parseFloat(cleanOrig) - parseFloat(cleanSale)) / parseFloat(cleanOrig)) * 100);
-            discount = `-${pct}%`;
-        }
+      const cleanSale = item.salePrice.replace(/[^\d,.]/g, '').replace(',', '.');
+      if (!cleanSale || parseFloat(cleanSale) <= 0) continue;
 
-        deals.push({
-            title: item.name,
-            brand: "Hebe",
-            category: "Kosmetyki",
-            discount: discount,
-            price: cleanSale,
-            currency: "PLN",
-            url: item.url,
-            image: item.img,
-            description: "Promocja Hebe",
-            valid_until: null,
-            tags: ["Kosmetyki", "sale"],
-            confidence_score: 1.0,
-            source_type: "dynamic_scrape",
-            source_name: "Hebe HTML"
-        });
+      const cleanOrig = item.origPrice
+        ? item.origPrice.replace(/[^\d,.]/g, '').replace(',', '.')
+        : null;
+
+      let discount = null;
+      if (cleanOrig && parseFloat(cleanOrig) > parseFloat(cleanSale)) {
+        const pct = Math.round(
+          ((parseFloat(cleanOrig) - parseFloat(cleanSale)) / parseFloat(cleanOrig)) * 100
+        );
+        discount = `-${pct}%`;
+      }
+
+      deals.push({
+        title: item.name,
+        brand: 'Hebe',
+        category: 'Kosmetyki',
+        discount,
+        price: cleanSale,
+        currency: 'PLN',
+        url: item.url,
+        image: item.img,
+        description: 'Promocja Hebe',
+        valid_until: null,
+        tags: ['Kosmetyki', 'sale'],
+        confidence_score: item.url ? 1.0 : 0.85,
+        source_type: 'dynamic_scrape',
+        source_name: 'Hebe HTML',
+      });
     }
   } catch (e) {
-      console.error("Error scraping Hebe:", e.message);
+    console.error('Error scraping Hebe:', e.message);
   } finally {
-      await browser.close();
+    await browser.close();
   }
-  
-  console.log("Successfully extracted " + deals.length + " items from Hebe");
+
+  console.log('Successfully extracted ' + deals.length + ' items from Hebe');
   return deals;
 }
