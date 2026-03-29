@@ -7,5 +7,5 @@ esbuild.build({
   target: 'node18',
   outfile: 'dist/server.cjs',
   format: 'cjs',
-  external: ['express', 'cors', '@google/genai', 'vite', 'dotenv', 'puppeteer', 'puppeteer-extra', 'puppeteer-extra-plugin-stealth', 'axios', 'cheerio'],
+  external: ['express', 'cors', 'helmet', 'express-rate-limit', '@google/genai', 'vite', 'dotenv'],
 }).catch(() => process.exit(1));

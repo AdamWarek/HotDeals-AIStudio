@@ -2,6 +2,7 @@ import React from 'react';
 import Vote from './Vote';
 import { motion } from 'motion/react';
 import { ExternalLink, MessageCircle, Clock } from 'lucide-react';
+import { sanitizeUrl } from '@/lib/sanitizeUrl';
 
 interface Deal {
   id: string;
@@ -23,6 +24,8 @@ interface DealCardProps {
 
 const DealCard: React.FC<DealCardProps> = ({ deal }) => {
   const isBurning = deal.temperature >= 500;
+  const safeUrl = sanitizeUrl(deal.url);
+  const safeImageUrl = sanitizeUrl(deal.imageUrl);
 
   return (
     <motion.div
@@ -34,9 +37,9 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
       }`}
     >
       <div className="relative aspect-video overflow-hidden group">
-        <a href={deal.url} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+        <a href={safeUrl} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
           <img
-            src={deal.imageUrl}
+            src={safeImageUrl}
             alt={deal.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             referrerPolicy="no-referrer"
@@ -63,7 +66,7 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
           </span>
         </div>
 
-        <a href={deal.url} target="_blank" rel="noopener noreferrer" className="block">
+        <a href={safeUrl} target="_blank" rel="noopener noreferrer" className="block">
           <h3 className="font-bold text-gray-900 dark:text-gray-100 line-clamp-2 mb-2 hover:text-red-600 transition-colors cursor-pointer">
             {deal.title}
           </h3>
@@ -100,7 +103,7 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
             <button className="text-gray-400 hover:text-blue-500 transition-colors">
               <MessageCircle size={18} />
             </button>
-            <a href={deal.url} target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-colors inline-block">
+            <a href={safeUrl} target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-colors inline-block">
               <ExternalLink size={18} />
             </a>
           </div>

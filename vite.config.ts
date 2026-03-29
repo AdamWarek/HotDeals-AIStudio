@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import {defineConfig, loadEnv} from 'vite';
+import {defineConfig} from 'vite';
 import { execSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -23,12 +23,10 @@ try {
 }
 
 export default defineConfig(({mode}) => {
-  const env = loadEnv(mode, '.', '');
   return {
     plugins: [react(), tailwindcss()],
     base: mode === 'production' ? '/HotDeals-AIStudio/' : '/',
     define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
       '__COMMIT_HASH__': JSON.stringify(commitHash),
       '__APP_VERSION__': JSON.stringify(appVersion.version),
     },

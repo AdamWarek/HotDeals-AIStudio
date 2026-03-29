@@ -15,8 +15,6 @@ const Home: React.FC = () => {
   const [activeTab, setActiveTab] = useState('newest');
 
   useEffect(() => {
-    // Same source as SpecialOffers — deployed site serves deals.json at repo root; data/all_promos.json may be absent on GH Pages
-    console.log('Fetching from:', import.meta.env.BASE_URL + 'deals.json');
     fetch(import.meta.env.BASE_URL + 'deals.json')
       .then(res => {
         if (!res.ok) {

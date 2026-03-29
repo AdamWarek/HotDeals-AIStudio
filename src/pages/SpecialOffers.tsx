@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import ThemeToggle from "../components/ThemeToggle";
+import { sanitizeUrl } from "@/lib/sanitizeUrl";
 
 declare const __COMMIT_HASH__: string;
 declare const __APP_VERSION__: string;
@@ -141,7 +142,7 @@ function FavPanel({ items, favorites, onFav, onClose, palette }: any) {
               background: palette.pageBg, borderRadius:"12px",
               overflow:"hidden", position:"relative",
             }}>
-              <img src={item.img} alt={item.name} style={{ width:"88px", height:"88px", objectFit:"cover", display:"block" }} />
+              <img src={sanitizeUrl(item.img)} alt={item.name} style={{ width:"88px", height:"88px", objectFit:"cover", display:"block" }} />
               <button onClick={() => onFav(item.id)} style={{
                 position:"absolute", top:4, right:4,
                 background:"#FF3B30", border:"none", borderRadius:"50%",
@@ -153,7 +154,7 @@ function FavPanel({ items, favorites, onFav, onClose, palette }: any) {
                 {item.sale > 0 && (
                   <p style={{ fontSize:"10px", fontWeight:700, color:brand.accent, marginTop:"2px" }}>{fmt(item.sale)}</p>
                 )}
-                <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ fontSize:"9px", color:brand.accent, textDecoration:"none", fontWeight:600 }}>Zobacz →</a>
+                <a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" style={{ fontSize:"9px", color:brand.accent, textDecoration:"none", fontWeight:600 }}>Zobacz →</a>
               </div>
             </div>
           );
@@ -200,7 +201,7 @@ function PromoCard({ item, isFav, onFav, size, palette }: any) {
       }}>
         <img
           className="img-zoom"
-          src={item.img}
+          src={sanitizeUrl(item.img)}
           alt={item.name}
           loading="lazy"
           style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}
@@ -300,7 +301,7 @@ function PromoCard({ item, isFav, onFav, size, palette }: any) {
         {/* CTA */}
         {!isSmall ? (
           <a
-            href={item.url} target="_blank" rel="noopener noreferrer"
+            href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer"
             className="cta-btn"
             style={{
               display:"block",
@@ -313,7 +314,7 @@ function PromoCard({ item, isFav, onFav, size, palette }: any) {
             }}
           >Zobacz ofertę →</a>
         ) : (
-          <a href={item.url} target="_blank" rel="noopener noreferrer"
+          <a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer"
             style={{ fontSize:"10px", fontWeight:700, color: brand.accent, textDecoration:"none" }}>
             Zobacz →
           </a>
@@ -422,7 +423,6 @@ export default function SpecialOffers() {
   const appVersion = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.0.0';
 
   useEffect(() => {
-    console.log('Fetching from:', import.meta.env.BASE_URL + 'deals.json');
     fetch(import.meta.env.BASE_URL + 'deals.json')
       .then(res => {
         if (!res.ok) {

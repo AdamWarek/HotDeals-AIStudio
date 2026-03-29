@@ -53,6 +53,8 @@ function main() {
   console.log(authUrl);
   console.log(`\nThis machine must accept redirect to: ${REDIRECT_URI}\n`);
 
+  const escHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
   const server = http.createServer(async (req, res) => {
     const urlPath = req.url?.split('?')[0] || '';
     if (urlPath !== REDIRECT_PATH) {
@@ -68,7 +70,7 @@ function main() {
     if (err) {
       const desc = params.get('error_description') || '';
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(`<!DOCTYPE html><meta charset="utf-8"><p>OAuth error: <strong>${err}</strong></p><p>${desc}</p>`);
+      res.end(`<!DOCTYPE html><meta charset="utf-8"><p>OAuth error: <strong>${escHtml(err)}</strong></p><p>${escHtml(desc)}</p>`);
       console.error('\nOAuth error:', err, desc);
       server.close();
       process.exit(1);
