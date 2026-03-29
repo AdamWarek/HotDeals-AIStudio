@@ -41,6 +41,10 @@ SCRAPER_PROXY_URL=http://user:pass@proxy-host:port
 
 Supported formats: `http://`, `https://`, `socks5://`. The proxy is only used by Puppeteer for Hebe and Urban Outfitters scrapers.
 
+### GitHub Actions: site deploy after Daily Deals Scraper
+
+Pushes made with the default `GITHUB_TOKEN` do **not** trigger other workflows. Add a repository secret **`GH_PUSH_TOKEN`**: a [personal access token](https://github.com/settings/tokens) with **`repo`** scope (classic) or fine-grained **Contents: Read and write** on this repo. The scraper workflow uses it only for `git push` so **Deploy to GitHub Pages** runs on `master`.
+
 ## 🚀 Next Steps
 
 1.  **Residential proxy:** Add a `SCRAPER_PROXY_URL` secret to CI for Hebe/UO.

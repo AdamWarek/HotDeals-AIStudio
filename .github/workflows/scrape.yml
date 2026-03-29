@@ -46,12 +46,19 @@ jobs:
           SCRAPER_PROXY_URL: ${{ secrets.SCRAPER_PROXY_URL }}
           MERGE_NEWSLETTER_DEALS: '1'
 
+      # Pushes with GITHUB_TOKEN do NOT trigger other workflows (GitHub limitation).
+      # Set repo secret GH_PUSH_TOKEN: classic PAT with `repo` scope (or fine-grained: Contents R/W on this repo).
       - name: Commit and Push Changes
+        env:
+          GH_PUSH_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add public/deals.json public/data/
-          
-          # No [skip ci]: push must trigger Deploy to GitHub Pages (deploy.yml on master).
           git commit -m "chore: update daily deals" || echo "No changes to commit"
+          if [ -n "${GH_PUSH_TOKEN}" ]; then
+            git remote set-url origin "https://x-access-token:${GH_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          else
+            echo "::warning::GH_PUSH_TOKEN secret missing — push will not trigger Deploy to GitHub Pages. Add a PAT under Settings → Secrets → Actions."
+          fi
           git push
