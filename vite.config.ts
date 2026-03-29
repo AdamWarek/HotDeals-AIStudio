@@ -27,6 +27,10 @@ export default defineConfig(({mode}) => {
   return {
     plugins: [react(), tailwindcss()],
     base: mode === 'production' ? '/HotDeals-AIStudio/' : '/',
+    build: {
+      // Required for top-level await in firebase.ts (runtime fetch of init.json).
+      target: 'es2022',
+    },
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
       '__COMMIT_HASH__': JSON.stringify(commitHash),
