@@ -13,11 +13,22 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
+/** Split comma-separated origins; trim whitespace; drop empties. */
+function parseCorsOrigins(value: string | undefined): string[] {
+  if (!value?.trim()) return [];
+  return value
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
 const ALLOWED_ORIGINS = [
-  'http://localhost:3000',
-  'http://127.0.0.1:3000',
-  process.env.CORS_ORIGIN,
-].filter(Boolean) as string[];
+  ...new Set([
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    ...parseCorsOrigins(process.env.CORS_ORIGIN),
+  ]),
+];
 
 app.use(helmet({
   contentSecurityPolicy: process.env.NODE_ENV === 'production' ? undefined : false,
