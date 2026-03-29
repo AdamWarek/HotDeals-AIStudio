@@ -13,7 +13,6 @@ import { scrapePullAndBear } from './scrapers/pullandbear.js';
 import { scrapeStradivarius } from './scrapers/stradivarius.js';
 import { scrapeBershka } from './scrapers/bershka.js';
 import { scrapeHM } from './scrapers/hm.js';
-import { scrapeUrbanOutfitters } from './scrapers/urbanoutfitters.js';
 import { scrapeRossmann } from './scrapers/rossmann.js';
 import { scrapeHebe } from './scrapers/hebe.js';
 import { scrapeDouglas } from './scrapers/douglas.js';
@@ -160,7 +159,6 @@ async function scrapeDeals() {
     { name: 'Pull&Bear', id: 'pullandbear', fn: scrapePullAndBear },
     { name: 'Stradivarius', id: 'stradivarius', fn: scrapeStradivarius },
     { name: 'H&M', id: 'hm', fn: scrapeHM },
-    { name: 'Urban Outfitters', id: 'urbanoutfitters', fn: scrapeUrbanOutfitters },
     { name: 'Rossmann', id: 'rossmann', fn: scrapeRossmann },
     { name: 'Hebe', id: 'hebe', fn: scrapeHebe },
     { name: 'Douglas', id: 'douglas', fn: scrapeDouglas },
@@ -211,6 +209,9 @@ async function scrapeDeals() {
     console.log(`Waiting 4 seconds before next scraper...`);
     await new Promise((r) => setTimeout(r, 4000));
   }
+
+  console.log('\n--- Urban Outfitters ---');
+  console.log('Skipping Urban Outfitters (disabled temporarily). Re-enable in scrape.js scrapers[].');
 
   console.log('\n--- Adidas & Nike ---');
   console.log('Skipping Adidas.pl (T4 Akamai) and Nike.com/pl (ToS). No site scrapers for these brands.');
