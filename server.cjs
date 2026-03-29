@@ -34,11 +34,17 @@ var import_dotenv = __toESM(require("dotenv"), 1);
 import_dotenv.default.config();
 var app = (0, import_express.default)();
 var PORT = 3e3;
+function parseCorsOrigins(value) {
+  if (!value?.trim()) return [];
+  return value.split(",").map((s) => s.trim()).filter(Boolean);
+}
 var ALLOWED_ORIGINS = [
-  "http://localhost:3000",
-  "http://127.0.0.1:3000",
-  process.env.CORS_ORIGIN
-].filter(Boolean);
+  .../* @__PURE__ */ new Set([
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    ...parseCorsOrigins(process.env.CORS_ORIGIN)
+  ])
+];
 app.use((0, import_helmet.default)({
   contentSecurityPolicy: process.env.NODE_ENV === "production" ? void 0 : false
 }));
