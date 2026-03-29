@@ -24,6 +24,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 // server.ts
 var import_express = __toESM(require("express"), 1);
 var import_cors = __toESM(require("cors"), 1);
+var import_helmet = __toESM(require("helmet"), 1);
+var import_express_rate_limit = __toESM(require("express-rate-limit"), 1);
 var import_genai = require("@google/genai");
 var import_promises = __toESM(require("fs/promises"), 1);
 var import_path = __toESM(require("path"), 1);
@@ -32,29 +34,61 @@ var import_dotenv = __toESM(require("dotenv"), 1);
 import_dotenv.default.config();
 var app = (0, import_express.default)();
 var PORT = 3e3;
-app.use((0, import_cors.default)());
-app.use(import_express.default.json());
+var ALLOWED_ORIGINS = [
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  process.env.CORS_ORIGIN
+].filter(Boolean);
+app.use((0, import_helmet.default)({
+  contentSecurityPolicy: process.env.NODE_ENV === "production" ? void 0 : false
+}));
+app.use((0, import_cors.default)({
+  origin: ALLOWED_ORIGINS,
+  methods: ["GET", "POST"]
+}));
+app.use(import_express.default.json({ limit: "100kb" }));
+var globalLimiter = (0, import_express_rate_limit.default)({
+  windowMs: 15 * 60 * 1e3,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests, please try again later." }
+});
+app.use("/api/", globalLimiter);
+var aiLimiter = (0, import_express_rate_limit.default)({
+  windowMs: 15 * 60 * 1e3,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "AI insights rate limit exceeded. Try again in a few minutes." }
+});
+var MAX_QUERY_LENGTH = 500;
+var MAX_DEALS_COUNT = 50;
 var ai = new import_genai.GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 var DATA_FILE = import_path.default.join(process.cwd(), "public", "deals.json");
-app.get("/api/deals", async (req, res) => {
+app.get("/api/deals", async (_req, res) => {
   try {
     const data = await import_promises.default.readFile(DATA_FILE, "utf-8");
     res.json(JSON.parse(data));
-  } catch (error) {
+  } catch {
     res.status(500).json({ error: "Failed to read deals data" });
   }
 });
-app.post("/api/ai/insights", async (req, res) => {
+app.post("/api/ai/insights", aiLimiter, async (req, res) => {
   try {
     const { deals, query } = req.body;
     if (!deals || !Array.isArray(deals)) {
       return res.status(400).json({ error: "Invalid deals data" });
     }
+    if (deals.length > MAX_DEALS_COUNT) {
+      return res.status(400).json({ error: `Too many deals. Maximum is ${MAX_DEALS_COUNT}.` });
+    }
+    const sanitizedQuery = typeof query === "string" ? query.slice(0, MAX_QUERY_LENGTH) : "Provide a summary of the best deals available right now.";
     const prompt = `
       You are an AI assistant for a personal website promotion aggregator.
       Analyze the following deals and answer the user's query.
       
-      Query: ${query || "Provide a summary of the best deals available right now."}
+      Query: ${sanitizedQuery}
       
       Deals:
       ${JSON.stringify(deals, null, 2)}
@@ -85,7 +119,7 @@ async function startServer() {
   } else {
     const distPath = import_path.default.join(process.cwd(), "dist");
     app.use(import_express.default.static(distPath));
-    app.get("*", (req, res) => {
+    app.get("*", (_req, res) => {
       res.sendFile(import_path.default.join(distPath, "index.html"));
     });
   }
