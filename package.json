@@ -1,7 +1,7 @@
 {
   "name": "hotdeals-aistudio",
   "private": true,
-  "version": "1.0.12",
+  "version": "1.0.13",
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
@@ -11,6 +11,7 @@
     "deploy": "gh-pages -d dist",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
+    "gmail-oauth-setup": "node scripts/gmail-oauth-setup.js",
     "ingest-newsletters": "node scripts/ingest-newsletters.js",
     "scrape": "node scripts/scrape.js",
     "test:newsletter": "node --test scripts/tests/newsletter-parse.test.js",

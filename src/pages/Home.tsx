@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'motion/react';
 const Home: React.FC = () => {
   const { theme } = useTheme();
   const [deals, setDeals] = useState<any[]>([]);
+  const [lastScrapedAt, setLastScrapedAt] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('newest');
@@ -24,6 +25,18 @@ const Home: React.FC = () => {
         return res.json();
       })
       .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          let latest = '';
+          for (const row of data) {
+            const s = row?.scraped_at;
+            if (typeof s !== 'string' || !s) continue;
+            if (!latest || new Date(s) > new Date(latest)) latest = s;
+          }
+          setLastScrapedAt(latest || null);
+        } else {
+          setLastScrapedAt(null);
+        }
+
         // Map scraped deals to the format expected by DealCard
         const mappedDeals = data.map((deal: any, index: number) => {
           let originalPrice = undefined;
@@ -82,6 +95,7 @@ const Home: React.FC = () => {
       })
       .catch(err => {
         console.error('Failed to fetch deals:', err);
+        setLastScrapedAt(null);
         setLoading(false);
       });
   }, []);
@@ -145,7 +159,7 @@ const Home: React.FC = () => {
       <main className="pt-24 pb-12 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-8">
         
         <div className="lg:col-span-4">
-          <PromoBanner />
+          <PromoBanner lastScrapedAt={lastScrapedAt} />
 
           <div className="flex items-center justify-between mb-6">
             <div className="flex space-x-1 bg-white dark:bg-gray-900 p-1 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">

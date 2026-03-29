@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const PromoBanner: React.FC = () => {
+function formatLastScrape(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return new Intl.DateTimeFormat('pl-PL', {
+    dateStyle: 'short',
+    timeStyle: 'short',
+  }).format(d);
+}
+
+type PromoBannerProps = {
+  lastScrapedAt?: string | null;
+};
+
+const PromoBanner: React.FC<PromoBannerProps> = ({ lastScrapedAt = null }) => {
   // Use the previously generated image from localStorage, or a static fallback if it's cleared
   const [imageUrl] = useState<string>(
     localStorage.getItem('promo_banner_img_v4') ||
@@ -23,6 +36,11 @@ const PromoBanner: React.FC = () => {
           <div className="mt-4 inline-block bg-white text-red-600 px-6 py-2 rounded-full font-bold text-sm shadow-sm group-hover:bg-gray-50 transition-colors">
             Odkryj Oferty
           </div>
+          {lastScrapedAt ? (
+            <p className="mt-2 text-xs md:text-sm text-white/75 font-medium drop-shadow-sm tracking-wide">
+              Odświeżone {formatLastScrape(lastScrapedAt)}
+            </p>
+          ) : null}
         </div>
       </div>
     </Link>
