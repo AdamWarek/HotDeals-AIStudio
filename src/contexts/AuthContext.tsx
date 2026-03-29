@@ -1,18 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { 
-  onAuthStateChanged, 
-  User, 
-  signInWithPopup, 
-  signOut, 
-  signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword,
-  updateProfile
-} from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db, googleProvider } from '../firebase';
+
+/** Shape aligned with common OAuth profiles — map from Supabase `user` when you wire auth. */
+export interface AuthUser {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+}
 
 interface AuthContextType {
-  user: User | null;
+  user: AuthUser | null;
   loading: boolean;
   isAdmin: boolean;
   signInWithGoogle: () => Promise<void>;
@@ -22,53 +19,25 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setUser(user);
-      if (user) {
-        // Check if user exists in Firestore, if not create
-        const userDocRef = doc(db, 'users', user.uid);
-        const userDoc = await getDoc(userDocRef);
-        
-        if (!userDoc.exists()) {
-          await setDoc(userDocRef, {
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-            role: 'user'
-          });
-        } else {
-          setIsAdmin(userDoc.data()?.role === 'admin' || user.email === 'wiruje@gmail.com');
-        }
-      } else {
-        setIsAdmin(false);
-      }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
+    setLoading(false);
+    // TODO: Supabase — onAuthStateChange / getSession, load profile + role for isAdmin
   }, []);
 
   const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (error) {
-      console.error('Error signing in with Google:', error);
-    }
+    // TODO: Supabase — signInWithOAuth({ provider: 'google', ... })
+    console.info('[auth] signInWithGoogle placeholder — connect Supabase');
   };
 
   const logout = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
+    // TODO: Supabase — supabase.auth.signOut()
+    console.info('[auth] logout placeholder — connect Supabase');
   };
+
+  const isAdmin = false;
 
   return (
     <AuthContext.Provider value={{ user, loading, isAdmin, signInWithGoogle, logout }}>

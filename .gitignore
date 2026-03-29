@@ -8,5 +8,3 @@ coverage/
 .env*
 !.env.example
 public/data/*.json
-# Firebase config must not be committed (API key + project ids)
-firebase-applet-config.json
