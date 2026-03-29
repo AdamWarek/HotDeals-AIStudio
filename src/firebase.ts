@@ -35,7 +35,7 @@ function readFirebaseOptionsFromViteEnv(): FirebaseOptions {
 
   if (missing.length > 0) {
     throw new Error(
-      `Missing Firebase environment variables: ${missing.join(', ')}. Copy .env.example to .env (local) or use production mode (project id + Hosting init.json).`,
+      `Missing Firebase environment variables: ${missing.join(', ')}. Copy .env.example to .env (local), or set these in GitHub Actions for Pages (init.json cannot be fetched cross-origin from github.io).`,
     );
   }
 
@@ -73,12 +73,36 @@ function assertRemoteFirebaseOptions(
   }
 }
 
+function isFirebaseHostingHostname(hostname: string): boolean {
+  return hostname.endsWith('.web.app') || hostname.endsWith('.firebaseapp.com');
+}
+
 /**
- * Production: load web SDK config from Firebase Hosting reserved URL so the
- * apiKey string is not embedded in static assets scanned by GitHub.
- * Requires at least one Firebase Hosting deploy for this project.
+ * Same-origin only: Firebase serves this on *.web.app / *.firebaseapp.com.
+ * Cross-origin fetch from github.io is blocked (no CORS on init.json).
  */
-async function fetchFirebaseOptionsFromHosting(): Promise<FirebaseOptions> {
+async function fetchFirebaseOptionsSameOrigin(): Promise<FirebaseOptions | null> {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+  if (!isFirebaseHostingHostname(window.location.hostname)) {
+    return null;
+  }
+  const res = await fetch('/__/firebase/init.json', { credentials: 'omit' });
+  if (!res.ok) {
+    return null;
+  }
+  const data: unknown = await res.json();
+  assertRemoteFirebaseOptions(data);
+  return data;
+}
+
+/**
+ * Optional: load config from another origin (e.g. custom CORS proxy).
+ * Default Firebase Hosting URLs do not send Access-Control-Allow-Origin, so
+ * this fails in the browser for GitHub Pages — use VITE_FIREBASE_* in CI instead.
+ */
+async function fetchFirebaseOptionsFromRemoteUrl(): Promise<FirebaseOptions> {
   const explicit = import.meta.env.VITE_FIREBASE_INIT_JSON_URL?.trim();
   const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID?.trim();
   const url =
@@ -89,20 +113,24 @@ async function fetchFirebaseOptionsFromHosting(): Promise<FirebaseOptions> {
 
   if (!url) {
     throw new Error(
-      'Production Firebase config: set VITE_FIREBASE_PROJECT_ID (or VITE_FIREBASE_INIT_JSON_URL).',
+      'Set VITE_FIREBASE_API_KEY (GitHub Pages), or host on Firebase Hosting, or set VITE_FIREBASE_INIT_JSON_URL / VITE_FIREBASE_PROJECT_ID for a CORS-enabled config URL.',
     );
   }
 
-  const res = await fetch(url, { credentials: 'omit' });
-  if (!res.ok) {
+  try {
+    const res = await fetch(url, { credentials: 'omit' });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
+    const data: unknown = await res.json();
+    assertRemoteFirebaseOptions(data);
+    return data;
+  } catch (e) {
     throw new Error(
-      `Failed to load Firebase config (${res.status}). Deploy Firebase Hosting for this project at least once so /__/firebase/init.json exists. URL: ${url}`,
+      `Cannot load Firebase config from ${url}. Cross-origin init.json is blocked by CORS in browsers (typical on GitHub Pages). Fix: add VITE_FIREBASE_API_KEY and related secrets to GitHub Actions, or host the app on Firebase Hosting. Underlying: ${String(e)}`,
+      { cause: e },
     );
   }
-
-  const data: unknown = await res.json();
-  assertRemoteFirebaseOptions(data);
-  return data;
 }
 
 async function resolveFirebaseOptions(): Promise<FirebaseOptions> {
@@ -110,7 +138,13 @@ async function resolveFirebaseOptions(): Promise<FirebaseOptions> {
   if (apiKey) {
     return readFirebaseOptionsFromViteEnv();
   }
-  return fetchFirebaseOptionsFromHosting();
+
+  const sameOrigin = await fetchFirebaseOptionsSameOrigin();
+  if (sameOrigin) {
+    return sameOrigin;
+  }
+
+  return fetchFirebaseOptionsFromRemoteUrl();
 }
 
 const firebaseOptions = await resolveFirebaseOptions();
