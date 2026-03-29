@@ -2,6 +2,8 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
+import ThemeToggle from "../components/ThemeToggle";
 
 declare const __COMMIT_HASH__: string;
 declare const __APP_VERSION__: string;
@@ -11,15 +13,15 @@ const styleEl = document.createElement("style");
 styleEl.textContent = `
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
   
+  /* Base shell; theme colors come from inline styles + html.dark */
   .special-offers-page {
-    background: #FAF8F4;
     font-family: 'DM Sans', sans-serif;
-    color: #1A1A1A;
     min-height: 100vh;
   }
   .special-offers-page ::-webkit-scrollbar { width:4px; height:4px; }
   .special-offers-page ::-webkit-scrollbar-track { background:transparent; }
   .special-offers-page ::-webkit-scrollbar-thumb { background:#D8D0C8; border-radius:99px; }
+  .dark .special-offers-page ::-webkit-scrollbar-thumb { background:#555; border-radius:99px; }
   
   @keyframes fadeSlideIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
   @keyframes popHeart { 0%,100% { transform:scale(1); } 40% { transform:scale(1.4); } 70% { transform:scale(0.9); } }
@@ -63,21 +65,72 @@ const fmt = (n: number | undefined | null) => {
 };
 const ALL_BRANDS = Object.keys(B).sort();
 
+function getSpecialOffersPalette(theme: "light" | "dark") {
+  if (theme === "dark") {
+    return {
+      pageBg: "#0f0f0f",
+      columnBg: "#0f0f0f",
+      surface: "#1a1a1a",
+      text: "#f0f0f0",
+      textMuted: "#888",
+      border: "#333",
+      inputBg: "#2a2a2a",
+      headerBg: "rgba(15,15,15,0.96)",
+      favInactiveBg: "#2a2a2a",
+      favHeartTint: "#fff0ee",
+      sizeToggleBg: "#2a2a2a",
+      sizeInactive: "#888",
+      sizeActiveBg: "#e8e8e8",
+      sizeActiveText: "#1a1a1a",
+      footerBg: "#252525",
+      dashedEmpty: "#444",
+      favPanelBg: "#1a1a1a",
+      cardShadow: "0 2px 14px rgba(0,0,0,0.45)",
+      linkBack: "#f0f0f0",
+      heartUnfavBg: "rgba(45,45,45,0.92)",
+      emptyHint: "#aaa",
+    };
+  }
+  return {
+    pageBg: "#FAF8F4",
+    columnBg: "#FAF8F4",
+    surface: "#fff",
+    text: "#1A1A1A",
+    textMuted: "#ABABAB",
+    border: "#EDE8E2",
+    inputBg: "#EDEBE7",
+    headerBg: "rgba(250,248,244,0.96)",
+    favInactiveBg: "#EDEBE7",
+    favHeartTint: "#FFF0EE",
+    sizeToggleBg: "#EDEBE7",
+    sizeInactive: "#888",
+    sizeActiveBg: "#1A1A1A",
+    sizeActiveText: "#fff",
+    footerBg: "#EDEBE7",
+    dashedEmpty: "#D8D0C8",
+    favPanelBg: "#fff",
+    cardShadow: "0 2px 14px rgba(0,0,0,0.065)",
+    linkBack: "#1A1A1A",
+    heartUnfavBg: "rgba(255,255,255,0.88)",
+    emptyHint: "#888",
+  };
+}
+
 /* ─── FAV PANEL ─────────────────────────────────────────────────────────────── */
-function FavPanel({ items, favorites, onFav, onClose }: any) {
+function FavPanel({ items, favorites, onFav, onClose, palette }: any) {
   if (items.length === 0) return null;
   return (
     <div style={{
-      background:"#fff",
-      borderBottom:"1px solid #EDE8E2",
+      background: palette.favPanelBg,
+      borderBottom:`1px solid ${palette.border}`,
       padding:"12px 16px",
       animation:"fadeSlideIn 0.22s ease",
     }}>
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"10px" }}>
-        <span style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:"16px", fontWeight:700, color:"#1A1A1A" }}>
+        <span style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:"16px", fontWeight:700, color: palette.text }}>
           ♥ Ulubione ({items.length})
         </span>
-        <button onClick={onClose} style={{ background:"none", border:"none", cursor:"pointer", fontSize:"18px", color:"#999", lineHeight:1 }}>×</button>
+        <button onClick={onClose} style={{ background:"none", border:"none", cursor:"pointer", fontSize:"18px", color: palette.textMuted, lineHeight:1 }}>×</button>
       </div>
       <div style={{ display:"flex", gap:"10px", overflowX:"auto", paddingBottom:"4px" }}>
         {items.map((item: any) => {
@@ -85,7 +138,7 @@ function FavPanel({ items, favorites, onFav, onClose }: any) {
           return (
             <div key={item.id} style={{
               flexShrink:0, width:"88px",
-              background:"#FAF8F4", borderRadius:"12px",
+              background: palette.pageBg, borderRadius:"12px",
               overflow:"hidden", position:"relative",
             }}>
               <img src={item.img} alt={item.name} style={{ width:"88px", height:"88px", objectFit:"cover", display:"block" }} />
@@ -96,7 +149,7 @@ function FavPanel({ items, favorites, onFav, onClose }: any) {
                 cursor:"pointer", color:"#fff", display:"flex", alignItems:"center", justifyContent:"center",
               }}>♥</button>
               <div style={{ padding:"5px 6px" }}>
-                <p style={{ fontSize:"9px", fontWeight:600, color:"#1A1A1A", lineHeight:1.3, display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical", overflow:"hidden" }}>{item.name}</p>
+                <p style={{ fontSize:"9px", fontWeight:600, color: palette.text, lineHeight:1.3, display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical", overflow:"hidden" }}>{item.name}</p>
                 {item.sale > 0 && (
                   <p style={{ fontSize:"10px", fontWeight:700, color:brand.accent, marginTop:"2px" }}>{fmt(item.sale)}</p>
                 )}
@@ -111,7 +164,7 @@ function FavPanel({ items, favorites, onFav, onClose }: any) {
 }
 
 /* ─── PROMO CARD ─────────────────────────────────────────────────────────────── */
-function PromoCard({ item, isFav, onFav, size }: any) {
+function PromoCard({ item, isFav, onFav, size, palette }: any) {
   const brand = B[item.brand];
   const isSmall  = size === "small";
   const isLarge  = size === "large";
@@ -128,10 +181,10 @@ function PromoCard({ item, isFav, onFav, size }: any) {
 
   return (
     <div className="card-hover" style={{
-      background:"#fff",
+      background: palette.surface,
       borderRadius: isLarge ? "18px" : "14px",
       overflow:"hidden",
-      boxShadow:"0 2px 14px rgba(0,0,0,0.065)",
+      boxShadow: palette.cardShadow,
       display:"flex",
       flexDirection: isLarge ? "row" : "column",
       position:"relative",
@@ -189,7 +242,7 @@ function PromoCard({ item, isFav, onFav, size }: any) {
             width: isSmall ? "26px" : "32px",
             height: isSmall ? "26px" : "32px",
             borderRadius:"50%",
-            background: isFav ? "#FF3B30" : "rgba(255,255,255,0.88)",
+            background: isFav ? "#FF3B30" : palette.heartUnfavBg,
             border:"none", cursor:"pointer",
             fontSize: isSmall ? "12px" : "14px",
             display:"flex", alignItems:"center", justifyContent:"center",
@@ -221,7 +274,7 @@ function PromoCard({ item, isFav, onFav, size }: any) {
         <p style={{
           fontFamily:"'DM Sans', sans-serif",
           fontSize: isSmall ? "11px" : isLarge ? "15px" : "13px",
-          fontWeight:600, color:"#1A1A1A",
+          fontWeight:600, color: palette.text,
           lineHeight:1.35,
           display:"-webkit-box", WebkitLineClamp: isSmall ? 2 : 3,
           WebkitBoxOrient:"vertical", overflow:"hidden",
@@ -233,12 +286,12 @@ function PromoCard({ item, isFav, onFav, size }: any) {
             <span style={{
               fontFamily:"'Cormorant Garamond', serif",
               fontSize: isSmall ? "15px" : isLarge ? "22px" : "18px",
-              fontWeight:700, color:"#1A1A1A",
+              fontWeight:700, color: palette.text,
             }}>{fmt(item.sale)}</span>
             {item.orig > item.sale && (
               <span style={{
                 fontSize: isSmall ? "10px" : "11px",
-                color:"#ABABAB", textDecoration:"line-through",
+                color: palette.textMuted, textDecoration:"line-through",
               }}>{fmt(item.orig)}</span>
             )}
           </div>
@@ -271,7 +324,7 @@ function PromoCard({ item, isFav, onFav, size }: any) {
 }
 
 /* ─── BRAND SECTION ──────────────────────────────────────────────────────────── */
-function BrandSection({ brand, items, favorites, onFav, cardSize }: any) {
+function BrandSection({ brand, items, favorites, onFav, cardSize, palette }: any) {
   const cfg = B[brand];
   const cols = cardSize === "small" ? 3 : cardSize === "large" ? 1 : 2;
 
@@ -287,7 +340,7 @@ function BrandSection({ brand, items, favorites, onFav, cardSize }: any) {
           <span style={{
             fontFamily:"'Cormorant Garamond', serif",
             fontSize:"22px", fontWeight:700,
-            color:"#1A1A1A", letterSpacing:"-0.01em",
+            color: palette.text, letterSpacing:"-0.01em",
           }}>{brand}</span>
           <span style={{
             background: cfg.light, color: cfg.accent,
@@ -310,10 +363,10 @@ function BrandSection({ brand, items, favorites, onFav, cardSize }: any) {
       {items.length === 0 ? (
         <div style={{
           margin: "0 16px", padding: "24px 16px",
-          background: "#fff", borderRadius: "14px",
-          textAlign: "center", border: "1px dashed #D8D0C8"
+          background: palette.surface, borderRadius: "14px",
+          textAlign: "center", border: `1px dashed ${palette.dashedEmpty}`
         }}>
-          <p style={{ fontSize: "13px", color: "#888", marginBottom: "8px" }}>
+          <p style={{ fontSize: "13px", color: palette.emptyHint, marginBottom: "8px" }}>
             Nie udało się pobrać ofert lub brak pasujących promocji.
           </p>
           <a
@@ -342,6 +395,7 @@ function BrandSection({ brand, items, favorites, onFav, cardSize }: any) {
               isFav={favorites.has(item.id)}
               onFav={onFav}
               size={cardSize}
+              palette={palette}
             />
           ))}
         </div>
@@ -352,6 +406,8 @@ function BrandSection({ brand, items, favorites, onFav, cardSize }: any) {
 
 /* ─── MAIN APP ───────────────────────────────────────────────────────────────── */
 export default function SpecialOffers() {
+  const { theme } = useTheme();
+  const palette = useMemo(() => getSpecialOffersPalette(theme), [theme]);
   const [promos,         setPromos]         = useState<any[]>([]);
   const [loading,        setLoading]        = useState(true);
   const [favorites,      setFavorites]      = useState(new Set());
@@ -497,15 +553,23 @@ export default function SpecialOffers() {
   ];
 
   return (
-    <div className="special-offers-page">
-      <div style={{ maxWidth:"430px", margin:"0 auto", minHeight:"100vh", background:"#FAF8F4" }}>
+    <div
+      className="special-offers-page"
+      style={{
+        background: palette.pageBg,
+        color: palette.text,
+        fontFamily: "'DM Sans', sans-serif",
+        minHeight: "100vh",
+      }}
+    >
+      <div style={{ maxWidth:"430px", margin:"0 auto", minHeight:"100vh", background: palette.columnBg }}>
 
         {/* ── STICKY HEADER ── */}
         <div style={{
           position:"sticky", top:0, zIndex:100,
-          background:"rgba(250,248,244,0.96)",
+          background: palette.headerBg,
           backdropFilter:"blur(12px)",
-          borderBottom:"1px solid #EDE8E2",
+          borderBottom:`1px solid ${palette.border}`,
         }}>
           {/* Top bar */}
           <div style={{
@@ -513,7 +577,7 @@ export default function SpecialOffers() {
             padding:"12px 16px 10px",
           }}>
             {/* Back Button */}
-            <Link to="/" style={{ color: "#1A1A1A", textDecoration: "none", display: "flex", alignItems: "center" }}>
+            <Link to="/" style={{ color: palette.linkBack, textDecoration: "none", display: "flex", alignItems: "center" }}>
               <ArrowLeft size={24} />
             </Link>
 
@@ -523,17 +587,17 @@ export default function SpecialOffers() {
                 <div style={{
                   fontFamily:"'Cormorant Garamond', serif",
                   fontSize:"22px", fontWeight:700,
-                  color:"#1A1A1A", lineHeight:1,
+                  color: palette.text, lineHeight:1,
                   letterSpacing:"-0.02em",
                 }}>✦ deal<em>s</em></div>
-                <span style={{ fontSize:"9px", color:"#ABABAB", fontFamily:"monospace" }}>v.{commitVersion}</span>
+                <span style={{ fontSize:"9px", color: palette.textMuted, fontFamily:"monospace" }}>v.{commitVersion}</span>
               </div>
-              <div style={{ fontSize:"8px", fontWeight:600, color:"#ABABAB", letterSpacing:"0.12em", textTransform:"uppercase", marginTop:"1px" }}>Dla dziewczyn · Rozmiar M</div>
+              <div style={{ fontSize:"8px", fontWeight:600, color: palette.textMuted, letterSpacing:"0.12em", textTransform:"uppercase", marginTop:"1px" }}>Dla dziewczyn · Rozmiar M</div>
             </div>
 
             {/* Search */}
-            <div style={{ flex:1, position:"relative" }}>
-              <span style={{ position:"absolute", left:"10px", top:"50%", transform:"translateY(-50%)", fontSize:"14px", color:"#ABABAB" }}>🔍</span>
+            <div style={{ flex:1, position:"relative", minWidth: 0 }}>
+              <span style={{ position:"absolute", left:"10px", top:"50%", transform:"translateY(-50%)", fontSize:"14px", color: palette.textMuted }}>🔍</span>
               <input
                 ref={searchRef}
                 value={search}
@@ -541,19 +605,23 @@ export default function SpecialOffers() {
                 placeholder="Szukaj ofert…"
                 style={{
                   width:"100%",
-                  background:"#EDEBE7",
+                  background: palette.inputBg,
                   border:"none", borderRadius:"12px",
                   padding:"9px 12px 9px 32px",
                   fontSize:"13px", fontFamily:"'DM Sans', sans-serif",
-                  color:"#1A1A1A", outline:"none",
+                  color: palette.text, outline:"none",
                 }}
               />
               {search && (
                 <button onClick={() => setSearch("")} style={{
                   position:"absolute", right:"8px", top:"50%", transform:"translateY(-50%)",
-                  background:"none", border:"none", cursor:"pointer", fontSize:"14px", color:"#ABABAB",
+                  background:"none", border:"none", cursor:"pointer", fontSize:"14px", color: palette.textMuted,
                 }}>×</button>
               )}
+            </div>
+
+            <div className="flex shrink-0 items-center gap-1">
+              <ThemeToggle />
             </div>
 
             {/* Fav button */}
@@ -561,7 +629,7 @@ export default function SpecialOffers() {
               onClick={() => setShowFavPanel(v => !v)}
               style={{
                 flexShrink:0,
-                background: showFavPanel ? "#FF3B30" : favItems.length > 0 ? "#FFF0EE" : "#EDEBE7",
+                background: showFavPanel ? "#FF3B30" : favItems.length > 0 ? palette.favHeartTint : palette.favInactiveBg,
                 border:"none", borderRadius:"12px",
                 padding:"8px 12px",
                 cursor:"pointer",
@@ -580,7 +648,7 @@ export default function SpecialOffers() {
 
           {/* Fav panel */}
           {showFavPanel && (
-            <FavPanel items={favItems} favorites={favorites} onFav={toggleFav} onClose={() => setShowFavPanel(false)} />
+            <FavPanel items={favItems} favorites={favorites} onFav={toggleFav} onClose={() => setShowFavPanel(false)} palette={palette} />
           )}
 
           {/* Brand filter + size toggle row */}
@@ -619,7 +687,7 @@ export default function SpecialOffers() {
             <div style={{
               flexShrink:0,
               display:"flex",
-              background:"#EDEBE7",
+              background: palette.sizeToggleBg,
               borderRadius:"10px",
               padding:"3px",
               gap:"2px",
@@ -629,8 +697,8 @@ export default function SpecialOffers() {
                   key={key}
                   onClick={() => setCardSize(key)}
                   style={{
-                    background: cardSize === key ? "#1A1A1A" : "transparent",
-                    color: cardSize === key ? "#fff" : "#888",
+                    background: cardSize === key ? palette.sizeActiveBg : "transparent",
+                    color: cardSize === key ? palette.sizeActiveText : palette.sizeInactive,
                     border:"none", borderRadius:"8px",
                     width:"26px", height:"26px",
                     fontSize:"11px", fontWeight:700,
@@ -646,21 +714,21 @@ export default function SpecialOffers() {
         {/* ── CONTENT ── */}
         <div style={{ paddingTop:"16px", paddingBottom:"40px" }}>
           {loading ? (
-            <div style={{ textAlign:"center", padding:"60px 20px", color:"#ABABAB" }}>
+            <div style={{ textAlign:"center", padding:"60px 20px", color: palette.textMuted }}>
               <div style={{ fontSize:"40px", marginBottom:"12px" }}>⏳</div>
-              <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:"20px", fontWeight:600 }}>Ładowanie ofert...</p>
+              <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:"20px", fontWeight:600, color: palette.text }}>Ładowanie ofert...</p>
             </div>
           ) : (
             <>
               {/* Results summary */}
               <div style={{ padding:"0 16px 14px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-                <span style={{ fontSize:"12px", color:"#ABABAB", fontWeight:500 }}>
+                <span style={{ fontSize:"12px", color: palette.textMuted, fontWeight:500 }}>
                   {totalDeals} ofert · {grouped.length} marek
                 </span>
                 {selectedBrands.length > 0 && (
                   <button onClick={() => setSelectedBrands([])} style={{
                     background:"none", border:"none", cursor:"pointer",
-                    fontSize:"11px", color:"#888", fontWeight:600,
+                    fontSize:"11px", color: palette.emptyHint, fontWeight:600,
                     textDecoration:"underline",
                   }}>Wyczyść filtry</button>
                 )}
@@ -668,9 +736,9 @@ export default function SpecialOffers() {
 
               {/* Brand sections */}
               {grouped.length === 0 ? (
-                <div style={{ textAlign:"center", padding:"60px 20px", color:"#ABABAB" }}>
+                <div style={{ textAlign:"center", padding:"60px 20px", color: palette.textMuted }}>
                   <div style={{ fontSize:"40px", marginBottom:"12px" }}>🔍</div>
-                  <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:"20px", fontWeight:600 }}>Brak ofert</p>
+                  <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:"20px", fontWeight:600, color: palette.text }}>Brak ofert</p>
                   <p style={{ fontSize:"13px", marginTop:"6px" }}>Spróbuj innego wyszukiwania lub wyczyść filtry.</p>
                 </div>
               ) : (
@@ -682,6 +750,7 @@ export default function SpecialOffers() {
                     favorites={favorites}
                     onFav={toggleFav}
                     cardSize={cardSize}
+                    palette={palette}
                   />
                 ))
               )}
@@ -691,11 +760,11 @@ export default function SpecialOffers() {
           {/* Footer note */}
           <div style={{
             margin:"8px 16px 0",
-            background:"#EDEBE7",
+            background: palette.footerBg,
             borderRadius:"14px",
             padding:"14px 16px",
           }}>
-            <p style={{ fontSize:"11px", color:"#888", lineHeight:1.6, textAlign:"center" }}>
+            <p style={{ fontSize:"11px", color: palette.emptyHint, lineHeight:1.6, textAlign:"center" }}>
               ✦ Oferty skierowane do <strong>dziewczyn w wieku 14–18 lat, rozmiar M</strong>.<br />
               Kliknij <strong>Zobacz ofertę</strong>, aby zobaczyć aktualne ceny na stronie marki.<br />
               Lista ofert jest aktualizowana ręcznie — sprawdź dostępność bezpośrednio w sklepie.
