@@ -101,6 +101,13 @@ export async function scrapeSephora() {
         return { sale, orig };
       }
 
+      function isUnitPriceText(raw) {
+        const text = String(raw || '').replace(/\s+/g, ' ').toLowerCase();
+        if (!text) return false;
+        // Exclude common unit price patterns (e.g. "129,99 zł / 100 g").
+        return /\/\s*(?:\d+\s*)?(?:g|kg|ml|l)\b|na\s*100\s*(?:g|kg|ml|l)\b|za\s*100\s*(?:g|kg|ml|l)\b/.test(text);
+      }
+
       function priceFromCardText(card) {
         const text = (card.innerText || '').replace(/\s+/g, ' ');
         const re = /(\d{1,3}(?:[\s\u00a0]?\d{3})*(?:[,.]\d{2})?)\s*zł/gi;
@@ -132,10 +139,21 @@ export async function scrapeSephora() {
         let saleEl = card.querySelector('.price-sales, [class*="price--promo"], [class*="promo-price"], .price-promo, [data-testid="product-price-promo"], [class*="price-sales"]');
         let origEl = card.querySelector('.price-standard, [class*="price--base"], [class*="old-price"], .price-old, [data-testid="product-price-base"], [class*="price-standard"]');
 
-        let salePrice = fromTc.sale || (saleEl ? saleEl.innerText.trim() : null);
-        let origPrice = fromTc.orig || (origEl ? origEl.innerText.trim() : null);
+        const saleFromDom = saleEl ? saleEl.innerText.trim() : null;
+        const origFromDom = origEl ? origEl.innerText.trim() : null;
+
+        // Prefer visible main DOM prices for Sephora; telemetry fields can include unit-price values.
+        let salePrice = !isUnitPriceText(saleFromDom) ? saleFromDom : null;
+        let origPrice = !isUnitPriceText(origFromDom) ? origFromDom : null;
+
+        if (!salePrice && fromTc.sale && !isUnitPriceText(fromTc.sale)) salePrice = fromTc.sale;
+        if (!origPrice && fromTc.orig && !isUnitPriceText(fromTc.orig)) origPrice = fromTc.orig;
+
         if (!salePrice) { const ft = priceFromCardText(card); salePrice = ft.sale; if (!origPrice) origPrice = ft.orig; }
         if (!salePrice && card.innerHTML) { const hm = card.innerHTML.match(/>([^<]*\d[\d\s,\u00a0]*\s*zł)/i); if (hm) salePrice = hm[1].replace(/^[\s>]+/, '').trim(); }
+
+        if (isUnitPriceText(salePrice)) salePrice = null;
+        if (isUnitPriceText(origPrice)) origPrice = null;
 
         const allImgs = Array.from(card.querySelectorAll('img'));
         const imgEl = allImgs.find((img) => { const src = img.src || ''; return !src.includes('svg') && !src.includes('icon') && !src.includes('wishlist'); }) || allImgs[0];
