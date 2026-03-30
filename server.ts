@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { GoogleGenAI } from '@google/genai';
+import { createClient } from '@supabase/supabase-js';
 import fs from 'fs/promises';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
@@ -62,6 +63,19 @@ const MAX_QUERY_LENGTH = 500;
 const MAX_DEALS_COUNT = 50;
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const hasSupabaseConfig = Boolean(supabaseUrl && supabaseServiceRoleKey);
+
+const supabase = hasSupabaseConfig
+  ? createClient(supabaseUrl!, supabaseServiceRoleKey!, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+        detectSessionInUrl: false,
+      },
+    })
+  : null;
 
 const DATA_FILE = path.join(process.cwd(), 'public', 'deals.json');
 
@@ -115,6 +129,46 @@ app.post('/api/ai/insights', aiLimiter, async (req, res) => {
   } catch (error) {
     console.error('AI Insights error:', error);
     res.status(500).json({ error: 'Failed to generate insights' });
+  }
+});
+
+const visitsLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 15,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Visit tracking rate limit exceeded. Try again in a moment.' },
+});
+
+app.post('/api/visits/track', visitsLimiter, async (req, res) => {
+  try {
+    if (req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
+      return res.status(400).json({ error: 'This endpoint does not accept request body.' });
+    }
+
+    if (!supabase) {
+      return res.status(503).json({ error: 'Visit tracking is not configured.' });
+    }
+
+    const { data, error } = await supabase.rpc('track_visit');
+
+    if (error) {
+      console.error('[visits.track] rpc failed', { code: error.code, message: error.message });
+      return res.status(502).json({ error: 'Failed to track visit.' });
+    }
+
+    const payload = Array.isArray(data) ? data[0] : data;
+    const dailyVisits = Number(payload?.daily_visits);
+    const totalVisits = Number(payload?.total_visits);
+
+    if (!Number.isInteger(dailyVisits) || dailyVisits < 0 || !Number.isInteger(totalVisits) || totalVisits < 0) {
+      console.error('[visits.track] invalid rpc payload shape');
+      return res.status(502).json({ error: 'Invalid visit stats payload.' });
+    }
+
+    return res.json({ dailyVisits, totalVisits });
+  } catch {
+    return res.status(500).json({ error: 'Unexpected visit tracking error.' });
   }
 });
 

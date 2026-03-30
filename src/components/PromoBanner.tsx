@@ -12,9 +12,13 @@ function formatLastScrape(iso: string): string {
 
 type PromoBannerProps = {
   lastScrapedAt?: string | null;
+  visitStats?: {
+    dailyVisits: number;
+    totalVisits: number;
+  } | null;
 };
 
-const PromoBanner: React.FC<PromoBannerProps> = ({ lastScrapedAt = null }) => {
+const PromoBanner: React.FC<PromoBannerProps> = ({ lastScrapedAt = null, visitStats = null }) => {
   // Use the previously generated image from localStorage, or a static fallback if it's cleared
   const [imageUrl] = useState<string>(
     localStorage.getItem('promo_banner_img_v4') ||
@@ -39,6 +43,11 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ lastScrapedAt = null }) => {
           {lastScrapedAt ? (
             <p className="mt-2 text-xs md:text-sm text-white/75 font-medium drop-shadow-sm tracking-wide">
               Odświeżone {formatLastScrape(lastScrapedAt)}
+            </p>
+          ) : null}
+          {visitStats ? (
+            <p className="mt-1 text-xs md:text-sm text-white/80 font-medium drop-shadow-sm tracking-wide">
+              Dziś: {visitStats.dailyVisits} • Łącznie: {visitStats.totalVisits}
             </p>
           ) : null}
         </div>

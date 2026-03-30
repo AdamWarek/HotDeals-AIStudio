@@ -6,6 +6,13 @@ import PromoBanner from '../components/PromoBanner';
 import { Plus, Search, Flame, TrendingUp, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
+type VisitStats = {
+  dailyVisits: number;
+  totalVisits: number;
+};
+
+let hasTrackedVisitForSession = false;
+
 const Home: React.FC = () => {
   const { theme } = useTheme();
   const [deals, setDeals] = useState<any[]>([]);
@@ -13,6 +20,7 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('newest');
+  const [visitStats, setVisitStats] = useState<VisitStats | null>(null);
 
   useEffect(() => {
     fetch(import.meta.env.BASE_URL + 'deals.json')
@@ -98,6 +106,36 @@ const Home: React.FC = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (hasTrackedVisitForSession) return;
+    hasTrackedVisitForSession = true;
+
+    fetch(import.meta.env.BASE_URL + 'api/visits/track', { method: 'POST' })
+      .then(async (res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data: unknown) => {
+        const payload = data as Partial<VisitStats>;
+        if (
+          Number.isInteger(payload.dailyVisits) &&
+          (payload.dailyVisits as number) >= 0 &&
+          Number.isInteger(payload.totalVisits) &&
+          (payload.totalVisits as number) >= 0
+        ) {
+          setVisitStats({
+            dailyVisits: payload.dailyVisits as number,
+            totalVisits: payload.totalVisits as number,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('[visits.track] failed', error);
+      });
+  }, []);
+
   const filteredDeals = deals.filter(deal => 
     deal.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     deal.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -157,7 +195,7 @@ const Home: React.FC = () => {
       <main className="pt-24 pb-12 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-8">
         
         <div className="lg:col-span-4">
-          <PromoBanner lastScrapedAt={lastScrapedAt} />
+          <PromoBanner lastScrapedAt={lastScrapedAt} visitStats={visitStats} />
 
           <div className="flex items-center justify-between mb-6">
             <div className="flex space-x-1 bg-white dark:bg-gray-900 p-1 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
