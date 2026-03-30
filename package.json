@@ -1,7 +1,7 @@
 {
   "name": "hotdeals-aistudio",
   "private": true,
-  "version": "1.0.25",
+  "version": "1.0.26",
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
@@ -20,6 +20,7 @@
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",
     "@google/genai": "^1.46.0",
+    "@supabase/supabase-js": "^2.101.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
     "cors": "^2.8.6",

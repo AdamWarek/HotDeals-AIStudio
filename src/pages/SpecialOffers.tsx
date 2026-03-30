@@ -435,6 +435,13 @@ export default function SpecialOffers() {
           let originalPrice = undefined;
           let pct = 0;
           let currentPrice = 0;
+
+          const normalizeSephoraScale = (value: number, brand: string) => {
+            if (brand.toLowerCase() !== 'sephora') return value;
+            // Backward-compat: old scraped rows stored Sephora PLN values as x100.
+            if (value >= 1000 && Number.isFinite(value)) return value / 100;
+            return value;
+          };
           
           // Handle new schema
           if (deal.sale_price) {
@@ -468,6 +475,11 @@ export default function SpecialOffers() {
           if (brandName.toLowerCase() === 'stradivarius') brandName = 'Stradivarius';
           if (brandName.toLowerCase() === 'nike') brandName = 'Nike';
           if (brandName.toLowerCase() === 'adidas') brandName = 'Adidas';
+
+          currentPrice = normalizeSephoraScale(currentPrice, brandName);
+          if (typeof originalPrice === 'number') {
+            originalPrice = normalizeSephoraScale(originalPrice, brandName);
+          }
 
           return {
             id: index,

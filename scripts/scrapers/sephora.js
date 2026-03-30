@@ -95,9 +95,20 @@ export async function scrapeSephora() {
         if (!tc) return { sale: null, orig: null };
         const saleKeys = ['product_price_ati', 'price_ati', 'sales_price_ati', 'product_price', 'price'];
         const origKeys = ['product_old_price_ati', 'old_price_ati', 'list_price_ati', 'base_price_ati'];
+        function formatTcPrice(raw) {
+          if (raw == null || raw === '') return null;
+          const value = String(raw).trim();
+          // Sephora telemetry values are often in grosz (e.g. 31500 => 315,00 PLN).
+          if (/^\d+$/.test(value)) {
+            const grosz = Number(value);
+            if (!Number.isFinite(grosz) || grosz <= 0) return null;
+            return `${(grosz / 100).toFixed(2).replace('.', ',')} zł`;
+          }
+          return value.includes('zł') ? value : `${value} zł`;
+        }
         let sale = null, orig = null;
-        for (const k of saleKeys) { if (tc[k] != null && tc[k] !== '') { sale = String(tc[k]).trim() + ' zł'; break; } }
-        for (const k of origKeys) { if (tc[k] != null && tc[k] !== '') { orig = String(tc[k]).trim() + ' zł'; break; } }
+        for (const k of saleKeys) { if (tc[k] != null && tc[k] !== '') { sale = formatTcPrice(tc[k]); break; } }
+        for (const k of origKeys) { if (tc[k] != null && tc[k] !== '') { orig = formatTcPrice(tc[k]); break; } }
         return { sale, orig };
       }
 
