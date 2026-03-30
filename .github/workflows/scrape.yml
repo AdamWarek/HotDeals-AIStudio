@@ -57,6 +57,10 @@ jobs:
           git add public/deals.json public/data/
           git commit -m "chore: update daily deals" || echo "No changes to commit"
           if [ -n "${GH_PUSH_TOKEN}" ]; then
+            # actions/checkout injects GITHUB_TOKEN via http.extraheader which takes precedence over
+            # URL-embedded credentials and prevents the push from triggering other workflows.
+            # Unsetting the extraheader ensures the PAT is used, which DOES trigger downstream workflows.
+            git config --unset-all http.https://github.com/.extraheader || true
             git remote set-url origin "https://x-access-token:${GH_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           else
             echo "::warning::GH_PUSH_TOKEN secret missing — push will not trigger Deploy to GitHub Pages. Add a PAT under Settings → Secrets → Actions."
