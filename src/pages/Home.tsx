@@ -12,6 +12,7 @@ type VisitStats = {
 };
 
 let hasTrackedVisitForSession = false;
+const EDGE_VISITS_ENDPOINT = import.meta.env.VITE_VISITS_EDGE_ENDPOINT;
 
 const Home: React.FC = () => {
   const { theme } = useTheme();
@@ -110,7 +111,9 @@ const Home: React.FC = () => {
     if (hasTrackedVisitForSession) return;
     hasTrackedVisitForSession = true;
 
-    fetch(import.meta.env.BASE_URL + 'api/visits/track', { method: 'POST' })
+    if (!EDGE_VISITS_ENDPOINT) return;
+
+    fetch(EDGE_VISITS_ENDPOINT, { method: 'POST' })
       .then(async (res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
