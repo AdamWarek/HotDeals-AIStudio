@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+declare const __COMMIT_HASH__: string;
+
 function formatLastScrape(iso: string): string {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
@@ -20,27 +22,38 @@ type PromoBannerProps = {
   } | null;
 };
 
+const PROMO_BANNER_STORAGE_KEY = 'promo_banner_img_v5';
+
 const PromoBanner: React.FC<PromoBannerProps> = ({ lastScrapedAt = null, visitStats = null }) => {
-  // Use the previously generated image from localStorage, or a static fallback if it's cleared
+  // Use a previously generated image from localStorage, or the mall hero (4:3) as default
   const [imageUrl] = useState<string>(
-    localStorage.getItem('promo_banner_img_v4') ||
-      `${import.meta.env.BASE_URL}excited-teenage-friends.png`
+    localStorage.getItem(PROMO_BANNER_STORAGE_KEY) ||
+      `${import.meta.env.BASE_URL}shopping.png`
   );
   const commitVersion = typeof __COMMIT_HASH__ !== 'undefined' ? __COMMIT_HASH__ : 'dev';
 
   return (
-    <Link to="/special-offers" className="block mb-10 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative group border border-gray-100 dark:border-gray-800 bg-gray-900 min-h-[300px] md:min-h-[400px]">
-      <img 
-        src={imageUrl} 
-        alt="Specjalne Oferty" 
-        className="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500 z-0 [mask-image:radial-gradient(circle_at_center,black_60%,transparent)]"
+    <Link
+      to="/special-offers"
+      className="block mb-10 w-full rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow relative group border border-rose-200/60 dark:border-gray-800 bg-[#e8d4e4] h-[min(52vw,280px)] sm:h-[min(48vw,320px)] md:h-[min(42vw,400px)] max-h-[420px]"
+    >
+      <img
+        src={imageUrl}
+        alt="Specjalne Oferty"
+        width={2560}
+        height={1920}
+        className="absolute inset-0 w-full h-full object-cover object-[30%_42%] sm:object-[28%_40%] md:object-[26%_38%] group-hover:scale-[1.03] transition-transform duration-500 ease-out z-0"
       />
-      
-      <div className="absolute inset-0 bg-gradient-to-r from-red-600/95 via-red-600/60 to-transparent w-full md:w-3/4 flex items-center p-6 md:p-10 z-10">
-        <div className="text-white max-w-md md:max-w-lg">
-          <h2 className="text-3xl md:text-5xl font-black mb-2 drop-shadow-md tracking-tight">OMG! Najlepsze Okazje!</h2>
-          <p className="text-base md:text-lg font-medium drop-shadow-md opacity-90">Sprawdź naszą sekretną podstronę z najbardziej niesamowitymi ofertami w Twoim życiu.</p>
-          <div className="mt-4 inline-block bg-white text-red-600 px-6 py-2 rounded-full font-bold text-sm shadow-sm group-hover:bg-gray-50 transition-colors">
+
+      <div className="absolute inset-0 bg-gradient-to-r from-rose-600/90 via-rose-500/45 to-transparent w-[min(100%,520px)] sm:w-[min(100%,480px)] md:w-[46%] flex items-center p-5 sm:p-7 md:p-10 z-10">
+        <div className="text-white max-w-[min(100%,20rem)] sm:max-w-sm md:max-w-md">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-2 [text-shadow:0_2px_16px_rgba(0,0,0,0.35)] tracking-tight">
+            OMG! Najlepsze Okazje!
+          </h2>
+          <p className="text-sm sm:text-base md:text-lg font-medium [text-shadow:0_1px_10px_rgba(0,0,0,0.3)] opacity-95">
+            Sprawdź naszą sekretną podstronę z najbardziej niesamowitymi ofertami w Twoim życiu.
+          </p>
+          <div className="mt-4 inline-block bg-white text-rose-600 px-5 py-2 md:px-6 rounded-full font-bold text-xs sm:text-sm shadow-md group-hover:bg-rose-50 transition-colors">
             Odkryj Oferty
           </div>
           {lastScrapedAt ? (
@@ -58,7 +71,7 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ lastScrapedAt = null, visitSt
           ) : null}
         </div>
       </div>
-      <div className="absolute top-4 left-4 z-20 rounded-md bg-black/55 px-2 py-1 text-[10px] font-semibold tracking-wide text-white/95 shadow-sm backdrop-blur-sm">
+      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 rounded-md bg-black/50 px-2 py-1 text-[10px] font-semibold tracking-wide text-white/95 shadow-sm backdrop-blur-sm">
         v.{commitVersion}
       </div>
     </Link>
