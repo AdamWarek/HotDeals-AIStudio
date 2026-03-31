@@ -437,7 +437,7 @@ export default function SpecialOffers() {
           return value;
         };
 
-        const getParentId = (site: string, url: string, name: string): string => {
+        const getParentId = (site: string, url: string, name: string, imageUrl?: string): string => {
           const MAX_LEN = 2048;
           const s = (site || '').toLowerCase();
           const p = (url || '').slice(0, MAX_LEN).split('?')[0];
@@ -447,7 +447,13 @@ export default function SpecialOffers() {
             case 'pullandbear': { const m = p.match(/\/([^/]+)-c0p\d+\.html$/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
             case 'stradivarius': { const m = p.match(/\/([^/]+)-l\d+$/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
             case 'hm': { const m = p.match(/productpage\.(\d{7})\d{3}\.html$/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
-            case 'douglas': { const m = p.match(/\/p\/(\d+)/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
+            case 'douglas': {
+              const imgM = (imageUrl || '').match(/(\d{6,})-0-/);
+              if (imgM) return `${s}|img:${imgM[1]}`;
+              const m = p.match(/\/p\/(\d+)/);
+              if (m) return `${s}|${m[1]}`;
+              return `${s}|${p || n}`;
+            }
             case 'sephora': { const m = p.match(/\/p\/(.+)-P\d+\.html$/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
             default: return `${s}|${p || n}`;
           }
@@ -512,9 +518,12 @@ export default function SpecialOffers() {
 
         const deduped = new Map<string, any>();
         for (const item of allMapped) {
-          const key = getParentId(item.site, item.url, item.name);
+          const key = getParentId(item.site, item.url, item.name, item.img);
           const existing = deduped.get(key);
-          if (!existing || item.sale < existing.sale) {
+          const isBetter = !existing
+            || item.sale < existing.sale
+            || (item.sale === existing.sale && item.url && !existing.url);
+          if (isBetter) {
             deduped.set(key, item);
           }
         }

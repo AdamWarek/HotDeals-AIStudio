@@ -80,7 +80,7 @@ export async function scrapeDouglas() {
             if (fullTitle.length > 150) fullTitle = fullTitle.substring(0, 147) + "...";
 
             const imgEl = card.querySelector('img');
-            const linkEl = card.querySelector('a');
+            const linkEl = card.querySelector('a[href*="/pl/p/"]') || card.querySelector('a[href*="/p/"]') || card.querySelector('a');
             const url = linkEl ? linkEl.href : null;
 
             // Source-level dedup by URL

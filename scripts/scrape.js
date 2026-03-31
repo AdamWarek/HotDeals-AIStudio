@@ -128,7 +128,7 @@ function dedupeDeals(deals) {
     const url = d.product_url || d.url || '';
     if (!url && !d.name) continue;
 
-    const key = extractParentId(d.site, url, d.name);
+    const key = extractParentId(d.site, url, d.name, d.image_url || d.image);
     const existing = seen.get(key);
     if (!existing) {
       seen.set(key, d);
@@ -137,7 +137,11 @@ function dedupeDeals(deals) {
 
     const existingPrice = parsePlnAmount(existing.sale_price) ?? parsePlnAmount(existing.price) ?? Infinity;
     const candidatePrice = parsePlnAmount(d.sale_price) ?? parsePlnAmount(d.price) ?? Infinity;
-    if (candidatePrice < existingPrice) {
+    const existingUrl = existing.product_url || existing.url || '';
+    const candidateUrl = d.product_url || d.url || '';
+    const isBetter = candidatePrice < existingPrice
+      || (candidatePrice === existingPrice && candidateUrl && !existingUrl);
+    if (isBetter) {
       seen.set(key, d);
     }
   }

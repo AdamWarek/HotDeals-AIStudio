@@ -73,7 +73,7 @@ describe('extractParentId — per-brand happy path', () => {
     assert.ok(a.includes('1276500'));
   });
 
-  it('Douglas: URL with and without ?variant= produce the same key', () => {
+  it('Douglas: URL with and without ?variant= produce the same key (no image)', () => {
     const a = extractParentId(
       'douglas',
       'https://www.douglas.pl/pl/p/5011406025?variant=1176639',
@@ -86,6 +86,41 @@ describe('extractParentId — per-brand happy path', () => {
     );
     assert.strictEqual(a, b);
     assert.ok(a.includes('5011406025'));
+  });
+
+  it('Douglas: URL with and without ?variant= produce the same key (with shared image)', () => {
+    const img = 'https://media.douglas.pl/medias/GKgoSs1176639-0-dgl-PL.jpg?context=abc';
+    const a = extractParentId(
+      'douglas',
+      'https://www.douglas.pl/pl/p/5011406025?variant=1176639',
+      'ARMANI Luminous silk long title',
+      img,
+    );
+    const b = extractParentId(
+      'douglas',
+      'https://www.douglas.pl/pl/p/5011406025',
+      'ARMANI Luminous silk short',
+      img,
+    );
+    assert.strictEqual(a, b);
+    assert.ok(a.includes('img:1176639'));
+  });
+
+  it('Douglas: empty URL + matching image asset ID produces the same key as valid-URL row', () => {
+    const withUrl = extractParentId(
+      'douglas',
+      'https://www.douglas.pl/pl/p/5012008204',
+      'DR IRENA ERIS Cien do powiek',
+      'https://media.douglas.pl/medias/TBF7ZC1283155-0-dgl-PL.png?context=abc',
+    );
+    const noUrl = extractParentId(
+      'douglas',
+      '',
+      'DR IRENA ERIS MOONLIT SKY',
+      'https://media.douglas.pl/medias/TBF7ZC1283155-0-dgl-PL.png?context=abc',
+    );
+    assert.strictEqual(withUrl, noUrl, 'Both rows should produce the same image-based key');
+    assert.ok(withUrl.includes('img:1283155'));
   });
 
   it('Sephora: two -P{id} variants produce the same parent key', () => {
@@ -101,6 +136,28 @@ describe('extractParentId — per-brand happy path', () => {
     );
     assert.strictEqual(a, b);
     assert.ok(a.startsWith('sephora|'));
+  });
+
+  it('Douglas: empty URL with no image falls back to name', () => {
+    const result = extractParentId('douglas', '', 'Some Douglas Product', '');
+    assert.strictEqual(result, 'douglas|some douglas product');
+  });
+
+  it('Douglas: image regex does not false-match on non-Douglas media URLs', () => {
+    const a = extractParentId(
+      'douglas',
+      '',
+      'Product A',
+      'https://other-cdn.com/images/photo-wide.jpg',
+    );
+    const b = extractParentId(
+      'douglas',
+      '',
+      'Product B',
+      'https://other-cdn.com/images/photo-wide.jpg',
+    );
+    // No 6+ digit sequence followed by -0-, so both should fall back to different names
+    assert.notStrictEqual(a, b);
   });
 
   it('Rossmann/Hebe default: different URLs produce different keys', () => {
@@ -170,9 +227,11 @@ describe('extractParentId — edge cases', () => {
 
 describe('extractParentId — security', () => {
   it('ReDoS payload: long repeated patterns complete in < 50ms', () => {
-    const malicious = 'https://evil.com/' + 'a'.repeat(10000) + '-c0p' + '1'.repeat(10000) + '.html';
+    const maliciousUrl = 'https://evil.com/' + 'a'.repeat(10000) + '-c0p' + '1'.repeat(10000) + '.html';
+    const maliciousImg = 'https://media.douglas.pl/medias/' + '9'.repeat(20000) + '-0-global.jpg';
     const start = performance.now();
-    extractParentId('bershka', malicious, 'test');
+    extractParentId('bershka', maliciousUrl, 'test');
+    extractParentId('douglas', '', 'test', maliciousImg);
     const elapsed = performance.now() - start;
     assert.ok(elapsed < 50, `ReDoS: took ${elapsed.toFixed(1)}ms, expected < 50ms`);
   });
@@ -203,10 +262,7 @@ describe('extractParentId — security', () => {
 describe('extractParentId — integration with deals.json', () => {
   it('Bershka "Jeansy baggy flare" collapses from 3 rows to 1', () => {
     const dealsPath = path.join(__dirname, '../../public/deals.json');
-    if (!fs.existsSync(dealsPath)) {
-      // Skip gracefully in CI where deals.json may not exist
-      return;
-    }
+    if (!fs.existsSync(dealsPath)) return;
 
     const deals = JSON.parse(fs.readFileSync(dealsPath, 'utf8'));
     const bershkaJeansy = deals.filter(
@@ -219,5 +275,38 @@ describe('extractParentId — integration with deals.json', () => {
       bershkaJeansy.map((d) => extractParentId(d.site, d.product_url || d.url, d.name)),
     );
     assert.strictEqual(parentIds.size, 1, `Expected 1 unique parent ID, got ${parentIds.size}: ${[...parentIds].join(', ')}`);
+  });
+
+  it('Douglas rows collapse from 64 to ~32 after dedup by image asset ID', () => {
+    const dealsPath = path.join(__dirname, '../../public/deals.json');
+    if (!fs.existsSync(dealsPath)) return;
+
+    const deals = JSON.parse(fs.readFileSync(dealsPath, 'utf8'));
+    const douglas = deals.filter((d) => d.site === 'douglas');
+    if (douglas.length < 2) return;
+
+    const seen = new Map();
+    for (const d of douglas) {
+      const key = extractParentId(d.site, d.product_url || d.url, d.name, d.image_url || d.image);
+      const existing = seen.get(key);
+      const url = d.product_url || d.url || '';
+      const existingUrl = existing ? (existing.product_url || existing.url || '') : '';
+      if (!existing || (url && !existingUrl)) {
+        seen.set(key, d);
+      }
+    }
+    const deduped = seen.size;
+
+    assert.ok(
+      deduped <= Math.ceil(douglas.length / 2) + 2,
+      `Expected Douglas to collapse roughly in half: ${douglas.length} → ${deduped}`,
+    );
+    // Every kept row should have a valid product URL
+    for (const d of seen.values()) {
+      const url = d.product_url || d.url || '';
+      if (url) {
+        assert.ok(url.includes('douglas.pl'), `Expected Douglas URL, got: ${url}`);
+      }
+    }
   });
 });

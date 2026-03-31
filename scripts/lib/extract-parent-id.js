@@ -4,15 +4,22 @@
  * Products listed multiple times as color/size variants share the same parent ID,
  * allowing deduplication to a single card per product.
  *
- * @param {string} site  - Scraper identifier (e.g. 'bershka', 'hm', 'douglas')
- * @param {string} url   - Product URL (may include query params)
- * @param {string} name  - Product display name (fallback when URL is absent)
+ * @param {string} site     - Scraper identifier (e.g. 'bershka', 'hm', 'douglas')
+ * @param {string} url      - Product URL (may include query params)
+ * @param {string} name     - Product display name (fallback when URL is absent)
+ * @param {string} imageUrl - Optional image URL; used as secondary key for Douglas
  * @returns {string} Opaque key suitable for Map lookups — never rendered as HTML.
  */
 
 const MAX_URL_LENGTH = 2048;
 
-export function extractParentId(site, url, name) {
+function extractImageAssetId(imageUrl) {
+  if (!imageUrl) return null;
+  const m = imageUrl.match(/(\d{6,})-0-/);
+  return m ? m[1] : null;
+}
+
+export function extractParentId(site, url, name, imageUrl) {
   const safeSite = String(site || '').toLowerCase();
   const safePath = String(url || '').slice(0, MAX_URL_LENGTH).split('?')[0];
   const safeName = String(name || '').trim().toLowerCase();
@@ -32,8 +39,11 @@ export function extractParentId(site, url, name) {
       return m ? `${safeSite}|${m[1]}` : `${safeSite}|${safePath || safeName}`;
     }
     case 'douglas': {
+      const imgId = extractImageAssetId(imageUrl);
+      if (imgId) return `${safeSite}|img:${imgId}`;
       const m = safePath.match(/\/p\/(\d+)/);
-      return m ? `${safeSite}|${m[1]}` : `${safeSite}|${safePath || safeName}`;
+      if (m) return `${safeSite}|${m[1]}`;
+      return `${safeSite}|${safePath || safeName}`;
     }
     case 'sephora': {
       const m = safePath.match(/\/p\/(.+)-P\d+\.html$/);
