@@ -23,6 +23,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install and Build 🔧
+        env:
+          VITE_VISITS_EDGE_ENDPOINT: https://cnautbfqcfvdhtuygacv.functions.supabase.co/track-visit
         run: |
           npm install
           npm run build
