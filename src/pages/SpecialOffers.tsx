@@ -622,7 +622,6 @@ export default function SpecialOffers() {
                   color: palette.text, lineHeight:1,
                   letterSpacing:"-0.02em",
                 }}>✦ deal<em>s</em></div>
-                <span style={{ fontSize:"9px", color: palette.textMuted, fontFamily:"monospace" }}>v.{commitVersion}</span>
               </div>
               <div style={{ fontSize:"8px", fontWeight:600, color: palette.textMuted, letterSpacing:"0.12em", textTransform:"uppercase", marginTop:"1px" }}>Dla dziewczyn · Rozmiar M</div>
             </div>

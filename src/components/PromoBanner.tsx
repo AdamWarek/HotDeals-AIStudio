@@ -26,6 +26,7 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ lastScrapedAt = null, visitSt
     localStorage.getItem('promo_banner_img_v4') ||
       `${import.meta.env.BASE_URL}excited-teenage-friends.png`
   );
+  const commitVersion = typeof __COMMIT_HASH__ !== 'undefined' ? __COMMIT_HASH__ : 'dev';
 
   return (
     <Link to="/special-offers" className="block mb-10 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative group border border-gray-100 dark:border-gray-800 bg-gray-900 min-h-[300px] md:min-h-[400px]">
@@ -56,6 +57,9 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ lastScrapedAt = null, visitSt
             </p>
           ) : null}
         </div>
+      </div>
+      <div className="absolute top-4 left-4 z-20 rounded-md bg-black/55 px-2 py-1 text-[10px] font-semibold tracking-wide text-white/95 shadow-sm backdrop-blur-sm">
+        v.{commitVersion}
       </div>
     </Link>
   );
