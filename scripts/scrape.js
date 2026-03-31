@@ -17,6 +17,7 @@ import { scrapeRossmann } from './scrapers/rossmann.js';
 import { scrapeHebe } from './scrapers/hebe.js';
 import { scrapeDouglas } from './scrapers/douglas.js';
 import { scrapeSephora } from './scrapers/sephora.js';
+import { extractParentId } from './lib/extract-parent-id.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -123,16 +124,24 @@ function logScrapeSummary(scraperId, count, ms, errorMessage) {
 
 function dedupeDeals(deals) {
   const seen = new Map();
-  const out = [];
   for (const d of deals) {
-    const url = (d.product_url || d.url || '').split('?')[0];
-    const key = `${d.site}|${url || d.name}`;
+    const url = d.product_url || d.url || '';
     if (!url && !d.name) continue;
-    if (seen.has(key)) continue;
-    seen.set(key, true);
-    out.push(d);
+
+    const key = extractParentId(d.site, url, d.name);
+    const existing = seen.get(key);
+    if (!existing) {
+      seen.set(key, d);
+      continue;
+    }
+
+    const existingPrice = parsePlnAmount(existing.sale_price) ?? parsePlnAmount(existing.price) ?? Infinity;
+    const candidatePrice = parsePlnAmount(d.sale_price) ?? parsePlnAmount(d.price) ?? Infinity;
+    if (candidatePrice < existingPrice) {
+      seen.set(key, d);
+    }
   }
-  return out;
+  return Array.from(seen.values());
 }
 
 async function scrapeDeals() {

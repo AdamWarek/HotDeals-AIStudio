@@ -1,7 +1,7 @@
 {
   "name": "hotdeals-aistudio",
   "private": true,
-  "version": "1.0.28",
+  "version": "1.0.29",
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
@@ -15,6 +15,7 @@
     "ingest-newsletters": "node scripts/ingest-newsletters.js",
     "scrape": "node scripts/scrape.js",
     "test:newsletter": "node --test scripts/tests/newsletter-parse.test.js",
+    "test:dedup": "node --test scripts/tests/extract-parent-id.test.js",
     "start": "node dist/server.cjs"
   },
   "dependencies": {

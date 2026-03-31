@@ -431,26 +431,44 @@ export default function SpecialOffers() {
         return res.json();
       })
       .then(data => {
-        const mappedPromos = data.map((deal: any, index: number) => {
-          let originalPrice = undefined;
+        const normalizeSephoraScale = (value: number, brand: string) => {
+          if (brand.toLowerCase() !== 'sephora') return value;
+          if (value >= 1000 && Number.isFinite(value)) return value / 100;
+          return value;
+        };
+
+        const getParentId = (site: string, url: string, name: string): string => {
+          const MAX_LEN = 2048;
+          const s = (site || '').toLowerCase();
+          const p = (url || '').slice(0, MAX_LEN).split('?')[0];
+          const n = (name || '').trim().toLowerCase();
+          switch (s) {
+            case 'bershka':
+            case 'pullandbear': { const m = p.match(/\/([^/]+)-c0p\d+\.html$/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
+            case 'stradivarius': { const m = p.match(/\/([^/]+)-l\d+$/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
+            case 'hm': { const m = p.match(/productpage\.(\d{7})\d{3}\.html$/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
+            case 'douglas': { const m = p.match(/\/p\/(\d+)/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
+            case 'sephora': { const m = p.match(/\/p\/(.+)-P\d+\.html$/); return m ? `${s}|${m[1]}` : `${s}|${p || n}`; }
+            default: return `${s}|${p || n}`;
+          }
+        };
+
+        const BRAND_MAP: Record<string, string> = {
+          hm: 'H&M', pullandbear: 'Pull&Bear', urbanoutfitters: 'Urban Outfitters',
+          rossmann: 'Rossmann', hebe: 'Hebe', douglas: 'Douglas', sephora: 'Sephora',
+          bershka: 'Bershka', stradivarius: 'Stradivarius', nike: 'Nike', adidas: 'Adidas',
+        };
+
+        const allMapped = data.map((deal: any, index: number) => {
+          let originalPrice: number | undefined = undefined;
           let pct = 0;
           let currentPrice = 0;
 
-          const normalizeSephoraScale = (value: number, brand: string) => {
-            if (brand.toLowerCase() !== 'sephora') return value;
-            // Backward-compat: old scraped rows stored Sephora PLN values as x100.
-            if (value >= 1000 && Number.isFinite(value)) return value / 100;
-            return value;
-          };
-          
-          // Handle new schema
           if (deal.sale_price) {
             currentPrice = parseFloat(deal.sale_price.replace(' PLN', ''));
             originalPrice = parseFloat((deal.original_price || '').replace(' PLN', ''));
             pct = deal.discount_pct || 0;
-          } 
-          // Handle old schema
-          else if (deal.price) {
+          } else if (deal.price) {
             currentPrice = parseFloat(deal.price);
             if (deal.discount) {
               pct = parseInt(deal.discount.replace('%', ''));
@@ -462,19 +480,9 @@ export default function SpecialOffers() {
             }
           }
 
-          // Map brand name from site ID if needed
           let brandName = deal.brand || deal.source_name || deal.site || 'System';
-          if (brandName.toLowerCase() === 'hm') brandName = 'H&M';
-          if (brandName.toLowerCase() === 'pullandbear') brandName = 'Pull&Bear';
-          if (brandName.toLowerCase() === 'urbanoutfitters') brandName = 'Urban Outfitters';
-          if (brandName.toLowerCase() === 'rossmann') brandName = 'Rossmann';
-          if (brandName.toLowerCase() === 'hebe') brandName = 'Hebe';
-          if (brandName.toLowerCase() === 'douglas') brandName = 'Douglas';
-          if (brandName.toLowerCase() === 'sephora') brandName = 'Sephora';
-          if (brandName.toLowerCase() === 'bershka') brandName = 'Bershka';
-          if (brandName.toLowerCase() === 'stradivarius') brandName = 'Stradivarius';
-          if (brandName.toLowerCase() === 'nike') brandName = 'Nike';
-          if (brandName.toLowerCase() === 'adidas') brandName = 'Adidas';
+          const mapped = BRAND_MAP[brandName.toLowerCase()];
+          if (mapped) brandName = mapped;
 
           currentPrice = normalizeSephoraScale(currentPrice, brandName);
           if (typeof originalPrice === 'number') {
@@ -491,6 +499,7 @@ export default function SpecialOffers() {
             pct: pct,
             img: deal.image_url || deal.image || 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=500&h=600&fit=crop',
             url: deal.product_url || deal.url,
+            site: deal.site || '',
             isNew: Math.random() > 0.7,
             scrape_status:
               deal.source_type === 'newsletter'
@@ -500,6 +509,17 @@ export default function SpecialOffers() {
                   : ''
           };
         });
+
+        const deduped = new Map<string, any>();
+        for (const item of allMapped) {
+          const key = getParentId(item.site, item.url, item.name);
+          const existing = deduped.get(key);
+          if (!existing || item.sale < existing.sale) {
+            deduped.set(key, item);
+          }
+        }
+        const mappedPromos = Array.from(deduped.values()).map((item, i) => ({ ...item, id: i }));
+
         setPromos(mappedPromos);
         setLoading(false);
       })
