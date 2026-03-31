@@ -20926,19 +20926,31 @@ app.post("/api/visits/track", visitsLimiter, async (req, res) => {
     if (!supabase) {
       return res.status(503).json({ error: "Visit tracking is not configured." });
     }
-    const { data, error } = await supabase.rpc("track_visit");
+    const visitorId = req.headers["x-visitor-id"];
+    if (!visitorId || typeof visitorId !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(visitorId)) {
+      return res.status(400).json({ error: "Missing or malformed x-visitor-id header." });
+    }
+    const { data, error } = await supabase.rpc("track_unique_visit", {
+      p_visitor_id: visitorId,
+      p_is_bot: false
+    });
     if (error) {
       console.error("[visits.track] rpc failed", { code: error.code, message: error.message });
       return res.status(502).json({ error: "Failed to track visit." });
     }
     const payload = Array.isArray(data) ? data[0] : data;
-    const dailyVisits = Number(payload?.daily_visits);
-    const totalVisits = Number(payload?.total_visits);
-    if (!Number.isInteger(dailyVisits) || dailyVisits < 0 || !Number.isInteger(totalVisits) || totalVisits < 0) {
+    const dailyHuman = Number(payload?.daily_human);
+    const dailyBot = Number(payload?.daily_bot);
+    const totalHuman = Number(payload?.total_human);
+    const totalBot = Number(payload?.total_bot);
+    const allValid = [dailyHuman, dailyBot, totalHuman, totalBot].every(
+      (n) => Number.isInteger(n) && n >= 0
+    );
+    if (!allValid) {
       console.error("[visits.track] invalid rpc payload shape");
       return res.status(502).json({ error: "Invalid visit stats payload." });
     }
-    return res.json({ dailyVisits, totalVisits });
+    return res.json({ dailyHuman, dailyBot, totalHuman, totalBot });
   } catch {
     return res.status(500).json({ error: "Unexpected visit tracking error." });
   }
