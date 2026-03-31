@@ -13,8 +13,10 @@ function formatLastScrape(iso: string): string {
 type PromoBannerProps = {
   lastScrapedAt?: string | null;
   visitStats?: {
-    dailyVisits: number;
-    totalVisits: number;
+    dailyHuman: number;
+    dailyBot: number;
+    totalHuman: number;
+    totalBot: number;
   } | null;
 };
 
@@ -47,7 +49,10 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ lastScrapedAt = null, visitSt
           ) : null}
           {visitStats ? (
             <p className="mt-1 text-xs md:text-sm text-white/80 font-medium drop-shadow-sm tracking-wide">
-              Dziś: {visitStats.dailyVisits} • Łącznie: {visitStats.totalVisits}
+              Dziś: {visitStats.dailyHuman} • Łącznie: {visitStats.totalHuman}
+              <span className="ml-2 text-white/50 text-[0.65rem] md:text-xs">
+                (boty: {visitStats.dailyBot} / {visitStats.totalBot})
+              </span>
             </p>
           ) : null}
         </div>

@@ -7,9 +7,21 @@ import { Plus, Search, Flame, TrendingUp, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 type VisitStats = {
-  dailyVisits: number;
-  totalVisits: number;
+  dailyHuman: number;
+  dailyBot: number;
+  totalHuman: number;
+  totalBot: number;
 };
+
+const VISITOR_ID_KEY = 'hd_visitor_id';
+
+function getOrCreateVisitorId(): string {
+  const existing = localStorage.getItem(VISITOR_ID_KEY);
+  if (existing) return existing;
+  const id = crypto.randomUUID();
+  localStorage.setItem(VISITOR_ID_KEY, id);
+  return id;
+}
 
 let hasTrackedVisitForSession = false;
 const EDGE_VISITS_ENDPOINT = import.meta.env.VITE_VISITS_EDGE_ENDPOINT;
@@ -113,24 +125,26 @@ const Home: React.FC = () => {
 
     if (!EDGE_VISITS_ENDPOINT) return;
 
-    fetch(EDGE_VISITS_ENDPOINT, { method: 'POST' })
-      .then(async (res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
+    const visitorId = getOrCreateVisitorId();
+
+    fetch(EDGE_VISITS_ENDPOINT, {
+      method: 'POST',
+      headers: { 'x-visitor-id': visitorId },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();
       })
       .then((data: unknown) => {
-        const payload = data as Partial<VisitStats>;
-        if (
-          Number.isInteger(payload.dailyVisits) &&
-          (payload.dailyVisits as number) >= 0 &&
-          Number.isInteger(payload.totalVisits) &&
-          (payload.totalVisits as number) >= 0
-        ) {
+        const p = data as Partial<VisitStats>;
+        const values = [p.dailyHuman, p.dailyBot, p.totalHuman, p.totalBot];
+        const allValid = values.every((v) => Number.isInteger(v) && (v as number) >= 0);
+        if (allValid) {
           setVisitStats({
-            dailyVisits: payload.dailyVisits as number,
-            totalVisits: payload.totalVisits as number,
+            dailyHuman: p.dailyHuman as number,
+            dailyBot: p.dailyBot as number,
+            totalHuman: p.totalHuman as number,
+            totalBot: p.totalBot as number,
           });
         }
       })
