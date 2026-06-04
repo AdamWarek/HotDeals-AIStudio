@@ -69,7 +69,12 @@ export async function scrapeDouglas() {
     '--disable-setuid-sandbox',
     '--disable-blink-features=AutomationControlled',
   ];
-  if (proxy) launchArgs.push(`--proxy-server=${proxy.server}`);
+  if (proxy) {
+    launchArgs.push(`--proxy-server=${proxy.server}`);
+    // ScraperAPI (and most MITM proxies) present their own TLS cert — Chrome
+    // rejects it with ERR_CERT_AUTHORITY_INVALID unless we opt out of cert checks.
+    launchArgs.push('--ignore-certificate-errors');
+  }
 
   const browser = await puppeteer.launch({
     headless: 'new',
