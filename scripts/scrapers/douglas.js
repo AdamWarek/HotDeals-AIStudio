@@ -116,10 +116,9 @@ export async function scrapeDouglas() {
     await humanDelay(500, 1500);
 
     console.log('1. Navigating to Douglas promotions page...');
-    // Use the confirmed promo listing URL (the /sale/09 slug was redirecting)
     await page.goto('https://www.douglas.pl/pl/c/promocje/09', {
-      waitUntil: 'domcontentloaded',
-      timeout: 45000,
+      waitUntil: 'networkidle2',
+      timeout: 60000,
     });
 
     // Detect Akamai/CDN block early — bail rather than burning time scrolling
@@ -263,6 +262,16 @@ export async function scrapeDouglas() {
       console.log('Douglas: ' + results.length + ' unique / ' + cards.length + ' total cards.');
       return results;
     });
+
+    // Dump diagnostics when no cards found so we can debug selector mismatches
+    if (items.length === 0) {
+      const diagTitle = await page.title();
+      const diagBody  = await page.evaluate(() => document.body?.innerText?.slice(0, 500) ?? '');
+      const diagHtml  = await page.evaluate(() => document.body?.innerHTML?.slice(0, 1000) ?? '');
+      console.warn(`Douglas: 0 items found. Title="${diagTitle}"`);
+      console.warn(`Douglas body text: ${diagBody}`);
+      console.warn(`Douglas body HTML (first 1000): ${diagHtml}`);
+    }
 
     for (const item of items) {
       if (!item.name || !item.salePrice) continue;
