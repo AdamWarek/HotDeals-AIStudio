@@ -121,9 +121,13 @@ export async function scrapeDouglas() {
       timeout: 60000,
     });
 
-    // Detect Akamai/CDN block early — bail rather than burning time scrolling
+    // Detect proxy/CDN errors early — bail rather than burning time scrolling
     const title = await page.title();
-    const bodyText = await page.evaluate(() => document.body?.innerText?.slice(0, 200) ?? '');
+    const bodyText = await page.evaluate(() => document.body?.innerText?.slice(0, 300) ?? '');
+    if (bodyText.toLowerCase().includes('unauthorized request') || bodyText.toLowerCase().includes('api key is valid')) {
+      console.error(`Douglas: ScraperAPI rejected the request — API key invalid or out of credits. Check your ScraperAPI account at https://www.scraperapi.com/dashboard`);
+      return deals;
+    }
     if (
       title.toLowerCase().includes('access denied') ||
       title.toLowerCase().includes('just a moment') ||
