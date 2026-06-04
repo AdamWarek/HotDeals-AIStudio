@@ -574,12 +574,14 @@ export default function SpecialOffers() {
       if (map[p.brand]) map[p.brand].push(p);
     });
 
-    // Only return brands that match the search query (if search is active)
     return Object.entries(map)
       .filter(([brand, items]) => {
-        if (!q) return true;
-        // If searching, only show brand if it has items OR if the brand name matches the search
-        return items.length > 0 || brand.toLowerCase().includes(q);
+        // Always show explicitly selected brands (user chose them), even if currently empty
+        if (selectedBrands.includes(brand)) return true;
+        // When searching, a brand whose name matches the query is worth showing even with 0 items
+        if (q && brand.toLowerCase().includes(q)) return true;
+        // Otherwise only render a section when there is actual data to display
+        return items.length > 0;
       })
       .sort(([a], [b]) => a.localeCompare(b));
   }, [search, selectedBrands, promos]);
