@@ -22,12 +22,15 @@ import { buildNormalizedDealsFromEmailParts } from './lib/newsletter-deals.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Matches direct Nike/Adidas marketing mail (actual sender domains observed in inbox)
+// AND manual forwards from pusto@poczta.fm as fallback.
+// Actual senders: nike@official.nike.com, adidas@pl-news.adidas.com
 const DEFAULT_QUERY_NIKE =
   process.env.NEWSLETTER_QUERY_NIKE ||
-  'from:pusto@poczta.fm newer_than:30d (nike OR lego OR "em.nike" OR "nike.com")';
+  '(from:official.nike.com OR from:em.nike.com OR from:nike.com OR from:pusto@poczta.fm) newer_than:60d';
 const DEFAULT_QUERY_ADIDAS =
   process.env.NEWSLETTER_QUERY_ADIDAS ||
-  'from:pusto@poczta.fm newer_than:30d (adidas OR adiclub OR "link.adidas" OR "adidas.com")';
+  '(from:pl-news.adidas.com OR from:news.adidas.com OR from:adidas.com OR from:adidas.pl OR from:pusto@poczta.fm) newer_than:60d';
 
 function decodeBase64Url(data) {
   if (!data) return '';
@@ -72,12 +75,26 @@ function getSubject(msg) {
   return subj?.value || '';
 }
 
+/**
+ * Deduplicate deals by URL. For tracking-only URLs (path is bare "/"), the query string
+ * is the sole unique identifier (e.g. click.link.adidas.com/?qs=...) so we keep it.
+ * For real product pages (path has meaningful segments) we strip the query to merge
+ * the same product URL seen across multiple emails.
+ */
 function dedupeByProductUrl(deals) {
   const map = new Map();
   for (const d of deals) {
-    const u = (d.product_url || d.url || '').split('?')[0];
-    if (!u) continue;
-    if (!map.has(u)) map.set(u, d);
+    const raw = d.product_url || d.url || '';
+    if (!raw) continue;
+    let key;
+    try {
+      const o = new URL(raw);
+      // Tracking-style root paths: keep full URL so each token stays distinct.
+      key = (o.pathname === '/' || o.pathname === '') ? raw : `${o.hostname}${o.pathname}`;
+    } catch {
+      key = raw;
+    }
+    if (!map.has(key)) map.set(key, d);
   }
   return [...map.values()];
 }
@@ -142,8 +159,8 @@ async function main() {
   const gmail = google.gmail({ version: 'v1', auth: oauth2 });
   const scrapedAt = new Date().toISOString();
   const maxMessages = Math.min(
-    25,
-    Math.max(1, parseInt(process.env.NEWSLETTER_MAX_MESSAGES || '12', 10) || 12)
+    50,
+    Math.max(1, parseInt(process.env.NEWSLETTER_MAX_MESSAGES || '30', 10) || 30)
   );
 
   const dataDir = path.join(__dirname, '../public/data');
@@ -174,8 +191,16 @@ async function main() {
         `[ingest-newsletters] Wrote ${deals.length} ${key} deal(s) to public/data/${file} (${Date.now() - t0}ms)`
       );
     } else {
+      const fallbackExists = fs.existsSync(outPath);
+      if (errMsg && errMsg.includes('invalid_grant')) {
+        console.error(
+          `[ingest-newsletters] ⚠️  GMAIL TOKEN EXPIRED for ${key}: refresh token invalid. ` +
+          `Re-run scripts/gmail-oauth-setup.js locally and update the GMAIL_REFRESH_TOKEN GitHub secret.`
+        );
+      }
       console.log(
-        `[ingest-newsletters] No new ${key} deals parsed (query=${JSON.stringify(query)}); left existing ${file} unchanged.`
+        `[ingest-newsletters] No new ${key} deals parsed (query=${JSON.stringify(query)}); ` +
+        (fallbackExists ? `using existing fallback ${file}.` : `⚠️  no fallback file found — ${key} will be absent from deals.json.`)
       );
     }
   }

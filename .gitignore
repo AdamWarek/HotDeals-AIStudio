@@ -6,7 +6,11 @@ coverage/
 *.log
 .env*
 !.env.example
+# Keep all generated per-scraper data out of git — except Nike/Adidas newsletter
+# fallbacks which are Gmail-sourced and must survive across CI runs.
 public/data/*.json
+!public/data/nike_promos.json
+!public/data/adidas_promos.json
 
 # Defensive: prevent accidental commit of key material
 *.pem
