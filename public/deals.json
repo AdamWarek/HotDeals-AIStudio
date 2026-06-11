@@ -1,35 +1,7 @@
 [
   {
     "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Sukienka mini z bengaliną i balonowym krojem",
-    "original_price": "129.00 PLN",
-    "sale_price": "90.30 PLN",
-    "discount_pct": 30,
-    "image_url": "https://static.bershka.net/assets/public/dc67/091a/26a04fdc9e6a/ae4fee8c8ab8/01924777600-a4o/01924777600-a4o.jpg?ts=1771928991121",
-    "product_url": "https://www.bershka.com/pl/sukienka mini z bengaliną i balonowym krojem-c0p211746256.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Sukienka mini z bengaliną i balonowym krojem",
-    "brand": "Bershka",
-    "discount": "-30%",
-    "price": "90.3",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/sukienka mini z bengaliną i balonowym krojem-c0p211746256.html",
-    "image": "https://static.bershka.net/assets/public/dc67/091a/26a04fdc9e6a/ae4fee8c8ab8/01924777600-a4o/01924777600-a4o.jpg?ts=1771928991121",
-    "description": "Wyprzedaż Bershka",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka API"
-  },
-  {
-    "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Jeansy o kroju skinny soft z bardzo wysokim stanem",
     "original_price": "99.86 PLN",
     "sale_price": "69.90 PLN",
@@ -57,7 +29,63 @@
   },
   {
     "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Płaskie kowbojki",
+    "original_price": "249.00 PLN",
+    "sale_price": "174.30 PLN",
+    "discount_pct": 30,
+    "image_url": "https://static.bershka.net/assets/public/1f2f/8812/ab954e4287fc/112c22658eb1/11034864040-a4o/11034864040-a4o.jpg?ts=1776175831513",
+    "product_url": "https://www.bershka.com/pl/płaskie kowbojki-c0p226931291.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Płaskie kowbojki",
+    "brand": "Bershka",
+    "discount": "-30%",
+    "price": "174.3",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/płaskie kowbojki-c0p226931291.html",
+    "image": "https://static.bershka.net/assets/public/1f2f/8812/ab954e4287fc/112c22658eb1/11034864040-a4o/11034864040-a4o.jpg?ts=1776175831513",
+    "description": "Wyprzedaż Bershka",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka API"
+  },
+  {
+    "site": "bershka",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Skórzane kowbojki na płaskiej podeszwie",
+    "original_price": "349.00 PLN",
+    "sale_price": "244.30 PLN",
+    "discount_pct": 30,
+    "image_url": "https://static.bershka.net/assets/public/1070/0493/95f04eddaca7/29e6acf61e6f/11030864121-a4o/11030864121-a4o.jpg?ts=1776175852570",
+    "product_url": "https://www.bershka.com/pl/skórzane kowbojki na płaskiej podeszwie-c0p226931355.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Skórzane kowbojki na płaskiej podeszwie",
+    "brand": "Bershka",
+    "discount": "-30%",
+    "price": "244.3",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/skórzane kowbojki na płaskiej podeszwie-c0p226931355.html",
+    "image": "https://static.bershka.net/assets/public/1070/0493/95f04eddaca7/29e6acf61e6f/11030864121-a4o/11030864121-a4o.jpg?ts=1776175852570",
+    "description": "Wyprzedaż Bershka",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka API"
+  },
+  {
+    "site": "bershka",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Spódnica mini z cekinami i koronką",
     "original_price": "115.00 PLN",
     "sale_price": "80.50 PLN",
@@ -85,7 +113,35 @@
   },
   {
     "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Sukienka mini z bengaliną i balonowym krojem",
+    "original_price": "129.00 PLN",
+    "sale_price": "90.30 PLN",
+    "discount_pct": 30,
+    "image_url": "https://static.bershka.net/assets/public/dc67/091a/26a04fdc9e6a/ae4fee8c8ab8/01924777600-a4o/01924777600-a4o.jpg?ts=1771928991121",
+    "product_url": "https://www.bershka.com/pl/sukienka mini z bengaliną i balonowym krojem-c0p220329910.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Sukienka mini z bengaliną i balonowym krojem",
+    "brand": "Bershka",
+    "discount": "-30%",
+    "price": "90.3",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/sukienka mini z bengaliną i balonowym krojem-c0p220329910.html",
+    "image": "https://static.bershka.net/assets/public/dc67/091a/26a04fdc9e6a/ae4fee8c8ab8/01924777600-a4o/01924777600-a4o.jpg?ts=1771928991121",
+    "description": "Wyprzedaż Bershka",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka API"
+  },
+  {
+    "site": "bershka",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Sukienka midi na ramiączkach, marszczona",
     "original_price": "99.86 PLN",
     "sale_price": "69.90 PLN",
@@ -113,35 +169,7 @@
   },
   {
     "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Sukienka mini z bengaliną o balonowym kroju",
-    "original_price": "129.00 PLN",
-    "sale_price": "90.30 PLN",
-    "discount_pct": 30,
-    "image_url": "https://static.bershka.net/assets/public/dc67/091a/26a04fdc9e6a/ae4fee8c8ab8/01924777600-a4o/01924777600-a4o.jpg?ts=1771928991121",
-    "product_url": "https://www.bershka.com/pl/sukienka mini z bengaliną o balonowym kroju-c0p211746257.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Sukienka mini z bengaliną o balonowym kroju",
-    "brand": "Bershka",
-    "discount": "-30%",
-    "price": "90.3",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/sukienka mini z bengaliną o balonowym kroju-c0p211746257.html",
-    "image": "https://static.bershka.net/assets/public/dc67/091a/26a04fdc9e6a/ae4fee8c8ab8/01924777600-a4o/01924777600-a4o.jpg?ts=1771928991121",
-    "description": "Wyprzedaż Bershka",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka API"
-  },
-  {
-    "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Płaskie sandały z ćwiekami",
     "original_price": "109.83 PLN",
     "sale_price": "65.90 PLN",
@@ -169,7 +197,7 @@
   },
   {
     "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Kopertowy top z marszczonym paskiem",
     "original_price": "65.80 PLN",
     "sale_price": "32.90 PLN",
@@ -197,22 +225,22 @@
   },
   {
     "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Płaskie sandały ze sprzączkami",
-    "original_price": "128.43 PLN",
-    "sale_price": "89.90 PLN",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Sandały płaskie z podwójnymi sprzączkami",
+    "original_price": "129.00 PLN",
+    "sale_price": "90.30 PLN",
     "discount_pct": 30,
-    "image_url": "https://static.bershka.net/assets/public/dc76/31b4/5e9e4a1db035/bceb4c194812/11816864002-a4o/11816864002-a4o.jpg?ts=1778162653170",
-    "product_url": "https://www.bershka.com/pl/płaskie sandały ze sprzączkami-c0p230471854.html",
+    "image_url": "https://static.bershka.net/assets/public/b95d/54e7/94b94ca9929b/9f87a358ab6c/11820864040-b1o/11820864040-b1o.jpg?ts=1779799390816",
+    "product_url": "https://www.bershka.com/pl/sandały płaskie z podwójnymi sprzączkami-c0p226927387.html",
     "category": "Odzież",
     "in_stock": true,
-    "title": "Płaskie sandały ze sprzączkami",
+    "title": "Sandały płaskie z podwójnymi sprzączkami",
     "brand": "Bershka",
     "discount": "-30%",
-    "price": "89.9",
+    "price": "90.3",
     "currency": "PLN",
-    "url": "https://www.bershka.com/pl/płaskie sandały ze sprzączkami-c0p230471854.html",
-    "image": "https://static.bershka.net/assets/public/dc76/31b4/5e9e4a1db035/bceb4c194812/11816864002-a4o/11816864002-a4o.jpg?ts=1778162653170",
+    "url": "https://www.bershka.com/pl/sandały płaskie z podwójnymi sprzączkami-c0p226927387.html",
+    "image": "https://static.bershka.net/assets/public/b95d/54e7/94b94ca9929b/9f87a358ab6c/11820864040-b1o/11820864040-b1o.jpg?ts=1779799390816",
     "description": "Wyprzedaż Bershka",
     "valid_until": null,
     "tags": [
@@ -225,7 +253,35 @@
   },
   {
     "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Sukienka mini z bengaliną o balonowym kroju",
+    "original_price": "129.00 PLN",
+    "sale_price": "90.30 PLN",
+    "discount_pct": 30,
+    "image_url": "https://static.bershka.net/assets/public/dc67/091a/26a04fdc9e6a/ae4fee8c8ab8/01924777600-a4o/01924777600-a4o.jpg?ts=1771928991121",
+    "product_url": "https://www.bershka.com/pl/sukienka mini z bengaliną o balonowym kroju-c0p211746257.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Sukienka mini z bengaliną o balonowym kroju",
+    "brand": "Bershka",
+    "discount": "-30%",
+    "price": "90.3",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/sukienka mini z bengaliną o balonowym kroju-c0p211746257.html",
+    "image": "https://static.bershka.net/assets/public/dc67/091a/26a04fdc9e6a/ae4fee8c8ab8/01924777600-a4o/01924777600-a4o.jpg?ts=1771928991121",
+    "description": "Wyprzedaż Bershka",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka API"
+  },
+  {
+    "site": "bershka",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Kopertowy top z marszczeniem w talii",
     "original_price": "65.80 PLN",
     "sale_price": "32.90 PLN",
@@ -253,7 +309,35 @@
   },
   {
     "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Płaskie sandały ze sprzączkami",
+    "original_price": "128.43 PLN",
+    "sale_price": "89.90 PLN",
+    "discount_pct": 30,
+    "image_url": "https://static.bershka.net/assets/public/dc76/31b4/5e9e4a1db035/bceb4c194812/11816864002-a4o/11816864002-a4o.jpg?ts=1778162653170",
+    "product_url": "https://www.bershka.com/pl/płaskie sandały ze sprzączkami-c0p230471854.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Płaskie sandały ze sprzączkami",
+    "brand": "Bershka",
+    "discount": "-30%",
+    "price": "89.9",
+    "currency": "PLN",
+    "url": "https://www.bershka.com/pl/płaskie sandały ze sprzączkami-c0p230471854.html",
+    "image": "https://static.bershka.net/assets/public/dc76/31b4/5e9e4a1db035/bceb4c194812/11816864002-a4o/11816864002-a4o.jpg?ts=1778162653170",
+    "description": "Wyprzedaż Bershka",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Bershka API"
+  },
+  {
+    "site": "bershka",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Spodnie z nakładaną spódnicą z cekinami",
     "original_price": "115.00 PLN",
     "sale_price": "80.50 PLN",
@@ -280,64 +364,8 @@
     "source_name": "Bershka API"
   },
   {
-    "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Skórzane kowbojki na płaskiej podeszwie",
-    "original_price": "349.00 PLN",
-    "sale_price": "244.30 PLN",
-    "discount_pct": 30,
-    "image_url": "https://static.bershka.net/assets/public/1070/0493/95f04eddaca7/29e6acf61e6f/11030864121-a4o/11030864121-a4o.jpg?ts=1776175852570",
-    "product_url": "https://www.bershka.com/pl/skórzane kowbojki na płaskiej podeszwie-c0p230064543.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Skórzane kowbojki na płaskiej podeszwie",
-    "brand": "Bershka",
-    "discount": "-30%",
-    "price": "244.3",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/skórzane kowbojki na płaskiej podeszwie-c0p230064543.html",
-    "image": "https://static.bershka.net/assets/public/1070/0493/95f04eddaca7/29e6acf61e6f/11030864121-a4o/11030864121-a4o.jpg?ts=1776175852570",
-    "description": "Wyprzedaż Bershka",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka API"
-  },
-  {
-    "site": "bershka",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Płaskie kowbojki",
-    "original_price": "249.00 PLN",
-    "sale_price": "174.30 PLN",
-    "discount_pct": 30,
-    "image_url": "https://static.bershka.net/assets/public/1f2f/8812/ab954e4287fc/112c22658eb1/11034864040-a4o/11034864040-a4o.jpg?ts=1776175831513",
-    "product_url": "https://www.bershka.com/pl/płaskie kowbojki-c0p230064319.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Płaskie kowbojki",
-    "brand": "Bershka",
-    "discount": "-30%",
-    "price": "174.3",
-    "currency": "PLN",
-    "url": "https://www.bershka.com/pl/płaskie kowbojki-c0p230064319.html",
-    "image": "https://static.bershka.net/assets/public/1f2f/8812/ab954e4287fc/112c22658eb1/11034864040-a4o/11034864040-a4o.jpg?ts=1776175831513",
-    "description": "Wyprzedaż Bershka",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Bershka API"
-  },
-  {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Spodnie z bambuli",
     "original_price": "99.82 PLN",
     "sale_price": "55.90 PLN",
@@ -365,7 +393,7 @@
   },
   {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Spodnie z lejącego materiału z efektem gazy",
     "original_price": "99.82 PLN",
     "sale_price": "55.90 PLN",
@@ -393,7 +421,7 @@
   },
   {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Top na ramiączkach z bambuły",
     "original_price": "79.14 PLN",
     "sale_price": "45.90 PLN",
@@ -421,7 +449,7 @@
   },
   {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Spodnie typu alladynki z bambuli",
     "original_price": "99.82 PLN",
     "sale_price": "55.90 PLN",
@@ -449,35 +477,7 @@
   },
   {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Marynarka oversize",
-    "original_price": "176.27 PLN",
-    "sale_price": "89.90 PLN",
-    "discount_pct": 49,
-    "image_url": "https://static.pullandbear.net/assets/public/80f8/dbc0/282b4417a958/56b23a34181c/03790303737-M/03790303737-M.jpg?ts=1768925179171",
-    "product_url": "https://www.pullandbear.com/pl/marynarka oversize-c0p721441608.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Marynarka oversize",
-    "brand": "Pull&Bear",
-    "discount": "-49%",
-    "price": "89.9",
-    "currency": "PLN",
-    "url": "https://www.pullandbear.com/pl/marynarka oversize-c0p721441608.html",
-    "image": "https://static.pullandbear.net/assets/public/80f8/dbc0/282b4417a958/56b23a34181c/03790303737-M/03790303737-M.jpg?ts=1768925179171",
-    "description": "Marynarka oversize z zapięciem na guzik, kołnierzem z klapami i kieszeniami.",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Pull&Bear API"
-  },
-  {
-    "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Krótki kardigan zapinany na guziki",
     "original_price": "107.54 PLN",
     "sale_price": "69.90 PLN",
@@ -505,35 +505,7 @@
   },
   {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Płaszcz flauszowy na guziki",
-    "original_price": "146.91 PLN",
-    "sale_price": "99.90 PLN",
-    "discount_pct": 32,
-    "image_url": "https://static.pullandbear.net/assets/public/a7a8/fcc7/aeea4f7ab159/27f8aca7a8f4/07800305720-A6M/07800305720-A6M.jpg?ts=1749647279124",
-    "product_url": "https://www.pullandbear.com/pl/płaszcz flauszowy na guziki-c0p721446394.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Płaszcz flauszowy na guziki",
-    "brand": "Pull&Bear",
-    "discount": "-32%",
-    "price": "99.9",
-    "currency": "PLN",
-    "url": "https://www.pullandbear.com/pl/płaszcz flauszowy na guziki-c0p721446394.html",
-    "image": "https://static.pullandbear.net/assets/public/a7a8/fcc7/aeea4f7ab159/27f8aca7a8f4/07800305720-A6M/07800305720-A6M.jpg?ts=1749647279124",
-    "description": "Płaszcz z flauszu z zapięciem na guziki, bocznymi kieszeniami i kołnierzem z klapami.",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Pull&Bear API"
-  },
-  {
-    "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Sandały ze sprzączką",
     "original_price": "128.43 PLN",
     "sale_price": "89.90 PLN",
@@ -561,107 +533,23 @@
   },
   {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Torebka shopper z ozdobą",
-    "original_price": "107.97 PLN",
-    "sale_price": "79.90 PLN",
-    "discount_pct": 26,
-    "image_url": "https://static.pullandbear.net/assets/public/4773/8975/014144a4a304/f4f60dfeff70/14081740100-Z1M/14081740100-Z1M.jpg?ts=1772181061009",
-    "product_url": "https://www.pullandbear.com/pl/torebka shopper z ozdobą-c0p724270486.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Torebka shopper z ozdobą",
-    "brand": "Pull&Bear",
-    "discount": "-26%",
-    "price": "79.9",
-    "currency": "PLN",
-    "url": "https://www.pullandbear.com/pl/torebka shopper z ozdobą-c0p724270486.html",
-    "image": "https://static.pullandbear.net/assets/public/4773/8975/014144a4a304/f4f60dfeff70/14081740100-Z1M/14081740100-Z1M.jpg?ts=1772181061009",
-    "description": "Torebka shopper z makramy. Z ozdobą w kształcie cytryny. Długie paski na ramię. Zapięcie na magnes. <br/><br/>Wysokość x szerokość x głębokość: 31,9 x 38,3 x 8,9 cm.",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Pull&Bear API"
-  },
-  {
-    "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Perfumy Vanilla Pays Off",
-    "original_price": "35.80 PLN",
-    "sale_price": "17.90 PLN",
-    "discount_pct": 50,
-    "image_url": "https://static.pullandbear.net/assets/public/1822/7510/60204731ad77/0dc28e774012/00100308159-A3M/00100308159-A3M.jpg?ts=1761669820924",
-    "product_url": "https://www.pullandbear.com/pl/perfumy vanilla pays off-c0p721970726.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Perfumy Vanilla Pays Off",
-    "brand": "Pull&Bear",
-    "discount": "-50%",
-    "price": "17.9",
-    "currency": "PLN",
-    "url": "https://www.pullandbear.com/pl/perfumy vanilla pays off-c0p721970726.html",
-    "image": "https://static.pullandbear.net/assets/public/1822/7510/60204731ad77/0dc28e774012/00100308159-A3M/00100308159-A3M.jpg?ts=1761669820924",
-    "description": "Woda perfumowana STWD Vanilla Pays Off od GAËL MONTERO. <br/><br/>Kto powiedział, że nie można być słodkim i szczęśliwym? <br/><br/>Szalona mieszanka kremowego koktajlu truskawkowego, świeżego jaśminu i fasoli tonka, która sprawi, że poczujesz się, jakbyś żył w równoległym wszechświecie. Zabawny i relaksujący zapach, który pozostawia niezapomniany ślad. Dla dziewczyn.<br/><br/>*Niektóre obrazy mogą zawierać elementy stworzone lub edytowane za pomocą generatywnej sztucznej inteligencji.",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Pull&Bear API"
-  },
-  {
-    "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Czółenka na obcasie ze sprzączkami",
-    "original_price": "107.54 PLN",
-    "sale_price": "69.90 PLN",
-    "discount_pct": 35,
-    "image_url": "https://static.pullandbear.net/assets/public/9750/611c/32ac4844a95e/e814e43c2830/11514740020-M/11514740020-M.jpg?ts=1765533374849",
-    "product_url": "https://www.pullandbear.com/pl/czółenka na obcasie ze sprzączkami-c0p723021843.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Czółenka na obcasie ze sprzączkami",
-    "brand": "Pull&Bear",
-    "discount": "-35%",
-    "price": "69.9",
-    "currency": "PLN",
-    "url": "https://www.pullandbear.com/pl/czółenka na obcasie ze sprzączkami-c0p723021843.html",
-    "image": "https://static.pullandbear.net/assets/public/9750/611c/32ac4844a95e/e814e43c2830/11514740020-M/11514740020-M.jpg?ts=1765533374849",
-    "description": "Czółenka na obcasie dostępne w kolorze czerwonym. Ozdobne sprzączki na paskach. Nosek w szpic. Wysoki obcas. Zapięcie na pasek ze sprzączką. <br/><br/>Wkładka STARFIT®<br/><br/>Wysokość obcasa: 6.8 cm.",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Pull&Bear API"
-  },
-  {
-    "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Koszula ze stójką z efektem szyfonu",
-    "original_price": "99.82 PLN",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Top z batystu z wiązaniami",
+    "original_price": "88.73 PLN",
     "sale_price": "55.90 PLN",
-    "discount_pct": 44,
-    "image_url": "https://static.pullandbear.net/assets/public/d12b/a103/803f46a3b343/397011a0011d/03460319250-C/03460319250-C.jpg?ts=1773158757603",
-    "product_url": "https://www.pullandbear.com/pl/koszula ze stójką z efektem szyfonu-c0p723100317.html",
+    "discount_pct": 37,
+    "image_url": "https://static.pullandbear.net/assets/public/2466/32e3/c0214547a82e/072df5297989/03460339500-C/03460339500-C.jpg?ts=1770629128203",
+    "product_url": "https://www.pullandbear.com/pl/top z batystu z wiązaniami-c0p726751010.html",
     "category": "Odzież",
     "in_stock": true,
-    "title": "Koszula ze stójką z efektem szyfonu",
+    "title": "Top z batystu z wiązaniami",
     "brand": "Pull&Bear",
-    "discount": "-44%",
+    "discount": "-37%",
     "price": "55.9",
     "currency": "PLN",
-    "url": "https://www.pullandbear.com/pl/koszula ze stójką z efektem szyfonu-c0p723100317.html",
-    "image": "https://static.pullandbear.net/assets/public/d12b/a103/803f46a3b343/397011a0011d/03460319250-C/03460319250-C.jpg?ts=1773158757603",
-    "description": "Koszula z długim rękawem ze stójką, z kieszenią z przodu i zapięciem na guziki. Wykonana ze 100% bawełny z efektem gazy. Total look.",
+    "url": "https://www.pullandbear.com/pl/top z batystu z wiązaniami-c0p726751010.html",
+    "image": "https://static.pullandbear.net/assets/public/2466/32e3/c0214547a82e/072df5297989/03460339500-C/03460339500-C.jpg?ts=1770629128203",
+    "description": "Top z tkaniny bambulowej bez rękawów, z dekoltem w kształcie litery V i ozdobnymi wiązaniami.",
     "valid_until": null,
     "tags": [
       "Odzież",
@@ -673,7 +561,35 @@
   },
   {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Płaszcz flauszowy na guziki",
+    "original_price": "146.91 PLN",
+    "sale_price": "99.90 PLN",
+    "discount_pct": 32,
+    "image_url": "https://static.pullandbear.net/assets/public/a7a8/fcc7/aeea4f7ab159/27f8aca7a8f4/07800305720-A6M/07800305720-A6M.jpg?ts=1749647279124",
+    "product_url": "https://www.pullandbear.com/pl/płaszcz flauszowy na guziki-c0p721446394.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Płaszcz flauszowy na guziki",
+    "brand": "Pull&Bear",
+    "discount": "-32%",
+    "price": "99.9",
+    "currency": "PLN",
+    "url": "https://www.pullandbear.com/pl/płaszcz flauszowy na guziki-c0p721446394.html",
+    "image": "https://static.pullandbear.net/assets/public/a7a8/fcc7/aeea4f7ab159/27f8aca7a8f4/07800305720-A6M/07800305720-A6M.jpg?ts=1749647279124",
+    "description": "Płaszcz z flauszu z zapięciem na guziki, bocznymi kieszeniami i kołnierzem z klapami.",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Pull&Bear API"
+  },
+  {
+    "site": "pullandbear",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Eleganckie spodnie z ozdobnym przeszyciem",
     "original_price": "128.87 PLN",
     "sale_price": "79.90 PLN",
@@ -701,7 +617,63 @@
   },
   {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Koszula ze stójką z efektem szyfonu",
+    "original_price": "99.82 PLN",
+    "sale_price": "55.90 PLN",
+    "discount_pct": 44,
+    "image_url": "https://static.pullandbear.net/assets/public/d12b/a103/803f46a3b343/397011a0011d/03460319250-C/03460319250-C.jpg?ts=1773158757603",
+    "product_url": "https://www.pullandbear.com/pl/koszula ze stójką z efektem szyfonu-c0p723100317.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Koszula ze stójką z efektem szyfonu",
+    "brand": "Pull&Bear",
+    "discount": "-44%",
+    "price": "55.9",
+    "currency": "PLN",
+    "url": "https://www.pullandbear.com/pl/koszula ze stójką z efektem szyfonu-c0p723100317.html",
+    "image": "https://static.pullandbear.net/assets/public/d12b/a103/803f46a3b343/397011a0011d/03460319250-C/03460319250-C.jpg?ts=1773158757603",
+    "description": "Koszula z długim rękawem ze stójką, z kieszenią z przodu i zapięciem na guziki. Wykonana ze 100% bawełny z efektem gazy. Total look.",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Pull&Bear API"
+  },
+  {
+    "site": "pullandbear",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Marynarka oversize",
+    "original_price": "176.27 PLN",
+    "sale_price": "89.90 PLN",
+    "discount_pct": 49,
+    "image_url": "https://static.pullandbear.net/assets/public/80f8/dbc0/282b4417a958/56b23a34181c/03790303737-M/03790303737-M.jpg?ts=1768925179171",
+    "product_url": "https://www.pullandbear.com/pl/marynarka oversize-c0p721441608.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Marynarka oversize",
+    "brand": "Pull&Bear",
+    "discount": "-49%",
+    "price": "89.9",
+    "currency": "PLN",
+    "url": "https://www.pullandbear.com/pl/marynarka oversize-c0p721441608.html",
+    "image": "https://static.pullandbear.net/assets/public/80f8/dbc0/282b4417a958/56b23a34181c/03790303737-M/03790303737-M.jpg?ts=1768925179171",
+    "description": "Marynarka oversize z zapięciem na guzik, kołnierzem z klapami i kieszeniami.",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Pull&Bear API"
+  },
+  {
+    "site": "pullandbear",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Jeansy proste o średnim stanie",
     "original_price": "107.54 PLN",
     "sale_price": "69.90 PLN",
@@ -729,23 +701,51 @@
   },
   {
     "site": "pullandbear",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Top z batystu z wiązaniami",
-    "original_price": "88.73 PLN",
-    "sale_price": "55.90 PLN",
-    "discount_pct": 37,
-    "image_url": "https://static.pullandbear.net/assets/public/2466/32e3/c0214547a82e/072df5297989/03460339500-C/03460339500-C.jpg?ts=1770629128203",
-    "product_url": "https://www.pullandbear.com/pl/top z batystu z wiązaniami-c0p726751010.html",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Kurtka typu dad ze sztucznej skóry",
+    "original_price": "157.72 PLN",
+    "sale_price": "89.90 PLN",
+    "discount_pct": 43,
+    "image_url": "https://static.pullandbear.net/assets/public/40c0/4527/51c447669fc0/f388dd26d118/07710381800-A6M/07710381800-A6M.jpg?ts=1730980689369",
+    "product_url": "https://www.pullandbear.com/pl/kurtka typu dad ze sztucznej skóry-c0p721441885.html",
     "category": "Odzież",
     "in_stock": true,
-    "title": "Top z batystu z wiązaniami",
+    "title": "Kurtka typu dad ze sztucznej skóry",
     "brand": "Pull&Bear",
-    "discount": "-37%",
-    "price": "55.9",
+    "discount": "-43%",
+    "price": "89.9",
     "currency": "PLN",
-    "url": "https://www.pullandbear.com/pl/top z batystu z wiązaniami-c0p726751010.html",
-    "image": "https://static.pullandbear.net/assets/public/2466/32e3/c0214547a82e/072df5297989/03460339500-C/03460339500-C.jpg?ts=1770629128203",
-    "description": "Top z tkaniny bambulowej bez rękawów, z dekoltem w kształcie litery V i ozdobnymi wiązaniami.",
+    "url": "https://www.pullandbear.com/pl/kurtka typu dad ze sztucznej skóry-c0p721441885.html",
+    "image": "https://static.pullandbear.net/assets/public/40c0/4527/51c447669fc0/f388dd26d118/07710381800-A6M/07710381800-A6M.jpg?ts=1730980689369",
+    "description": "Kurtka bomberka typu dad fit ze sztucznej skóry z gumką na dole, kołnierzykiem koszulowym, kieszeniami bocznymi i zapięciem na zamek błyskawiczny.",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Pull&Bear API"
+  },
+  {
+    "site": "pullandbear",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Torba shopper z frędzlami",
+    "original_price": "99.86 PLN",
+    "sale_price": "69.90 PLN",
+    "discount_pct": 30,
+    "image_url": "https://static.pullandbear.net/assets/public/4943/f91a/62c8421ab511/8a7b5519645f/14209640105-Z2M/14209640105-Z2M.jpg?ts=1772792347721",
+    "product_url": "https://www.pullandbear.com/pl/torba shopper z frędzlami-c0p721835711.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Torba shopper z frędzlami",
+    "brand": "Pull&Bear",
+    "discount": "-30%",
+    "price": "69.9",
+    "currency": "PLN",
+    "url": "https://www.pullandbear.com/pl/torba shopper z frędzlami-c0p721835711.html",
+    "image": "https://static.pullandbear.net/assets/public/4943/f91a/62c8421ab511/8a7b5519645f/14209640105-Z2M/14209640105-Z2M.jpg?ts=1772792347721",
+    "description": "Torebka shopper z materiału imitującego skórę. Ozdobiona frędzlami i ćwiekami. Długi pasek na ramię. Zapięcie na magnes. <br/><br/>Wysokość x szerokość x głębokość: 33,7 x 47,6 x 8,2 cm.",
     "valid_until": null,
     "tags": [
       "Odzież",
@@ -757,7 +757,7 @@
   },
   {
     "site": "hm",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Bawełniany T-shirt",
     "original_price": "24.99 PLN",
     "sale_price": "24.99 PLN",
@@ -785,7 +785,7 @@
   },
   {
     "site": "hm",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Koszulka w prążki",
     "original_price": "24.99 PLN",
     "sale_price": "24.99 PLN",
@@ -813,12 +813,12 @@
   },
   {
     "site": "hm",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "T-shirt w interlokowy splot",
     "original_price": "39.99 PLN",
     "sale_price": "39.99 PLN",
     "discount_pct": 0,
-    "image_url": "https://image.hm.com/assets/hm/e0/47/e04727a93e90ab60fbca0cfbf2d9554c68f551a1.jpg?imwidth=455",
+    "image_url": "",
     "product_url": "https://www2.hm.com/pl_pl/productpage.1330274001.html",
     "category": "Odzież",
     "in_stock": true,
@@ -828,7 +828,6 @@
     "price": "39.99",
     "currency": "PLN",
     "url": "https://www2.hm.com/pl_pl/productpage.1330274001.html",
-    "image": "https://image.hm.com/assets/hm/e0/47/e04727a93e90ab60fbca0cfbf2d9554c68f551a1.jpg?imwidth=455",
     "description": "Wyprzedaż H&M",
     "valid_until": null,
     "tags": [
@@ -841,7 +840,7 @@
   },
   {
     "site": "hm",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "T-shirt w prążki",
     "original_price": "27.99 PLN",
     "sale_price": "27.99 PLN",
@@ -868,61 +867,7 @@
   },
   {
     "site": "hm",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Bawełniany T-shirt",
-    "original_price": "24.99 PLN",
-    "sale_price": "24.99 PLN",
-    "discount_pct": 0,
-    "image_url": "",
-    "product_url": "https://www2.hm.com/pl_pl/productpage.1329670003.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Bawełniany T-shirt",
-    "brand": "H&M",
-    "discount": null,
-    "price": "24.99",
-    "currency": "PLN",
-    "url": "https://www2.hm.com/pl_pl/productpage.1329670003.html",
-    "description": "Wyprzedaż H&M",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 0.92,
-    "source_type": "dynamic_scrape",
-    "source_name": "H&M HTML"
-  },
-  {
-    "site": "hm",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "Spodnie z domieszką lnu",
-    "original_price": "79.99 PLN",
-    "sale_price": "79.99 PLN",
-    "discount_pct": 0,
-    "image_url": "",
-    "product_url": "https://www2.hm.com/pl_pl/productpage.1259065021.html",
-    "category": "Odzież",
-    "in_stock": true,
-    "title": "Spodnie z domieszką lnu",
-    "brand": "H&M",
-    "discount": null,
-    "price": "79.99",
-    "currency": "PLN",
-    "url": "https://www2.hm.com/pl_pl/productpage.1259065021.html",
-    "description": "Wyprzedaż H&M",
-    "valid_until": null,
-    "tags": [
-      "Odzież",
-      "sale"
-    ],
-    "confidence_score": 0.92,
-    "source_type": "dynamic_scrape",
-    "source_name": "H&M HTML"
-  },
-  {
-    "site": "hm",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Bawełniana koszulka w prążki",
     "original_price": "39.99 PLN",
     "sale_price": "39.99 PLN",
@@ -948,8 +893,35 @@
     "source_name": "H&M HTML"
   },
   {
+    "site": "hm",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "Spodnie z domieszką lnu",
+    "original_price": "79.99 PLN",
+    "sale_price": "79.99 PLN",
+    "discount_pct": 0,
+    "image_url": "",
+    "product_url": "https://www2.hm.com/pl_pl/productpage.1259065001.html",
+    "category": "Odzież",
+    "in_stock": true,
+    "title": "Spodnie z domieszką lnu",
+    "brand": "H&M",
+    "discount": null,
+    "price": "79.99",
+    "currency": "PLN",
+    "url": "https://www2.hm.com/pl_pl/productpage.1259065001.html",
+    "description": "Wyprzedaż H&M",
+    "valid_until": null,
+    "tags": [
+      "Odzież",
+      "sale"
+    ],
+    "confidence_score": 0.92,
+    "source_type": "dynamic_scrape",
+    "source_name": "H&M HTML"
+  },
+  {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "TYLKO U NAS 4,9",
     "original_price": "15.99 PLN",
     "sale_price": "15.99 PLN",
@@ -977,7 +949,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,8",
     "original_price": "19.99 PLN",
     "sale_price": "19.99 PLN",
@@ -1005,7 +977,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,9",
     "original_price": "55.99 PLN",
     "sale_price": "55.99 PLN",
@@ -1033,7 +1005,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,9",
     "original_price": "27.99 PLN",
     "sale_price": "27.99 PLN",
@@ -1061,7 +1033,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "TYLKO U NAS 4,8",
     "original_price": "7.49 PLN",
     "sale_price": "7.49 PLN",
@@ -1089,7 +1061,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "LOVEHONEY MON AMI wibrator, panty",
     "original_price": "129.99 PLN",
     "sale_price": "129.99 PLN",
@@ -1117,7 +1089,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "TYLKO U NAS 4,9",
     "original_price": "9.49 PLN",
     "sale_price": "9.49 PLN",
@@ -1145,7 +1117,35 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "MEGA! 4,8",
+    "original_price": "15.49 PLN",
+    "sale_price": "15.49 PLN",
+    "discount_pct": 0,
+    "image_url": "https://pro-fra-s3-productsassets.rossmann.pl/product_1_medium/2110405_360_350_1756373411.webp",
+    "product_url": "https://www.rossmann.pl/Produkt/Produkty-termoochronne/Stars-Hot-Damn-spray-do-wlosow-termoochronny-200-ml,2110405,19361",
+    "category": "Kosmetyki",
+    "in_stock": true,
+    "title": "MEGA! 4,8",
+    "brand": "Rossmann",
+    "discount": null,
+    "price": "15.49",
+    "currency": "PLN",
+    "url": "https://www.rossmann.pl/Produkt/Produkty-termoochronne/Stars-Hot-Damn-spray-do-wlosow-termoochronny-200-ml,2110405,19361",
+    "image": "https://pro-fra-s3-productsassets.rossmann.pl/product_1_medium/2110405_360_350_1756373411.webp",
+    "description": "Promocja Rossmann",
+    "valid_until": null,
+    "tags": [
+      "Kosmetyki",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Rossmann HTML"
+  },
+  {
+    "site": "rossmann",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MAYBELLINE NEW YORK Lash Sensational Full Fan Effect",
     "original_price": "28.99 PLN",
     "sale_price": "28.99 PLN",
@@ -1173,7 +1173,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "CALVIN KLEIN CK IN2U woda toaletowa dla kobiet",
     "original_price": "109.99 PLN",
     "sale_price": "109.99 PLN",
@@ -1201,7 +1201,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 5,0",
     "original_price": "16.99 PLN",
     "sale_price": "16.99 PLN",
@@ -1229,7 +1229,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,9",
     "original_price": "2.29 PLN",
     "sale_price": "2.29 PLN",
@@ -1257,7 +1257,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "BEAUTY OF JOSEON krem do twarzy, SPF 50 PA++++, Rice + B5",
     "original_price": "74.99 PLN",
     "sale_price": "74.99 PLN",
@@ -1285,7 +1285,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,8",
     "original_price": "16.99 PLN",
     "sale_price": "16.99 PLN",
@@ -1313,7 +1313,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,1",
     "original_price": "16.99 PLN",
     "sale_price": "16.99 PLN",
@@ -1341,7 +1341,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,9",
     "original_price": "99.99 PLN",
     "sale_price": "99.99 PLN",
@@ -1369,7 +1369,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "LIRENE Macchiato",
     "original_price": "20.99 PLN",
     "sale_price": "20.99 PLN",
@@ -1397,7 +1397,35 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
+    "name": "LIRENE Coconut Shine",
+    "original_price": "22.99 PLN",
+    "sale_price": "22.99 PLN",
+    "discount_pct": 0,
+    "image_url": "https://pro-fra-s3-productsassets.rossmann.pl/product_1_medium/365529_360_350_1727467239.webp",
+    "product_url": "https://www.rossmann.pl/Produkt/Produkty-rozswietlajace/Lirene-Coconut-Shine-krem-do-twarzy-i-ciala-rozswietlajacy-zlocisty-podkreslajacy-opalenizne-150,365529,13100",
+    "category": "Kosmetyki",
+    "in_stock": true,
+    "title": "LIRENE Coconut Shine",
+    "brand": "Rossmann",
+    "discount": null,
+    "price": "22.99",
+    "currency": "PLN",
+    "url": "https://www.rossmann.pl/Produkt/Produkty-rozswietlajace/Lirene-Coconut-Shine-krem-do-twarzy-i-ciala-rozswietlajacy-zlocisty-podkreslajacy-opalenizne-150,365529,13100",
+    "image": "https://pro-fra-s3-productsassets.rossmann.pl/product_1_medium/365529_360_350_1727467239.webp",
+    "description": "Promocja Rossmann",
+    "valid_until": null,
+    "tags": [
+      "Kosmetyki",
+      "sale"
+    ],
+    "confidence_score": 1,
+    "source_type": "dynamic_scrape",
+    "source_name": "Rossmann HTML"
+  },
+  {
+    "site": "rossmann",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,9",
     "original_price": "2.29 PLN",
     "sale_price": "2.29 PLN",
@@ -1425,7 +1453,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,9",
     "original_price": "2.29 PLN",
     "sale_price": "2.29 PLN",
@@ -1453,35 +1481,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "MEGA! 4,9",
-    "original_price": "48.99 PLN",
-    "sale_price": "48.99 PLN",
-    "discount_pct": 0,
-    "image_url": "https://pro-fra-s3-productsassets.rossmann.pl/product_7_medium/2101986_360_350_1780905043.webp",
-    "product_url": "https://www.rossmann.pl/Produkt/Kremy-do-twarzy/Kimoco-Glass-Skin-krem-serum-do-twarzy-rozswietlajacy-100-g,2101986,13049",
-    "category": "Kosmetyki",
-    "in_stock": true,
-    "title": "MEGA! 4,9",
-    "brand": "Rossmann",
-    "discount": null,
-    "price": "48.99",
-    "currency": "PLN",
-    "url": "https://www.rossmann.pl/Produkt/Kremy-do-twarzy/Kimoco-Glass-Skin-krem-serum-do-twarzy-rozswietlajacy-100-g,2101986,13049",
-    "image": "https://pro-fra-s3-productsassets.rossmann.pl/product_7_medium/2101986_360_350_1780905043.webp",
-    "description": "Promocja Rossmann",
-    "valid_until": null,
-    "tags": [
-      "Kosmetyki",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Rossmann HTML"
-  },
-  {
-    "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "DARMOWA DOSTAWA 4,8",
     "original_price": "19.99 PLN",
     "sale_price": "19.99 PLN",
@@ -1509,7 +1509,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,8",
     "original_price": "16.99 PLN",
     "sale_price": "16.99 PLN",
@@ -1537,35 +1537,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
-    "name": "MEGA! 4,9",
-    "original_price": "27.49 PLN",
-    "sale_price": "27.49 PLN",
-    "discount_pct": 0,
-    "image_url": "https://pro-fra-s3-productsassets.rossmann.pl/product_1_medium/2125439_360_350_1772185529.webp",
-    "product_url": "https://www.rossmann.pl/Produkt/Samoopalacze/Mixa-Bright-Bronze-balsam-do-ciala-samoopalajacy-250-ml,2125439,13126",
-    "category": "Kosmetyki",
-    "in_stock": true,
-    "title": "MEGA! 4,9",
-    "brand": "Rossmann",
-    "discount": null,
-    "price": "27.49",
-    "currency": "PLN",
-    "url": "https://www.rossmann.pl/Produkt/Samoopalacze/Mixa-Bright-Bronze-balsam-do-ciala-samoopalajacy-250-ml,2125439,13126",
-    "image": "https://pro-fra-s3-productsassets.rossmann.pl/product_1_medium/2125439_360_350_1772185529.webp",
-    "description": "Promocja Rossmann",
-    "valid_until": null,
-    "tags": [
-      "Kosmetyki",
-      "sale"
-    ],
-    "confidence_score": 1,
-    "source_type": "dynamic_scrape",
-    "source_name": "Rossmann HTML"
-  },
-  {
-    "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "MEGA! 4,9",
     "original_price": "2.29 PLN",
     "sale_price": "2.29 PLN",
@@ -1593,7 +1565,7 @@
   },
   {
     "site": "rossmann",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "TYLKO U NAS 4,8",
     "original_price": "7.99 PLN",
     "sale_price": "7.99 PLN",
@@ -1621,7 +1593,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Paris Corner zestaw: woda perfumowana, 4x15 ml",
     "original_price": "238.10 PLN",
     "sale_price": "50.00 PLN",
@@ -1648,7 +1620,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Nivea zestaw: Fresh Sensation Roll-on, 50 ml + Protect & Care nawilżający krem do twarzy, 75 ml + Energy żel pod prysznic, 250 ml + skarpetki, 1 szt.",
     "original_price": "96.77 PLN",
     "sale_price": "30.00 PLN",
@@ -1675,7 +1647,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Joie zestaw: woda perfumowana damska, 50 ml + mgiełka do ciała, 150 ml",
     "original_price": "78.95 PLN",
     "sale_price": "30.00 PLN",
@@ -1702,7 +1674,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Lattafa zestaw unisex: woda perfumowana, 100 ml  + woda perfumowana, 20 ml + dezodorant perfumowany, 200 ml",
     "original_price": "250.00 PLN",
     "sale_price": "100.00 PLN",
@@ -1729,7 +1701,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Roomcays zestaw: olejek do brody i wąsów, 50 ml + szczotka do brody, 1 szt. + ręcznik do twarzy, 1 szt.",
     "original_price": "74.07 PLN",
     "sale_price": "20.00 PLN",
@@ -1756,7 +1728,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Magic Studio zestaw: eyeliner, 0,4 g + tusz do rzęs, 8 ml + konturówka do ust, 0,4 g + szminka, 3,5 g + rozświetlacz, 8 ml",
     "original_price": "55.56 PLN",
     "sale_price": "20.00 PLN",
@@ -1783,7 +1755,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Maybelline New York zestaw: Sky High tusz, 7,2 ml + płyn micelarny, 400 ml",
     "original_price": "90.91 PLN",
     "sale_price": "40.00 PLN",
@@ -1810,7 +1782,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Bubble T płyn do kąpieli, 4x200 ml",
     "original_price": "60.61 PLN",
     "sale_price": "20.00 PLN",
@@ -1837,7 +1809,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Yankee Candle Home Inspiration kalendarz adwentowy, 1 szt.",
     "original_price": "151.18 PLN",
     "sale_price": "49.89 PLN",
@@ -1864,7 +1836,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Magic Studio zestaw: błyszczyk do ust, 3,5 ml + rozświetlacz 4, 65 g + płynny sztyft do ust, 1,6 ml + eyeliner, 0,6 g",
     "original_price": "50.00 PLN",
     "sale_price": "20.00 PLN",
@@ -1891,7 +1863,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Roomcays zestaw: szampon do brody, 120 ml + modelujący wosk do brody i wąsów, 30 ml + skarpetki, 1 para",
     "original_price": "66.67 PLN",
     "sale_price": "20.00 PLN",
@@ -1918,7 +1890,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Yankee Candle Home Inspiration zestaw: kominek, 1 szt. + wosk, 1 szt.",
     "original_price": "100.00 PLN",
     "sale_price": "30.00 PLN",
@@ -1945,7 +1917,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Hagi zestaw: żel do mycia ciała, 300 ml + balsam do ciała, 200 ml",
     "original_price": "90.91 PLN",
     "sale_price": "40.00 PLN",
@@ -1972,7 +1944,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Scottish Fine Soaps zestaw: żel do mycia rąk i ciała, 300 ml + balsam do rąk i ciała, 300 ml",
     "original_price": "111.11 PLN",
     "sale_price": "30.00 PLN",
@@ -1999,7 +1971,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Baylis & Harding zestaw: płyn do mycia ciała, 300 ml + szampon do włosów, 300 ml + balsam po goleniu, 200 ml",
     "original_price": "100.00 PLN",
     "sale_price": "30.00 PLN",
@@ -2026,7 +1998,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Lattafa zestaw: woda perfumowana unisex, 5x5 ml",
     "original_price": "222.22 PLN",
     "sale_price": "80.00 PLN",
@@ -2053,7 +2025,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Bond zestaw: woda po goleniu, 100 ml + dezodorant w sprayu męski, 150 ml",
     "original_price": "39.47 PLN",
     "sale_price": "15.00 PLN",
@@ -2080,7 +2052,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Stara Mydlarnia zestaw mydeł glicerynowych, 2x25 g",
     "original_price": "39.47 PLN",
     "sale_price": "15.00 PLN",
@@ -2107,7 +2079,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Scottish Fine Soaps zestaw: mydło do rąk i ciała, 300 ml + balsam do rąk i ciała, 300 ml",
     "original_price": "100.00 PLN",
     "sale_price": "30.00 PLN",
@@ -2134,7 +2106,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Bond zestaw: woda po goleniu, 100 ml + dezodorant w sprayu, 150 ml",
     "original_price": "39.47 PLN",
     "sale_price": "15.00 PLN",
@@ -2161,7 +2133,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Bond zestaw: woda po goleniu, 100 ml + antyperspirant roll-on, 50 ml + żel pod prysznic, 200 ml",
     "original_price": "45.45 PLN",
     "sale_price": "20.00 PLN",
@@ -2188,7 +2160,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Beauty Made Easy balsam do ust, 6 g",
     "original_price": "20.38 PLN",
     "sale_price": "4.89 PLN",
@@ -2215,7 +2187,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Men Rock zestaw: sorbet po goleniu, 100 ml + szampon do włosów i ciała, 200 ml + krem do golenia, 100 ml",
     "original_price": "100.00 PLN",
     "sale_price": "30.00 PLN",
@@ -2242,7 +2214,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Hiskin zestaw: grające mydełko w kształcie świątecznej skarpety, 200 ml + elegancka papeteria, 1 szt. + długopis, 1 szt.",
     "original_price": "71.43 PLN",
     "sale_price": "15.00 PLN",
@@ -2269,7 +2241,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Gloss! świąteczne mydło do rąk w kształcie pierniczka, 300 ml",
     "original_price": "35.32 PLN",
     "sale_price": "9.89 PLN",
@@ -2296,7 +2268,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Beauty Made Easy balsam do ust, 6 g",
     "original_price": "20.38 PLN",
     "sale_price": "4.89 PLN",
@@ -2323,7 +2295,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Aroma Home zestaw: świeca zapachowa, 150 g + dyfuzor zapachowy, 100 ml",
     "original_price": "90.91 PLN",
     "sale_price": "40.00 PLN",
@@ -2350,7 +2322,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Scottish Fine Soaps zestaw: krem do rąk, 30 ml + żel do rąk, 30 ml",
     "original_price": "80.00 PLN",
     "sale_price": "20.00 PLN",
@@ -2377,7 +2349,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Men Rock zestaw do pielęgnacji brody: balsam, 100 ml + szampon, 100 ml + olejek, 30 ml",
     "original_price": "100.00 PLN",
     "sale_price": "40.00 PLN",
@@ -2404,7 +2376,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Men Rock zestaw: sorbet po goleniu, 100 ml + krem do twarzy, 50 ml + szampon do włosów i ciała, 200 ml",
     "original_price": "107.14 PLN",
     "sale_price": "30.00 PLN",
@@ -2431,7 +2403,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Paris Corner zestaw: woda perfumowana, 4x15 ml",
     "original_price": "179.49 PLN",
     "sale_price": "70.00 PLN",
@@ -2458,7 +2430,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Missha zestaw: toner do twarzy, 15 ml + serum w ampułce do twarzy, 10 ml",
     "original_price": "69.77 PLN",
     "sale_price": "30.00 PLN",
@@ -2485,7 +2457,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Bond zestaw: woda po goleniu, 100 ml + dezodorant w sprayu męski, 150 ml + pianka do golenia, 50 ml",
     "original_price": "45.45 PLN",
     "sale_price": "20.00 PLN",
@@ -2512,7 +2484,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Magic Studio zestaw: tusz do rzęs, 5 ml + żel do brwi, 3,2 ml + kredka do oczu, 0,6 g + eyeliner, 4 ml",
     "original_price": "39.78 PLN",
     "sale_price": "19.89 PLN",
@@ -2539,7 +2511,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Men Rock zestaw: szampon do brody, 100 ml + balsam do brody, 100 ml",
     "original_price": "68.97 PLN",
     "sale_price": "20.00 PLN",
@@ -2566,7 +2538,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Old Spice zestaw: dezodorant w sztyfcie, 50 ml + dezodorant w sprayu, 150 ml + żel pod prysznic, 250 ml",
     "original_price": "111.11 PLN",
     "sale_price": "50.00 PLN",
@@ -2593,7 +2565,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Scottish Fine Soaps płyn do kąpieli, 300 ml",
     "original_price": "60.27 PLN",
     "sale_price": "19.89 PLN",
@@ -2620,7 +2592,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Gloss! zestaw: żel pod prysznic, 100 ml + balsam do ciała, 100 ml + peeling do ciała, 50 ml + gąbka eva, 1 szt.",
     "original_price": "50.00 PLN",
     "sale_price": "20.00 PLN",
@@ -2647,7 +2619,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Beauty Made Easy balsam do ust, 6 g",
     "original_price": "20.00 PLN",
     "sale_price": "5.00 PLN",
@@ -2674,7 +2646,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Scalpers zestaw: woda perfumowana męska, 125 ml + woda perfumowana męska, 15 ml + brelok, 1 szt.",
     "original_price": "200.00 PLN",
     "sale_price": "100.00 PLN",
@@ -2701,7 +2673,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Scottish Fine Soaps krem do rąk, 75 ml",
     "original_price": "55.25 PLN",
     "sale_price": "19.89 PLN",
@@ -2728,7 +2700,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Gloss! świąteczny płyn do kąpieli w kształcie mikołaja, 310 ml",
     "original_price": "24.12 PLN",
     "sale_price": "9.89 PLN",
@@ -2755,7 +2727,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Beauty Made Easy balsam do ust, 6 g",
     "original_price": "20.00 PLN",
     "sale_price": "5.00 PLN",
@@ -2782,7 +2754,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Men Rock zestaw: sorbet po goleniu, 100 ml + szampon do włosów i ciała, 200 ml",
     "original_price": "68.97 PLN",
     "sale_price": "20.00 PLN",
@@ -2809,7 +2781,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Neonail kalendarz adwentowy, 1 szt.",
     "original_price": "394.74 PLN",
     "sale_price": "150.00 PLN",
@@ -2836,7 +2808,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Stara Mydlarnia kula do kąpieli w pudełku, 200 g",
     "original_price": "34.88 PLN",
     "sale_price": "15.00 PLN",
@@ -2863,7 +2835,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Scottish Fine Soaps krem do rąk, 75 ml",
     "original_price": "55.25 PLN",
     "sale_price": "19.89 PLN",
@@ -2890,7 +2862,7 @@
   },
   {
     "site": "hebe",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Aroma Home zestaw: świeca zapachowa, 130 g + dyfuzor trzcinowy, 150 ml",
     "original_price": "60.00 PLN",
     "sale_price": "30.00 PLN",
@@ -2917,7 +2889,7 @@
   },
   {
     "site": "douglas",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "LOLAVIE Odżywka do włosów do spłukiwania dla Unisex LOLAVIE Restorative 250 mlLOLAVIERestorativeOdżywka do włosów do spłukiwania145,00 zł250 ml (58,00",
     "original_price": "145.00 PLN",
     "sale_price": "145.00 PLN",
@@ -2944,7 +2916,7 @@
   },
   {
     "site": "douglas",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Orebella Woda perfumowana dla Kobieta Orebella Window2Soul 50 mlOrebellaWindow2SoulWoda perfumowana359,00 zł50 ml (718,00 zł / 100 ml)Tylko w Douglas",
     "original_price": "359.00 PLN",
     "sale_price": "359.00 PLN",
@@ -2971,7 +2943,7 @@
   },
   {
     "site": "douglas",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Rituals Szampon do włosów dla Unisex Rituals Hair Care Collection Hydrating Shampoo - Szampon 250 mlRitualsHair Care CollectionHydrating Shampoo - Sza",
     "original_price": "69.00 PLN",
     "sale_price": "69.00 PLN",
@@ -2998,7 +2970,7 @@
   },
   {
     "site": "douglas",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Dr Irena Eris Cień do powiek dla Unisex Dr Irena Eris MOONLIT SKY 40 - LUNAR SHADOWDr Irena ErisMOONLIT SKYCień do powiekCena regularna169,00 zł126,75",
     "original_price": "169.00 PLN",
     "sale_price": "169.00 PLN",
@@ -3025,7 +2997,7 @@
   },
   {
     "site": "douglas",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Lancôme Krem do twarzy dla Unisex Lancôme Absolue Longevity MD ANTICIPATE 50 mlLancômeAbsolue Longevity MDANTICIPATEKrem do twarzy689,00 zł50 ml (1 37",
     "original_price": "689.00 PLN",
     "sale_price": "689.00 PLN",
@@ -3052,7 +3024,7 @@
   },
   {
     "site": "douglas",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Jung Saem Mool Podkład dla Unisex Jung Saem Mool Default Brand Line Essential Skin Nuder Cushion Podkład w poduszce 19W 17N - FAIR LIGHTJung Saem Mool",
     "original_price": "149.00 PLN",
     "sale_price": "149.00 PLN",
@@ -3079,7 +3051,7 @@
   },
   {
     "site": "douglas",
-    "scraped_at": "2026-06-11T10:44:05.584Z",
+    "scraped_at": "2026-06-11T20:27:05.172Z",
     "name": "Lancôme Spray do ciała dla Kobieta Lancôme La vie est belle L'Original Mist – zapachowa mgiełka do ciała i włosów 100 mlLancômeLa vie est belleL'Origi",
     "original_price": "175.00 PLN",
     "sale_price": "175.00 PLN",
@@ -3106,7 +3078,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3135,7 +3107,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3164,7 +3136,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3193,7 +3165,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Skorzystaj z promocji już teraz",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3222,7 +3194,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Warunki promocji",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3251,7 +3223,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Studio Fleece Medium WeightDamska bluza z kapturem",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3280,7 +3252,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Studio Fleece Medium WeightDamskie spodnie ze średnim stanem i luźnymi nogawkami",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3309,7 +3281,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Studio Fleece Medium WeightDamskie spodenki ze średnim stanem",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3338,7 +3310,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Studio Fleece Medium WeightDamska bluza z kapturem i zamkiem na całej długości",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3367,7 +3339,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wyświetl wszystko",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3396,7 +3368,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3425,7 +3397,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3454,7 +3426,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3483,7 +3455,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3512,7 +3484,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3541,7 +3513,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Otrzymujesz rabat 10%",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3570,7 +3542,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3599,7 +3571,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3628,7 +3600,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Anuluj subskrypcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3657,7 +3629,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wersja internetowa",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3686,7 +3658,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Obraz GIF ze zdjęciami młodych piłkarzy i piłkarek mających na sobie modele z kolekcji Nike Football x LEGO®.",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3715,7 +3687,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj wszystko",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3744,7 +3716,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Do­wiedz się wię­cej",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3773,7 +3745,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3802,7 +3774,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj odzież",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3831,7 +3803,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3860,7 +3832,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj buty",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3889,7 +3861,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3918,7 +3890,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kolekcja Nike Jr. Mercurial Vapor Academy x LEGO®Korki piłkarskie z niską cholewką dla dużych dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3947,7 +3919,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kolekcja Nike Jr. Mercurial Vapor Pro x LEGO®Korki piłkarskie z niską cholewką dla dużych dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -3976,7 +3948,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kolekcja Nike Jr. Streetgato x LEGO®Buty dla dużych dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4005,7 +3977,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kolekcja Nike x LEGO®Kurtka dla dużych dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4034,7 +4006,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj produkty z kolekcji",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4063,7 +4035,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kolekcja LEGO®",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4092,7 +4064,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Piłka nożna",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4121,7 +4093,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wszystkie produkty dla dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4150,7 +4122,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4179,7 +4151,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4208,7 +4180,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4237,7 +4209,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4266,7 +4238,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4295,7 +4267,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kolekcja Nike Football x LEGO®",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4324,7 +4296,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4353,7 +4325,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4382,7 +4354,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4411,7 +4383,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4440,7 +4412,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj produkty treningowe",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4469,7 +4441,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Pro SculptDamski stanik sportowy z wkładkami i średnim wsparciem",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4498,7 +4470,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Pro SculptDamskie kolarki z wysokim stanem 8 cm",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4527,7 +4499,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Zoom Fly 6 GlamMęskie buty do biegania po asfalcie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4556,7 +4528,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Pro TrainingMęska koszulka z krótkim rękawem Dri-FIT ADV",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4585,7 +4557,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj produkty treningowe",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4614,7 +4586,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4643,7 +4615,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4672,7 +4644,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4701,7 +4673,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4730,7 +4702,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Skompletuj sprzęt do treningu hybrydowego",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4759,7 +4731,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4788,7 +4760,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4817,7 +4789,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Anuluj subskrypcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4846,7 +4818,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wersja internetowa",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4875,7 +4847,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4904,7 +4876,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4933,7 +4905,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Obejrzyj",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4962,7 +4934,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -4991,7 +4963,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5020,7 +4992,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Stroje reprezentacji narodowychInstynkt bierze górę",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5049,7 +5021,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5078,7 +5050,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5107,7 +5079,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj produkty do piłki nożnej",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5136,7 +5108,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5165,7 +5137,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Znajdź teraz",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5194,7 +5166,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5223,7 +5195,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5252,7 +5224,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5281,7 +5253,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5310,7 +5282,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5339,7 +5311,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Rip the Script",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5368,7 +5340,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5397,7 +5369,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5426,7 +5398,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Anuluj subskrypcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5455,7 +5427,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wersja internetowa",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5484,7 +5456,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5513,7 +5485,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5542,7 +5514,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Prze­glą­daj",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5571,7 +5543,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5600,7 +5572,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "NikeSKIMS Rift MeshButy damskie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5629,7 +5601,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "NikeSKIMS Rift SatinButy damskie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5658,7 +5630,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5687,7 +5659,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Zobacz kolekcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5716,7 +5688,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5745,7 +5717,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5774,7 +5746,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5803,7 +5775,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5832,7 +5804,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5861,7 +5833,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nowe modele NikeSKIMS Studio",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5890,7 +5862,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5919,7 +5891,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5948,7 +5920,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Anuluj subskrypcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -5977,7 +5949,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wersja internetowa",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6006,7 +5978,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6035,7 +6007,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6064,7 +6036,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6093,7 +6065,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6122,7 +6094,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6151,7 +6123,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike ACG Pegasus TrailMęskie buty do biegania w terenie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6180,7 +6152,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike ACG Pegasus TrailDamskie buty do biegania w terenie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6209,7 +6181,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6238,7 +6210,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Odkryj linię ACG",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6267,7 +6239,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6296,7 +6268,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6325,7 +6297,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6354,7 +6326,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6383,7 +6355,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Poznaj model ACG Pegasus Trail",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6412,7 +6384,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6441,7 +6413,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6470,7 +6442,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Anuluj subskrypcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6499,7 +6471,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wersja internetowa",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6528,7 +6500,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6557,7 +6529,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6586,7 +6558,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Zobacz podsumowanie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6615,7 +6587,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6644,7 +6616,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6673,7 +6645,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6702,7 +6674,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6731,7 +6703,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6760,7 +6732,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Odkryj strefy",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6789,7 +6761,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6818,7 +6790,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6847,7 +6819,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6876,7 +6848,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Odkryj Nike Running",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6905,7 +6877,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6934,7 +6906,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6963,7 +6935,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -6992,7 +6964,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7021,7 +6993,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Co to jest Nike Air Liquid Max? →",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7050,7 +7022,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Co to jest Nike Air Liquid Max? →",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7079,7 +7051,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike i Dropcity przedstawiają zapowiedź Air Lab →",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7108,7 +7080,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike i Dropcity przedstawiają zapowiedź Air Lab →",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7137,7 +7109,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Martin Lotti na czele nowej kreatywnej fali w Nike →",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7166,7 +7138,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Martin Lotti na czele nowej kreatywnej fali w Nike →",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7195,7 +7167,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7224,7 +7196,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7253,7 +7225,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7282,7 +7254,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Zobacz zapowiedź",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7311,7 +7283,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7340,7 +7312,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Zobacz zapowiedź",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7369,7 +7341,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Już wkrótceNikeSKIMS Rift MeshButy damskie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7398,7 +7370,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "NikeSKIMS Rift SatinButy damskie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7427,7 +7399,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7456,7 +7428,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7485,7 +7457,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7514,7 +7486,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7543,7 +7515,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7572,7 +7544,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7601,7 +7573,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kolekcja NikeSKIMS Studio",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7630,7 +7602,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7659,7 +7631,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7688,7 +7660,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Anuluj subskrypcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7717,7 +7689,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wersja internetowa",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7746,7 +7718,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7775,7 +7747,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7804,7 +7776,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Skorzystaj z promocji już teraz",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7833,7 +7805,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Warunki promocji",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7862,7 +7834,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Już wkrótceNike Moon Shoe OGButy damskie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7891,7 +7863,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Pegasus 42Męskie buty do biegania po asfalcie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7920,7 +7892,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike Pegasus 42Damskie buty do biegania po asfalcie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7949,7 +7921,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Już wkrótceNike Mind 001Męskie buty przedmeczowe typu mule",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -7978,7 +7950,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wyświetl wszystko",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8007,7 +7979,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8036,7 +8008,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8065,7 +8037,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8094,7 +8066,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8123,7 +8095,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8152,7 +8124,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Otrzymujesz rabat 10%",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8181,7 +8153,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8210,7 +8182,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8239,7 +8211,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Anuluj subskrypcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8268,7 +8240,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wersja internetowa",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8297,7 +8269,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8326,7 +8298,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8355,7 +8327,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8384,7 +8356,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8413,7 +8385,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj produkty z kolekcji A’jy",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8442,7 +8414,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8471,7 +8443,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8500,7 +8472,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8529,7 +8501,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8558,7 +8530,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Model A’Two już dostępny",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8587,7 +8559,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8616,7 +8588,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8645,7 +8617,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Anuluj subskrypcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8674,7 +8646,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wersja internetowa",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8703,7 +8675,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8732,7 +8704,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8761,7 +8733,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przeglądaj",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8790,7 +8762,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8819,7 +8791,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8848,7 +8820,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike ACG Pegasus TrailMęskie buty do biegania w terenie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8877,7 +8849,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike ACG Pegasus TrailDamskie buty do biegania w terenie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8906,7 +8878,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike ACG ZegamaMęskie buty do biegania w terenie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8935,7 +8907,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike ACG ZegamaDamskie buty do biegania w terenie",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8964,7 +8936,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "image",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -8993,7 +8965,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Odkryj produkty ACG",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9022,7 +8994,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Nike.com",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9051,7 +9023,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Mężczyźni",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9080,7 +9052,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Kobiety",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9109,7 +9081,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Dzieci",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9138,7 +9110,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wygodne buty na trudne szlaki",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9167,7 +9139,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Polityka ochrony prywatności",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9196,7 +9168,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Uzyskaj pomoc",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9225,7 +9197,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Anuluj subskrypcję",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9254,7 +9226,7 @@
   },
   {
     "site": "nike",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Wersja internetowa",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9283,7 +9255,7 @@
   },
   {
     "site": "adidas",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "WSZYSTKIEGO NAJLEPSZEGO Z OKAZJI URODZIN ŻYCZY ADICLUB",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
@@ -9312,7 +9284,7 @@
   },
   {
     "site": "adidas",
-    "scraped_at": "2026-06-11T10:43:58.442Z",
+    "scraped_at": "2026-06-11T20:26:59.821Z",
     "name": "Przejdź do strony głównej adidas",
     "original_price": "0.00 PLN",
     "sale_price": "0.00 PLN",
